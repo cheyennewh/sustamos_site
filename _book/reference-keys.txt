@@ -17,3 +17,6 @@ memory-prediction-using-simultaneous-predictors-in-a-mixed-logistic-regression-m
 populations
 plots
 tables
+retrieval-task
+affective-rating-task
+encoding-task

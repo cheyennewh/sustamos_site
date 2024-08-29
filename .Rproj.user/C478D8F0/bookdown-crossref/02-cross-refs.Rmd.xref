@@ -1,4 +1,7 @@
 h1:experiment-info Experiment Info
 h2:classic Classic
+h3:encoding-task Encoding Task
+h3:retrieval-task Retrieval Task
+h3:affective-rating-task Affective Rating Task
 h2:delay Delay
 
