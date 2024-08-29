@@ -1,0 +1,5 @@
+"0","neutral <- glm(hits ~ z_mem *  za ,mid_v,family=""binomial"",control=glmerControl())
+"
+"2","Error in glm.control(optimizer = c(""bobyqa"", ""Nelder_Mead""), restart_edge = FALSE,  : 
+  unused arguments (optimizer = c(""bobyqa"", ""Nelder_Mead""), restart_edge = FALSE, boundary.tol = 1e-05, calc.derivs = TRUE, use.last.params = FALSE, checkControl = list(""ignore"", ""stop"", ""ignore"", ""stop"", ""stop"", ""message+drop.cols"", ""warning"", ""stop"", ""stop""), checkConv = list(list(""warning"", 0.002, NULL), list(""message"", 1e-04), list(""warning"", 1e-06)), optCtrl = list(), tolPwrss = 1e-07, compDev = TRUE, nAGQ0initStep = TRUE)
+"

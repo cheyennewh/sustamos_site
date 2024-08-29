@@ -1,0 +1,5 @@
+"0","new_data$zv <- matrix(mem_att$zv*100, ncol = 1)
+"
+"2","Error in `$<-.data.frame`(`*tmp*`, zv, value = c(114.348931556153, 114.348931556153,  : 
+  replacement has 4734 rows, data has 473400
+"

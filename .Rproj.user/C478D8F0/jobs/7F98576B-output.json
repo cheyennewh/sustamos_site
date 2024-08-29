@@ -1,0 +1,8 @@
+[1,"Installing 'xaringanExtra' ...\n"]
+[2,"trying URL 'https://cran.rstudio.com/bin/macosx/big-sur-arm64/contrib/4.4/xaringanExtra_0.8.0.tgz'\n"]
+[2,"Content type 'application/x-gzip' length 1788877 bytes (1.7 MB)\n======"]
+[2,"=================="]
+[2,"==========================\ndownloaded 1.7 MB\n\n"]
+[1,"The downloaded binary packages are in\n"]
+[1,"\t/var/folders/tb/d6wl63q96dgbj9lq5p5tsd0w0000gn/T//RtmpAbkMKv/downloaded_packages\n"]
+[2,"\n\n✔ Package 'xaringanExtra' successfully installed.\n"]

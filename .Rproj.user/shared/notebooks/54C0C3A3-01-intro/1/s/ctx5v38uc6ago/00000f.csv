@@ -1,0 +1,17 @@
+"0",""
+"0","z <- glmer(hits ~ z_mem * zv * zrt * za + (1 + zrt | Participant.Private.ID),mem_att,family=""binomial"",control=glmerControl())"
+"2","boundary (singular) fit: see help('isSingular')
+"
+"0","tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)"
+"2","Warning in class(object) <- ""environment"" :"
+"2","
+ "
+"2"," Setting class(x) to ""environment"" sets attribute to NULL; result will no longer be an S4 object
+"
+"2","Warning in class(object) <- ""environment"" :"
+"2","
+ "
+"2"," Setting class(x) to ""environment"" sets attribute to NULL; result will no longer be an S4 object
+"
+"2","boundary (singular) fit: see help('isSingular')
+"

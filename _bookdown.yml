@@ -1,0 +1,11 @@
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: " "
+    
+book_filename: "Sustamos"
+rmd_files: ["index.Rmd",
+  "02-cross-refs.Rmd",
+  "01-intro.Rmd",
+  "07-references.Rmd"
+]

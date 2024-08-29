@@ -1,0 +1,6 @@
+"0"," ggplot()+"
+"0","geom_histogram(memory_unique, mapping=aes(x=d_prime),fill=""firebrick4"",alpha=.7)+"
+"0","  theme_minimal()+"
+"0","  ylab(""Number of participants"")"
+"1","[38;5;252m`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.[39m
+"
