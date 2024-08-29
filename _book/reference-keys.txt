@@ -4,6 +4,9 @@ stimulus-specific-memory-influencers
 person-specific-memory-influencers
 experiment-info
 classic
+encoding-task
+retrieval-task
+affective-rating-task
 delay
 whole-data-analyses
 how-often-were-participants-lapsing-on-the-task
@@ -17,6 +20,3 @@ memory-prediction-using-simultaneous-predictors-in-a-mixed-logistic-regression-m
 populations
 plots
 tables
-retrieval-task
-affective-rating-task
-encoding-task
