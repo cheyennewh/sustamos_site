@@ -3,7 +3,7 @@
     "path": "~/Desktop/sustamos_book/_bookdown.yml",
     "project_path": "_bookdown.yml",
     "type": "yaml",
-    "hash": "1842536986",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1723485809421.0,
@@ -16,11 +16,11 @@
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1724953305,
+    "lastKnownWriteTime": 1724965084,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1724953305627,
+    "last_content_update": 1724965084,
     "read_only": false,
     "read_only_alternatives": []
 }

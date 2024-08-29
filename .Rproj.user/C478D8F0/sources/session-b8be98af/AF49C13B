@@ -3,7 +3,7 @@
     "path": "~/Desktop/sustamos_book/02-cross-refs.Rmd",
     "project_path": "02-cross-refs.Rmd",
     "type": "r_markdown",
-    "hash": "2046549229",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1724697813639.0,
@@ -13,14 +13,14 @@
         "source_window_id": "",
         "Source": "Source",
         "cursorPosition": "11,0",
-        "scrollLine": "3"
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1724963289,
+    "lastKnownWriteTime": 1724965084,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1724963289506,
+    "last_content_update": 1724965084,
     "read_only": false,
     "read_only_alternatives": []
 }
