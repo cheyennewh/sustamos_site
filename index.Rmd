@@ -51,7 +51,7 @@ bookdown::render_book("index.Rmd")
 ```
 
 ```{r eval=FALSE,echo=FALSE}
-install.packages("servr")
+library("servr")
 bookdown::serve_book()
 ```
 
