@@ -17,9 +17,9 @@ output:
 This evolving booklet contains details about the Sustamos project. The three sections which comprise this booklet will describe the experiment setup, current participant details, and iterations of the main and additional analyses for this project. Below is a breakdown of each section of the table of contents.
 
 <ul>
-  <li><b>Experiment Info</b>: Contains information about the experiments conducted within this project. This includes task design and participant recruitment information. </li>
-  <li><b>Whole-data analyses</b>: Contains analyses of data from the entire sample of collected participants. Two subsections are contained within this section: the 'VAMOS Data' and 'sustamos data' versions. See subsection headings for more detail on the difference between these two analysis methods. /li>
-  <li> <b>Is this really one population?</b>: Contains different attempts of parsing the participant data, by performance on either the encoding or memory portions of the experiment</li>
+  <li><b>Experiment Info</b>: Contains information about the experiments conducted as a part this project. This includes task design and participant recruitment information. </li>
+  <li><b>Whole-data analyses</b>: Contains analyses of data from the entire sample of collected participants. </li>
+  <li> <b>Is this really one population?</b>: Contains different attempts of parsing the participant data, by performance on either the encoding or memory portions of the experiment </li>
 </ul>
 
 ## About the project {.unlisted}
@@ -29,7 +29,7 @@ This evolving booklet contains details about the Sustamos project. The three sec
 The goal of the current project (codenamed Sustamos) is to understand how the simultaneous influence of stimulus-derived and individual-derived memory determinants can help us predict the memory of individuals. 
 
 ### Stimulus-specific memory influencers {.unlisted}
-Prior work has shown that our later recognition of a stimulus, such as an image is predicted, in part, by measurable properties of that stimulus. For example, formal properties of an image (e.x. luminance, color, shapes) are associated with a capture of bottom-up attention and increased chances of successful encoding. This steering of attention through absolute details paves the way for successful retrieval of that stimuli at a later point. Importantly, this category of image properties can be easily measured through visual inspection and is not reliant on observer interpretation.
+Prior work has shown that our memory of a stimulus, such as an image is predicted, in part, by measurable properties of that stimulus. Some properties of an image (e.x. luminance, color, shapes) are associated with a capture of bottom-up attention and increased chances of successful encoding. This steering of attention through absolute details paves the way for successful retrieval of that stimuli at a later point. Importantly, this category of image properties can be easily measured through visual inspection and is not reliant on observer interpretation.
 
 However, not all measurable stimulus properties are determined simply by a stimulus in isolation. Instead, we are also able to understand a stimulus through it's relative properties-- which take form through placing a stimulus in the context of other stimuli. Relative properties such as an image's uniqueness, unusualness, or beauty emerge through comparison between stimuli and are dependent on a viewer's experience with prior stimuli to make such comparisons. Rather than being related to the purely sensory components of a stimuli, these properties are a product of our implicit and explicit memory of similar stimuli. They therefore will influence our encoding of a stimulus through avenues other than automatic attention lassoing.
 

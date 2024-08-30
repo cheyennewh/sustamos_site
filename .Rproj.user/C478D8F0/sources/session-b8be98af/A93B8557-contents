@@ -313,8 +313,9 @@ ggplot(pred_data, aes(x = zrt, y = hits)) +
 
 ```
 <details>
+
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 <br>
 Model Formula:
@@ -378,7 +379,7 @@ ggplot(pred_data2, aes(x = z_mem, y = hits)) +
 
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 
 
@@ -478,7 +479,7 @@ ggplot(pred_data3, aes(x = zv, y = hits)) +
 
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 Model Formula:
 \[
@@ -533,7 +534,7 @@ ggplot(pred_data4, aes(x = z_ind, y = hits)) +
 
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 
 Model Formula:
@@ -590,7 +591,7 @@ ggplot(pred_data5, aes(x = group_scale_v, y = hits)) +
 
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 Model Formula:
 \[
@@ -622,9 +623,6 @@ For completeness, I also conducted 3 versions of a model predicting memory using
 >Predictions of memory for each of these versions of the model can be found below, along with their model formulas and model outputs. The results are consistent across all versions. For VAMOS ratings, individual ratings, or averaged ratings, <b> more arousing images were more memorable than less arousing images. </b>
 
 
-<br>
-<br>
-<br>
 <details>
   <summary> Results </summary>
 ```{r,message=F,warning=F}
@@ -670,9 +668,10 @@ ggplot(pred_data6, aes(x = za, y = hits)) +
   ggtitle("Memory prediction using VAMOS Scores 
           (z-scored globally)") 
 ```
+
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 Model Formula:
 \[
@@ -727,7 +726,7 @@ ggplot(pred_data7, aes(x = z_ind, y = hits)) +
 
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 <br>
 Model Formula:
 \[
@@ -780,7 +779,7 @@ ggplot(pred_data8, aes(x = group_scale_ar, y = hits)) +
 
 <details>
 <summary> Formula and Model Output </summary>
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 <br>
 Model Formula:
 
@@ -796,6 +795,9 @@ tab_model(model8, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALS
 <br>
 <br>
 </details>
+<br>
+<br>
+<br>
 
 ## Memory Prediction using Simultaneous Predictors in a Mixed Logistic Regression Model
 
@@ -803,11 +805,9 @@ Finally, I threw combinations of the 4 predictors (valence, arousal, attention, 
 
 For the majority of the outputs, the story is the same: valence, arousal, memorability, and attention all positively impact our memory. Images that are positive, arousing, and memorable are more likely to be remembered. Images that were see during a better attentional state were also better remember. This pattern holds true for predicting binary memory and memory on a scale of 1-6. Most interactions were not significant. Occasionally, the memorability x arousal interaction became significant.
 
-
-Models w/ random intercept only:
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<details>
+<summary> Models w/ random intercept only </summary>
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")} 
@@ -830,10 +830,9 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 \[
-\text{Response(1-6)} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)}} 
+\text{Response(1-6)} \sim \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1|\text{Participant})
 \]
 
 
@@ -852,7 +851,7 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")} 
@@ -872,7 +871,7 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")} 
@@ -886,14 +885,120 @@ z <- glmer(hits ~ zrt* za*z_mem+(1|Participant.Private.ID), mem_att,control = gl
 tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 </div>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time} + \text{Valence}, + \\ \text{(1|Participant),}\\ \text{ family="binomial"}
+\]
+
+```{r, message=F,warning=FALSE}
+z <- glmer(hits ~ zrt +za+z_mem+zv+(1|Participant.Private.ID), mem_att, family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+
+
+<br>
+<br>
+<br>
+
+</details>
+
+
+<details>
+<summary> Models w/ Random intercept and slope </summary>
+
+<details style="margin-left: 20px;">
+<summary>Additive models </summary>
+
+
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hit} \sim   \text{(Arousal} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")} 
+\]
+
+```{r, message=F,warning=FALSE}
+mem_att$Response <- as.numeric(mem_att$Response)
+
+
+
+z <- glmer(hits ~ zrt+ zv +za +(1+zv+za|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
 <br>
 <br>
 <br>
 <br>
 
-Fully interactive Models:
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{Response(1-6)} \sim \text{Arousal} + \text{Valence} + \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
+\]
+
+
+```{r, message=F,warning=FALSE}
+z <- lmerTest::lmer(Response ~ zrt+ zv +za +(1+zv+za|Participant.Private.ID), mem_att,control = lmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hit} \sim   \text{(Memorability} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")} 
+\]
+
+```{r, message=F,warning=FALSE }
+
+z <- glmer(hits ~ zrt+ zv+z_mem+(1+zv|Participant.Private.ID), mem_att, family="binomial",control = glmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hit} \sim   \text{(Memorability} + \text{Arousal} + \text{Reaction Time} \\ +  \text{(1+Arousal|Participant)} \text{, family="binomial")} 
+\]
+
+```{r, message=F,warning=FALSE }
+
+z <- glmer(hits ~ zrt+za+z_mem+(1+za|Participant.Private.ID), mem_att, family="binomial",control = glmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+</details>
+
+<details style="margin-left: 20px;">
+<summary> Interactive Models </summary>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")} 
@@ -918,10 +1023,10 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
-\text{Response(1-6)} \sim \text{Arousal} \times \text{Valence} \times \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
+\text{Response(1-6)} \sim \text{Arousal}  \cdot \text{Valence}  \cdot \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
 \]
 
 
@@ -939,7 +1044,7 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")} 
@@ -958,7 +1063,7 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 <br>
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \\ + \text{(1+Arousal|Participant)} \text{, family="binomial")} 
@@ -976,132 +1081,8 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 <br>
 <br>
-Additive models:
 
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
-\[
-\text{hit} \sim   \text{(Arousal} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")} 
-\]
-
-```{r, message=F,warning=FALSE}
-mem_att$Response <- as.numeric(mem_att$Response)
-
-
-
-z <- glmer(hits ~ zrt+ zv +za +(1+zv+za|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
-
-# Plot fixed effects
-tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-```
-</div>
-<br>
-<br>
-<br>
-<br>
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
-\[
-\text{Response(1-6)} \sim \text{Arousal} + \text{Valence} + \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
-\]
-
-
-```{r, message=F,warning=FALSE}
-z <- lmerTest::lmer(Response ~ zrt+ zv +za +(1+zv+za|Participant.Private.ID), mem_att,control = lmerControl())
-
-# Plot fixed effects
-tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-
-```
-
-</div>
-<br>
-<br>
-<br>
-<br>
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
-\[
-\text{hit} \sim   \text{(Memorability} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")} 
-\]
-
-```{r, message=F,warning=FALSE }
-
-z <- glmer(hits ~ zrt+ zv+z_mem+(1+zv|Participant.Private.ID), mem_att, family="binomial",control = glmerControl())
-
-# Plot fixed effects
-tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-```
-</div>
-<br>
-<br>
-<br>
-<br>
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
-\[
-\text{hit} \sim   \text{(Memorability} + \text{Arousal} + \text{Reaction Time} \\ +  \text{(1+Arousal|Participant)} \text{, family="binomial")} 
-\]
-
-```{r, message=F,warning=FALSE }
-
-z <- glmer(hits ~ zrt+za+z_mem+(1+za|Participant.Private.ID), mem_att, family="binomial",control = glmerControl())
-
-# Plot fixed effects
-tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-```
-</div>
-Special models:
-
-
-Including a specially requested model here:
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
-\[
-\text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time} \\ + \text{(Memorability} \times \text{Reaction Time)} + \text{(Memorability} \times \text{Arousal)}, \text{ family="binomial"}
-\]
-
-```{r, message=F,warning=FALSE}
-z <- glm(hits ~ zrt+za+z_mem+ zrt*z_mem +za*z_mem, mem_att,family="binomial")
-
-# Plot fixed effects
-tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-
-```
-</div>
-<br> 
-<br>
-
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
-\[
-\text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time} + \text{Valence}, \\ \text{ family="binomial"}
-\]
-
-```{r, message=F,warning=FALSE}
-z <- glm(hits ~ zrt +za+z_mem+zv, mem_att, family="binomial")
-tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-```
-</div>
-
-
-<br>
-<br>
-<br>
-
-
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} + \\ \text{(1+ Reaction Time|Participant),} \text{ family="binomial"}
@@ -1119,7 +1100,7 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 <br>
 <br>
 
-<div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
 \[
 \text{hit} \sim \text{Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} + \\ \text{(1+ Reaction Time|Participant),} \text{ family="binomial"}
@@ -1132,6 +1113,10 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 </div>
 
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+\[
+\text{hit} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \cdot \text{Valence} + \text{1 + Reaction Time}, \text{ family="binomial"}
+\]
 
 ```{r, message=F,warning=FALSE}
 
@@ -1139,7 +1124,43 @@ z <- glmer(hits ~ z_mem * zv * zrt * za + (1 + zrt | Participant.Private.ID),mem
 tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 
-```{r, warning=FALSE,message=FALSE}
+</div>
+
+</details>
+</details>
+
+<details>
+
+<summary> Special models </summary>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time}  + \text{(Memorability} \cdot \text{Reaction Time)} + \text{(Memorability} \cdot \text{Arousal)}, \text{ family="binomial"}
+\]
+
+```{r, message=F,warning=FALSE}
+z <- glm(hits ~ zrt+za+z_mem+ zrt*z_mem +za*z_mem, mem_att,family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+</div>
+<br> 
+<br>
+</details>
+
+<br>
+<br>
+
+
+From the many, many models in the above section, we see that the interaction which is most often significant is that between arousal and memorability. I explored this a bit more by creating a two way plot, showing the predicted memory of an image vs. the memorability of that image and split the plot into high and low arousing groups. Note that the predicted memory comes from models with the formula: $\text{hits} \sim \text{Memorability} \cdot \text{Arousal} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}$.
+
+
+
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE, results='hide'}
 z <- glmer(hits ~ z_mem  + (1 | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
 #tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 z2 <- glmer(hits ~ z_mem * za + (1 | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
@@ -1162,17 +1183,17 @@ binomial_smooth <- function(...) {
 use_plot <- pivot_longer(pred_data9,cols=c(pred1,pred2),names_to = "pred_type", values_to = "pred")
 use_plot$pred_type <- factor(use_plot$pred_type, levels = c("pred1", "pred2"), labels = c("Individual Model", "Interactive w Arousal"))
 
-ggplot(use_plot, aes(x = z_mem, y = hits)) +
-  binomial_smooth(aes(y = pred,  color = pred_type),se=F, alpha=.8, size= .7) + 
-  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
-  ylim(.4,.9) + 
-  xlab("Memorability") +
-  ylab("HIT?") +
-  labs(color = "Participant") +
-  scale_color_manual(
-    values = c("Individual Model" = "gold2", "Interactive w Arousal" = "red4"),
-    name = "Model Type"
-  )
+#ggplot(use_plot, aes(x = z_mem, y = hits)) +
+ # binomial_smooth(aes(y = pred,  color = pred_type),se=F, alpha=.8, size= .7) + 
+  #theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+# ylim(.4,.9) + 
+  #xlab("Memorability") +
+ # ylab("HIT?") +
+  #labs(color = "Participant") +
+  #scale_color_manual(
+   # values = c("Individual Model" = "gold2", "Interactive w Arousal" = "red4"),
+   # name = "Model Type"
+ # )
 
 
 
@@ -1208,7 +1229,12 @@ ggplot(pred_data9, aes(x = Memorability_Score, y = hits, color=ar)) +
   )+
   ggtitle("Memorability x Arousal (Two Way)") 
   
+```
 
+
+I also used this created a three-way version of this plot. Again, The predicted memory for each image is plotted against the memorability of the image. The line colors represent the arousal groups (high/low). However, data was separated into equally sized negative, positive, or neutral valence bins before predictions were made using the memorability x arousal prediction model.  The plots below show the interaction between memorability and arousal influences on memory predictions for each valence bin.
+
+```{r, message=F,warning=FALSE}
 
 
 high_v <- pred_data9[pred_data9$val_groups=="(5.95,7.07]",]
@@ -1226,7 +1252,8 @@ p1 <- ggplot(low_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
     values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
     name = "Model Type"
   )+
-  ggtitle("Memorability x Arousal (Negative)") 
+  ggtitle("Memorability x Arousal (Negative)") + 
+  xlim(0.4,1) 
 
 
 p2 <- ggplot(mid_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
@@ -1239,7 +1266,8 @@ p2 <- ggplot(mid_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
     values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
     name = "Model Type"
   )+
-  ggtitle("Memorability x Arousal (Neutral)") 
+  ggtitle("Memorability x Arousal (Neutral)") + 
+  xlim(0.4,1) 
 
 
 
@@ -1252,33 +1280,95 @@ p3 <- ggplot(high_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
     values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
     name = "Model Type"
   )+
-  ggtitle("Memorability x Arousal (Positive)") 
-
-p1
-p2
-p3
-
+  ggtitle("Memorability x Arousal (Positive)") +
+  ylim(0,1) + 
+  xlim(0.4,1) 
 #summary(high_v$Memorability_Score[high_v$ar=="High Arousal"])
 #summary(high_v$Memorability_Score[high_v$ar=="Low Arousal"])
 
 
-t.test(unique(pred_data9$Memorability_Score[high_v$ar=="High Arousal"]),unique(pred_data9$Memorability_Score[high_v$ar=="Low Arousal"]))
+#t.test(unique(pred_data9$Memorability_Score[high_v$ar=="High Arousal"]),unique(pred_data9$Memorability_Score[high_v$ar=="Low Arousal"]))
 
 
 
 ```
 
-
-
+```{r,message=FALSE,warning=FALSE}
+p2
+```
+<details>
+<summary> Neutral Valence Model details </summary>
 ```{r, message=F,warning=FALSE}
-neutral <- glm(hits ~ z_mem *  za ,mid_v,family="binomial")
+neutral <- glmer(hits ~ z_mem *  za +(1|Participant.Private.ID),mid_v,family="binomial")
 tab_model(neutral, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-
-positive <- glm(hits ~ z_mem *  za ,high_v,family="binomial")
+```
+</details>
+<br>
+<br>
+```{r,message=FALSE,warning=FALSE}
+p3
+```
+<details>
+<summary> Model details </summary>
+```{r, message=F,warning=FALSE}
+positive <- glmer(hits ~ z_mem *  za +(1|Participant.Private.ID),high_v,family="binomial")
 tab_model(positive, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</details>
 
-  negative  <- glm(hits ~ z_mem * za ,low_v,family="binomial")
+<br>
+<br>
+```{r,message=FALSE,warning=FALSE}
+p1
+```
+<details>
+<summary> Model details </summary>
+```{r, message=F,warning=FALSE}
+  negative  <- glmer(hits ~ z_mem * za +(1|Participant.Private.ID),low_v,family="binomial")
 tab_model(  negative , show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 
+```
+</details>
+
+
+<br>
+<br>
+
+And because we are interested in this three-way interaction between valence, arousal, and memorability, I also tried comparing the model output when the model had random slopes (valence/arousal) vs when there were no random slopes.
+
+<br>
+<br>
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=FALSE,warning=FALSE}
+no_slope  <- glmer(hits ~ z_mem * za*zv +(1|Participant.Private.ID),mem_att,family="binomial")
+tab_model(  no_slope , show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+
+```{r, message=FALSE,warning=FALSE}
+v_slope  <- glmer(hits ~ z_mem * za*zv +(1+zv|Participant.Private.ID),mem_att,family="binomial")
+#tab_model(v_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+
+```{r, message=FALSE,warning=FALSE}
+a_slope  <- glmer(hits ~ z_mem * za*zv +(1+za|Participant.Private.ID),mem_att,family="binomial")
+#tab_model(a_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+<br>
+<br>
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+
+```{r, message=FALSE,warning=FALSE}
+both_slope  <- glmer(hits ~ z_mem * za*zv +(1+za+zv|Participant.Private.ID),mem_att,family="binomial")
+tab_model(a_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 
 ```

@@ -8,8 +8,9 @@ encoding-task
 retrieval-task
 affective-rating-task
 delay
-heading
-some-javascript
+encoding-task-1
+retrieval-task-1
+affective-rating-task-1
 whole-data-analyses
 how-often-were-participants-lapsing-on-the-task
 does-pretrial-reaction-time-predict-lapses
@@ -20,5 +21,3 @@ is-valence-predictive-of-memory
 is-arousal-predictive-of-memory
 memory-prediction-using-simultaneous-predictors-in-a-mixed-logistic-regression-model
 populations
-plots
-tables
