@@ -3,7 +3,7 @@
     "path": "~/Desktop/sustamos_book/01-intro.Rmd",
     "project_path": "01-intro.Rmd",
     "type": "r_markdown",
-    "hash": "945324347",
+    "hash": "4108270020",
     "contents": "",
     "dirty": false,
     "created": 1723486942785.0,
@@ -12,17 +12,17 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "1254,14",
-        "scrollLine": "137",
+        "cursorPosition": "628,30",
+        "scrollLine": "620",
         "last_setup_crc32": "",
         "ignored_words": "binarized\n"
     },
     "folds": "",
-    "lastKnownWriteTime": 1724965084,
+    "lastKnownWriteTime": 1725023140,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1724965776771,
+    "last_content_update": 1725023140572,
     "read_only": false,
     "read_only_alternatives": []
 }

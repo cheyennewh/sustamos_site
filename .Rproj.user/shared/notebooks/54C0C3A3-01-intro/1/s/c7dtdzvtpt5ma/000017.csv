@@ -1,3 +1,0 @@
-"0","poor_mems <- memory_unique$Participant.Private.ID[memory_unique$APrime<.7591969]"
-"0","good_mems <- memory_unique$Participant.Private.ID[memory_unique$APrime>=.7591969]"
-"0",""

@@ -1,2 +1,0 @@
-"0","z <- glm(hits ~ zrt +za+z_mem+zv, mem_att, family=""binomial"")"
-"0","tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)"

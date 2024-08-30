@@ -1,5 +1,0 @@
-"0","z <- glm(hits ~ zrt+za+z_mem+ zrt*z_mem +za*z_mem, mem_att,family=""binomial"")"
-"0",""
-"0","# Plot fixed effects"
-"0","tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)"
-"0",""

@@ -227,6 +227,9 @@ memory_unique <- memory%>%
 <br>
 I also took a look at the distributions of memory performance, using both d' and A'prime' as measures of performance. In both cases, it's apparent that there are a ton of participants that are hovering just above chance. In the 'populations' section of this bookdown, I explore whether these 'worse memory' participants (under median) produce significantly different results than the 'better memory' participants.
 
+<details>
+  <summary> Memory Performance Plots </summary>
+
 ```{r, message=FALSE, warning=FALSE}
 library(ggpubr)
 ggplot()+
@@ -245,7 +248,7 @@ poor_mems <- memory_unique$Participant.Private.ID[memory_unique$APrime<.7591969]
 good_mems <- memory_unique$Participant.Private.ID[memory_unique$APrime>=.7591969]
 
 ```
-
+</details>
 
 ## Is pretrial RT predictive of memory?
 
@@ -309,7 +312,8 @@ ggplot(pred_data, aes(x = zrt, y = hits)) +
   scale_color_viridis(option="A",discrete="True")
 
 ```
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 
 <br>
@@ -324,6 +328,7 @@ tab_model(model, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE
 ```
 
 </div>
+</details>
 <br>
 <br>
 
@@ -371,7 +376,8 @@ ggplot(pred_data2, aes(x = z_mem, y = hits)) +
 ```
 
 
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 
 
@@ -386,6 +392,7 @@ tab_model(model2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALS
 ```
 
 </div>
+</details>
 
 <br>
 
@@ -402,7 +409,8 @@ I was also interested in exploring how valence would predict image recognition i
 
 Predictions of memory for each of these versions of the model can be found below, along with their model formulas and model outputs. The results are consistent across all versions. <b> For VAMOS ratings, individual ratings, or averaged ratings, positive images were more memorable than negative images. </b>
 
-
+<details>
+  <summary> Results </summary>
 <br>
 <br>
 <br>
@@ -468,9 +476,9 @@ ggplot(pred_data3, aes(x = zv, y = hits)) +
   ggtitle("Memory prediction using VAMOS Scores (z-scored globally)") 
 ```
 
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
-
 
 Model Formula:
 \[
@@ -482,6 +490,7 @@ Model Formula:
 tab_model(model3, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 </div>
+</details>
 <br>
 <br>
 <br>
@@ -522,7 +531,8 @@ ggplot(pred_data4, aes(x = z_ind, y = hits)) +
           (z-scored within individual)") 
 ```
 
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 
 
@@ -536,6 +546,7 @@ Model Formula:
 tab_model(model4, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 </div>
+</details>
 <br>
 <br>
 <br>
@@ -577,7 +588,8 @@ ggplot(pred_data5, aes(x = group_scale_v, y = hits)) +
           Image Scores (z-scored within condition)") 
 ```
 
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 
 Model Formula:
@@ -590,9 +602,10 @@ tab_model(model5, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALS
 
 ```
 </div>
+</details>
 <br>
 <br>
-
+</details>
 
 ## Is Arousal Predictive of Memory?
 
@@ -612,7 +625,8 @@ For completeness, I also conducted 3 versions of a model predicting memory using
 <br>
 <br>
 <br>
-
+<details>
+  <summary> Results </summary>
 ```{r,message=F,warning=F}
 
 ind_scale_ar <-ind_scale_emo[ind_scale_emo$aff_type=="arousal",]
@@ -656,7 +670,8 @@ ggplot(pred_data6, aes(x = za, y = hits)) +
   ggtitle("Memory prediction using VAMOS Scores 
           (z-scored globally)") 
 ```
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 
 Model Formula:
@@ -669,7 +684,7 @@ Model Formula:
 tab_model(model6, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 </div>
-
+</details>
 <br>
 <br>
 <br>
@@ -710,7 +725,8 @@ ggplot(pred_data7, aes(x = z_ind, y = hits)) +
           (z-scored within individual)") 
 ```
 
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 <br>
 Model Formula:
@@ -722,7 +738,7 @@ Model Formula:
 tab_model(model7, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 </div>
-
+</details>
 <br>
 <br>
 <br>
@@ -762,7 +778,8 @@ ggplot(pred_data8, aes(x = group_scale_ar, y = hits)) +
           Image Scores (z-scored within condition)") 
 ```
 
-
+<details>
+<summary> Formula and Model Output </summary>
 <div style="background-color:rgba(0, 0, 0, 0.0470588); text-align:center; vertical-align: middle; padding:40px 0;">
 <br>
 Model Formula:
@@ -775,9 +792,10 @@ tab_model(model8, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALS
 
 ```
 </div>
+</details>
 <br>
 <br>
-
+</details>
 
 ## Memory Prediction using Simultaneous Predictors in a Mixed Logistic Regression Model
 

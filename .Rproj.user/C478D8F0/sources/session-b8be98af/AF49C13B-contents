@@ -5,6 +5,8 @@ This section contains information about the tasks included in the Sustamos exper
 
 ## Classic
 
+<details open>
+ <summary>Experiment details</summary>
 The 'classic' version of the Sustamos experiment is a 1-session/3 task experiment run on Prolific and hosted by Gorilla. It features 3 main tasks: an encoding task, an immediate retrieval task and a affective rating task. These tasks are described in detail below:
 
 ### Encoding Task
@@ -25,6 +27,23 @@ I am adding text in each section to see if it will render
 
 ![ ](images/rate1.png){width=50%}
 ![ ](images/rate2.png){width=50%}
-
+</details>
 
 ## Delay
+
+<details>
+  <summary>Click me</summary>
+  
+  ### Heading
+  1. Foo
+  2. Bar
+     * Baz
+     * Qux
+
+  ### Some Javascript
+  ```js
+  function logSomething(something) {
+    console.log('Something', something);
+  }
+  ```
+</details>
