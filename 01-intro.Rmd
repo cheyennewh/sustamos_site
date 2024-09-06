@@ -1,6 +1,6 @@
-# Whole-Data Analyses 
+# Whole-Data Analyses - Classic
 
-This section includes analyses of sustained attention, recognition memory, and affective rating data from the encoding and retrieval components of the experiment. All participants from the sample were included in the following analyses. For analyses split by task performance or memory accuracy, see the 'populations' tab.
+This section includes analyses of sustained attention, recognition memory, and affective rating data from the encoding and retrieval components of the 'classic' version of the experiment described in 'Experiments'. All participants from the sample were included in the following analyses. For analyses split by task performance or memory accuracy, see the 'populations' tab.
 
 
 ```{r setup, include=FALSE}
@@ -1149,6 +1149,23 @@ tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 </div>
 <br> 
 <br>
+
+
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hit} \sim \text{Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \cdot \text{Arousal}+ \\ \text{(1+ Reaction Time+ Valence+Arousal+Memorability|Participant),} \text{ family="binomial"}
+\]
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ z_mem * zv * zrt *za+ (1 + zrt +za+zv+z_mem| Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+<br> 
+<br>
 </details>
 
 <br>
@@ -1297,7 +1314,7 @@ p3 <- ggplot(high_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
 p2
 ```
 <details>
-<summary> Neutral Valence Model details </summary>
+<summary> Model details </summary>
 ```{r, message=F,warning=FALSE}
 neutral <- glmer(hits ~ z_mem *  za +(1|Participant.Private.ID),mid_v,family="binomial")
 tab_model(neutral, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
@@ -1359,7 +1376,7 @@ v_slope  <- glmer(hits ~ z_mem * za*zv +(1+zv|Participant.Private.ID),mem_att,fa
 ```{r, message=FALSE,warning=FALSE}
 a_slope  <- glmer(hits ~ z_mem * za*zv +(1+za|Participant.Private.ID),mem_att,family="binomial")
 #tab_model(a_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-
+#tab_model(a_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 ```
 <br>
 <br>
@@ -1369,6 +1386,258 @@ a_slope  <- glmer(hits ~ z_mem * za*zv +(1+za|Participant.Private.ID),mem_att,fa
 
 ```{r, message=FALSE,warning=FALSE}
 both_slope  <- glmer(hits ~ z_mem * za*zv +(1+za+zv|Participant.Private.ID),mem_att,family="binomial")
-tab_model(a_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+tab_model(both_slope, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 
 ```
+
+
+### How do these results compare when using VAMOS vs individual ratings of valence and arousal?
+
+In the above analyses, VAMOS scores (group-averaged from a prior study) were used as an index of the affect that is evoked by an image. But one could imagine that the relationship between affect, memory, and the other predictors of memory may change if we use the ratings of valence and arousal which come from the same participants who completed the memory test or by using the group-averaged ratings from this collection of participants. Perhaps we may be able to find that the idiosyncratic or group-averaged ratings of valence and arousal may change how we might predict memory using regression models.
+
+Below, I have run some of the major interactive regressions with individual ratings of valence and arousal to see how results compare to the models run with VAMOS ratings of valence and arousal.
+
+
+```{r, message=F,warning=F}
+individ_emo1 <- emo_mematt %>%
+  filter(aff_type=="valence")%>%
+  ungroup() %>%
+  group_by(Participant.Private.ID) %>%
+  mutate(
+    zv = scale(emo_rate)
+  )%>%
+  ungroup()%>%
+  select(Img, zv,Participant.Private.ID,zrt)
+
+individ_emo2 <- emo_mematt %>%
+  filter(aff_type=="arousal")%>%
+  ungroup() %>%
+  group_by(Participant.Private.ID) %>%
+  mutate(
+    za = if_else(aff_type == "arousal", scale(emo_rate), NA_real_)
+  )%>%
+  ungroup()%>%
+  select(Img,za,Participant.Private.ID,hits)
+mem_att_condense <- mem_att[c("z_mem","Img")]%>%
+  unique()
+
+individ_emo <- merge(individ_emo1, individ_emo2, by = c("Img","Participant.Private.ID"))
+individ_emo <- merge(individ_emo, mem_att_condense, by = "Img")
+
+  
+group_averaged_emo1 <- emo_mematt %>%
+  ungroup() %>%
+  group_by(group)%>%
+  mutate(
+    emorate1 = mean(emo_rate),
+    zv = scale(emorate1)
+  )%>%
+  ungroup()%>%
+  select(Img, zv,Participant.Private.ID,hits)
+group_averaged_emo2 <- emo_mematt %>%
+  ungroup() %>%
+  group_by(group)%>%
+  mutate(
+    emorate2 = mean(emo_rate),
+    za = scale(emorate2) )%>%
+  ungroup()%>%
+  select(Img, za,Participant.Private.ID,zrt)
+  group_av_emo <- merge(group_averaged_emo1,group_averaged_emo2, by=c("Img","Participant.Private.ID"))
+  group_av_emo <- merge(group_av_emo,mem_att_condense, by="Img")
+```
+
+First, I ran a set interactive models with valence, arousal, memorability, pretrial reaction time as predictors of individual memory. For this set of models, individual ratings of valence and arousal were used as the 'Valence' and 'Arousal' terms in the model and were z-scored within each individual.
+<details>
+<Summary> Models using individual valence and arousal ratings </summary>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Reaction Time}\mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+
+```{r , message=F,warning=F}
+  individ_emo$Participant.Private.ID <- as.factor(individ_emo$Participant.Private.ID)
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv+zrt|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+
+</div>
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+</div>
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}, \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z <- glm(hits ~ z_mem * za * zv *zrt, 
+           data = individ_emo, 
+           family = "binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+</div>
+<br>
+<br>
+
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Valence}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+<br>
+<br>
+</details>
+
+<br>
+
+Then, I ran a similar set of models using averaged participant ratings of valence from the 'classic' experiment as measures of valence and arousal. In this version, each image has a single valence/arousal score which is the mean of all ratings for that image.  The affective score was then z-scored within-group for the two experimental conditions.
+<details>
+<Summary> Models using group-averaged valence and arousal ratings </summary>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Reaction Time}\mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+
+```{r, message=F,warning=F }
+  #individ_emo$Participant.Private.ID <- as.factor(individ_emo$Participant.Private.ID)
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv+zrt|Participant.Private.ID),group_av_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+
+</div>
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv|Participant.Private.ID),group_av_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+</div>
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}, \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z <- glm(hits ~ z_mem * za * zv *zrt, 
+           data = individ_emo, 
+           family = "binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+</div>
+<br>
+<br>
+
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+<br>
+<br>
+
+<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+
+\[
+\text{hits} \sim \text{Memorability} \cdot \text{Valence}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+\]
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+</details>

@@ -1,12 +1,386 @@
-# Parts
+# Whole-Data Analyses - Delay
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file. 
-
-Add a numbered part: `# (PART) Act one {-}` (followed by `# A chapter`)
-
-Add an unnumbered part: `# (PART\*) Act one {-}` (followed by `# A chapter`)
-
-Add an appendix as a special kind of un-numbered part: `# (APPENDIX) Other stuff {-}` (followed by `# A chapter`). Chapters in an appendix are prepended with letters instead of numbers.
+This section includes analyses of sustained attention, recognition memory, and affective rating data from the encoding and retrieval components of the 'delay' version of the experiment described in 'Experiments'. All participants from the sample were included in the following analyses. For analyses split by task performance or memory accuracy, see the 'populations' tab.
 
 
+```{r , include=FALSE,message=F,warning=F}
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+#rm(list = ls())
+#load libraries
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(tidyverse)
+library(hrbrthemes)
+#library(viridis)
+library(kableExtra)
+library(dplyr)
+library(viridis)
+library(lme4)
+library(ggpubr)
+library(patchwork)
+
+```
+
+
+```{r,message=F,warning=F}
+
+delay_sust1 <- read_csv("./delay_data/delay_batch1/sust1.csv")
+delay_sust2 <- read_csv("./delay_data/delay_batch1/sust2.csv")
+
+delay_mem1 <- read_csv("./delay_data/delay_batch1/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem2 <- read_csv("./delay_data/delay_batch1/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+
+delay_mem_early2 <- read_csv("./delay_data/mem2_early.csv")
+
+delay_emo1 <-read_csv("./delay_data/delay_batch1/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo2 <-read_csv("./delay_data/delay_batch1/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
+
+
+#valence <- emo[emo$aff_type=="valence",]
+#arousal <- emo[emo$aff_type=="arousal",]
+#emo_mematt <- merge(emo, mem_att, by= c("`Participant Private ID`","Img"))
+
+sust <- rbind(delay_sust1,delay_sust2)
+memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2)
+emo <- rbind(delay_emo1,delay_emo2,delay_emo_early2)
+
+
+
+
+## Filter out the first presentation of the target and only keep responses to the second
+unique_rows <- sust%>%
+  filter(`Spreadsheet: display`=="image")
+# Filter rows to keep only those with 'F' if it exists, otherwise keep any row
+filtered_rows <- unique_rows %>%
+  group_by(`Trial Number`,`Participant Private ID`) %>%
+  filter(!`Response Type`=="continue")%>%
+  filter(if(any(Response == 'F', na.rm = TRUE)) Response == 'F' else TRUE) %>%
+  slice(1)%>%
+  ungroup()
+filtered_rows <- filtered_rows %>%
+  group_by(`Spreadsheet: img`, `Spreadsheet: type`, `Participant Private ID`) %>%
+  mutate(num_rows = n())%>%
+  filter(num_rows == 1 | row_number() == 2) %>%
+  ungroup() %>%
+  select(-num_rows)
+
+
+
+
+sust_full_all <- filtered_rows%>%
+  arrange(`Participant Private ID`, `Trial Number`)%>%
+  mutate(Block_Number = NA,
+         Reaction.Time = ifelse(`Response Type` == "timedOut", NA, `Reaction Time`)
+  )
+
+
+
+sust_full <- sust_full_all %>%
+  filter(!`Spreadsheet: type`=="filler")%>%
+  mutate(Block_Number = rep(1:(n() %/% 4 + ifelse(n() %% 4 > 0, 1, 0)), each = 4)[1:n()],
+         `Reaction Time` = ifelse(`Response Type` == "timedOut", NA, `Reaction Time`)
+  )
+
+sust_full <- sust_full%>%
+  group_by(`Participant Private ID`)%>%
+  mutate(
+    Fitted_Values = ifelse(!is.na(`Reaction Time`), lm(`Reaction Time` ~ `Trial Number`)$fitted.values, NA),
+    Detrended_Reaction_Time = `Reaction Time` - Fitted_Values)
+
+
+
+sust_full_window_rt <- sust_full %>%
+  group_by(`Participant Private ID`,Block_Number)%>%
+  filter(`Spreadsheet: type` == 'window') %>%
+  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = TRUE))%>%
+  arrange(`Participant Private ID`, `Trial Number`)
+
+sust_full_target_rt <- sust_full %>%
+  group_by(`Participant Private ID`,Block_Number)%>%
+  filter(`Spreadsheet: type` == 'target')
+
+sust_full_rt <- rbind(sust_full_window_rt,sust_full_target_rt)%>%
+  arrange(`Participant Private ID`, `Trial Number`)%>%
+  mutate(
+    Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time)
+  )
+
+
+# View the resulting dataframe
+
+#write.csv(sust_full_rt,"sust_full_rt.csv")
+
+
+emo <- emo %>%
+  select(`Participant Private ID`, Display, Response, `Spreadsheet: memory`, `Spreadsheet: img`, `Object ID`) %>%
+  filter(Display == "image",
+         `Spreadsheet: memory` == "target") %>%
+  mutate(Response=as.numeric(Response),
+         aff_type = ifelse(`Object ID` == "object-51", "valence", 
+                           ifelse(`Object ID` == "object-78", "arousal", NA)))%>%
+  drop_na()%>%
+  filter(Response>=1 & Response<=9)%>%
+  rename("Img"="Spreadsheet: img",
+         "emo_rate" = "Response")%>%
+  group_by(`Participant Private ID`,Img,aff_type) %>%
+  filter(row_number() == n() | n() == 1) %>%
+  ungroup()
+
+
+#write.csv(emo,"emo.csv")
+
+
+
+
+
+memory <- memory %>%
+  filter(Display=="image",
+         Response>0,
+         Response<7,
+         !`Participant Private ID`=="9957478")%>%
+  mutate(hits = ifelse(`Spreadsheet: memory` == "target" & (Response == 1 | Response == 2| Response == 3), 1, 0),
+         fas = ifelse(`Spreadsheet: memory` == "filler" & (Response == 1 | Response == 2| Response == 3), 1, 0),
+         miss = ifelse(`Spreadsheet: memory` == "target" & (Response == 6 |Response == 4 | Response == 5), 1, 0),
+         crs = ifelse(`Spreadsheet: memory` == "filler" & (Response == 6 |Response == 4 | Response == 5), 1, 0))
+memory[] <- lapply(memory, function(x) ifelse(x == "A", 1,
+                                              ifelse(x == "B", 2,
+                                                     ifelse(x == "C", 3,
+                                                            ifelse(x == "D", 4,
+                                                                   ifelse(x == "E", 5,
+                                                                          ifelse(x == "F", 6, x)))))))
+memory <-memory%>%
+  group_by(`Participant Private ID`)%>%
+  mutate(hit_rate = sum(hits) / (sum(hits)+sum(miss)),
+         false_alarm_rate = sum(fas) / (sum(crs)+sum(fas)),
+         APrime = ifelse(hit_rate >= false_alarm_rate, 
+                         ((hit_rate - false_alarm_rate) * (1 + hit_rate - false_alarm_rate)) / (4 * hit_rate * (1 - false_alarm_rate)) + 0.5, 
+                         0.5 - (false_alarm_rate - hit_rate) * (1 + false_alarm_rate - hit_rate) / (4 *false_alarm_rate * (1 - hit_rate))),
+         d_prime = (qnorm(hit_rate) - qnorm(false_alarm_rate)) / sqrt(2)
+         
+  )%>%
+  mutate(group=ifelse(`Spreadsheet: memory`=="target","group1","group2"))
+
+
+#write.csv(memory, "memory.csv")
+
+```
+
+
+```{r ,message=F,warning=F}
+
+
+mem_only <- memory%>%
+  select(c(`Participant Private ID`,hits,fas,`Spreadsheet: img`,`Trial Number`,Response,`Spreadsheet: memory`,group))%>%
+  filter(`Spreadsheet: memory`=="target")
+
+att_only <- sust_full_rt%>%
+  select(c(`Participant Private ID`,Mean_Reaction_Time,`Trial Number`,`Spreadsheet: img`,`Spreadsheet: type`))%>%
+  ungroup()%>%
+  unique()%>%
+  filter(`Spreadsheet: type`== "target")
+
+mem_att <-merge(mem_only,att_only, by=c("Spreadsheet: img","Participant Private ID"))%>%
+  unique()
+
+
+mem_att <- mem_att %>%
+  group_by(`Participant Private ID`) %>%
+  mutate(zrt = scale(Mean_Reaction_Time))%>%
+  rename('Img'= `Spreadsheet: img`)
+
+emo_mematt <- merge(emo, mem_att, by= c("Participant Private ID","Img"))
+valence_mematt <- emo_mematt%>%
+  filter(aff_type=="valence")
+
+arousal_mematt <- emo_mematt%>%
+  filter(aff_type=="arousal")
+
+mem_only_2 <- mem_only%>%
+  rename('Img' =`Spreadsheet: img`)
+
+#vamos_aff <- rbind(vamos_aff_s1,vamos_aff_s2)
+
+
+```
+
+
+
+## How often were participants lapsing on the task?
+
+During the go/no-go task (encoding task), participants should have withheld a response when they saw a second presentation of the target image. A lapse occurs when they accidentally make a key press on one of these no-go target images. There were 50 target images shown during this task for each participant, so the maximum number of lapses is 50. Scroll through the table to see how often each participant made this mistake. 
+
+<div style="width: 100%; height: 300px; overflow-y: auto; display: flex; justify-content: center;">
+  <div style="width: auto;">
+
+```{r ,message=F,warning=F}
+
+rt_analysis <-sust_full_rt%>%
+  select(Mean_Reaction_Time,Block_Number,`Spreadsheet: type`,Response, `Spreadsheet: img`,`Participant Private ID`)%>%
+  group_by(Block_Number,`Participant Private ID`)%>%
+  unique()%>%
+  mutate(
+    targ_perfs = ifelse(`Spreadsheet: type` == "target" & Response == "FALSE", "Lapse", "Correct"),
+    Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time)
+  )%>%
+  filter(`Spreadsheet: type` == "target")
+rt_analysis$NAs = is.na(rt_analysis$targ_perfs)
+
+rt_analysis <- rt_analysis%>%
+  mutate(
+    targ_perf = ifelse(`Spreadsheet: type` == "target" & NAs == "TRUE", "Correct", "Lapse")
+  )%>%
+  ungroup()%>%
+  group_by(`Participant Private ID`)
+
+lapse_total <- summarise(rt_analysis, total_lapses = sum(targ_perf == "Lapse"))
+    
+lapse_total <- lapse_total %>%
+  kable("html") %>%
+  kable_styling(full_width = FALSE)%>%
+  scroll_box(width="400px",height = "300px") 
+lapse_total
+
+```
+
+</div>
+</div>
+
+
+
+
+## Does pretrial reaction time predict lapses?
+
+
+
+The average reaction times (RTs) were linearly detrended within participant, mean reaction times were then calculated for the 3 images prior to a target (pretrial RT). In the below plot, I compare the preceding window RT for target images when the participant correctly withheld a response (correct) and when they lapsed during this task. We would expect that reaction times for the correct condition would be slower than for the lapse condition. This would indicate that participants are reacting habitually vs. reactively to the images when they lapse.
+
+
+From this comparison, we see that, in general, reaction time IS slower for the correct vs. lapse conditions, which is in line with prior findings.
+
+
+```{r, warning=FALSE,message=FALSE}
+
+unique_ids <- unique(rt_analysis$`Participant Private ID`)
+# Get unique Participant IDs for Correct and Lapse performances
+unique_ids_correct <- unique(rt_analysis$`Participant Private ID`[rt_analysis$targ_perf == "Correct"])
+unique_ids_lapse <- unique(rt_analysis$`Participant Private ID`[rt_analysis$targ_perf == "Lapse"])
+
+# Get a union of all unique Participant IDs
+all_unique_ids <- union(unique_ids_correct, unique_ids_lapse)
+
+# Calculate means for Correct performance
+means_by_participant <- tapply(
+  rt_analysis$Mean_Reaction_Time[rt_analysis$targ_perf == "Correct"],
+  rt_analysis$`Participant Private ID`[rt_analysis$targ_perf == "Correct"],
+  mean,
+  na.rm=TRUE
+)
+
+# Calculate means for Lapse performance
+means_by_participant2 <- tapply(
+  rt_analysis$Mean_Reaction_Time[rt_analysis$targ_perf == "Lapse"],
+  rt_analysis$`Participant Private ID`[rt_analysis$targ_perf == "Lapse"],
+  mean,
+  na.rm=TRUE
+)
+
+# Initialize vectors to store means for all unique Participant IDs
+means_all_correct <- rep(0, length(all_unique_ids))
+means_all_lapse <- rep(0, length(all_unique_ids))
+
+# Replace means for Correct performance with calculated means
+means_all_correct[match(names(means_by_participant), all_unique_ids)] <- unname(means_by_participant)
+
+# Replace means for Lapse performance with calculated means
+means_all_lapse[match(names(means_by_participant2), all_unique_ids)] <- unname(means_by_participant2)
+
+# Convert the result to a data frame
+laps_tot <- data.frame(
+  `Participant Private ID` = all_unique_ids,
+  `Correct` = means_all_correct,
+  `Lapse` = means_all_lapse
+)
+
+lapse_df <- gather(laps_tot, key = "Condition", value = "Mean_Reaction_Time", -"Participant.Private.ID")
+
+ggplot(lapse_df, aes(x = Condition, y = Mean_Reaction_Time, group = `Participant.Private.ID`)) +
+  geom_point(aes(color = factor(`Participant.Private.ID`)), size = 3) +
+  geom_line(aes(color = factor(`Participant.Private.ID`)), size = 1) +
+  scale_color_viridis(discrete="True", option="A")+
+  theme_minimal() +
+  xlab("Target Response") +
+  ylab(" Mean Window Reaction Time") +
+  labs(color = "Participant")+
+  theme(legend.position = "none")
+```
+
+## Is memory above chance?
+
+
+During the retrieval task, participants were asked to rate their memory of target images (and 50 memory lures) on a scale of 1 (sure old) - 6 (sure new). To ensure data quality for the later analyses which included participant memory data, I first checked that each participant's memory was above chance.
+
+```{r , warning=FALSE,message=FALSE}
+
+random_hit_rate <-0.3
+random_fa_rate<-0.3
+
+chance_d_prime <- (qnorm(random_hit_rate) - qnorm(random_fa_rate))/ sqrt(2)
+
+ggplot(memory,aes(x=as.character(`Participant Private ID`),y=APrime,color =as.factor( `Participant Private ID`)))+
+  geom_point()+
+  geom_hline(yintercept = 0.50, color="red")+
+  ylim(0,1)+
+  theme_ipsum(axis_title_just = "cc",axis_title_size = 12,axis_text_size = 9)+
+  xlab("Participant")+
+  ylab("A'")+
+  scale_color_viridis(option="A",discrete="True")+
+  labs(color = "Participant",
+       title="Memory performance (Inclusive)")+
+  theme(legend.position="none")
+
+
+# Assuming 'memory' is your data frame
+memory2 <- memory %>%
+  group_by(`Participant Private ID`) %>%
+  summarise(total_hits = sum(hits, na.rm = TRUE),
+            total_miss = sum(miss, na.rm = TRUE),
+            total_fas = sum(fas, na.rm = TRUE), 
+            total_crs = sum(crs, na.rm = TRUE))
+memory_unique <- memory%>%
+  select(APrime,d_prime,`Participant Private ID`)%>%
+  unique()
+
+
+```
+
+<br>
+I also took a look at the distributions of memory performance, using both d' and A'prime' as measures of performance. In both cases, it's apparent that there are a ton of participants that are hovering just above chance. In the 'populations' section of this bookdown, I explore whether these 'worse memory' participants (under median) produce significantly different results than the 'better memory' participants.
+
+<details>
+  <summary> Memory Performance Plots </summary>
+
+```{r, message=FALSE, warning=FALSE}
+library(ggpubr)
+ggplot()+
+geom_histogram(memory_unique, mapping=aes(x=APrime),fill="tomato1",alpha=.7)+
+  theme_minimal() +
+  ylab("Number of participants")
+
+ ggplot()+
+geom_histogram(memory_unique, mapping=aes(x=d_prime),fill="firebrick4",alpha=.7)+
+  theme_minimal()+
+  ylab("Number of participants")
+
+
+
+poor_mems <- memory_unique$`Participant Private ID`[memory_unique$APrime<.7591969]
+good_mems <- memory_unique$`Participant Private ID`[memory_unique$APrime>=.7591969]
+
+```
+</details>
 

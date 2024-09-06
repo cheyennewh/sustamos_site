@@ -39,7 +39,7 @@ Finally, participants must rate the pleasantness and intensity of the feeling ev
 
 <details open>
  <summary>Experiment details</summary>
-The 'classic' version of the Sustamos experiment is a 1-session/3 task experiment run on Prolific and hosted by Gorilla. It features 3 main tasks: an encoding task, an immediate retrieval task and a affective rating task. These tasks are described in detail below:
+The 'delay' version of the Sustamos experiment is a 2-session/3 task experiment run on Prolific and hosted by Gorilla. It features 3 main tasks: an encoding task, an delayed retrieval task and a affective rating task. These tasks are described in detail below:
 
 ### Encoding Task
 
@@ -57,7 +57,7 @@ With this design, we are able to get response time measures leading up to the ke
 
 ### Retrieval Task
 
-Twenty-four hours after completing session 1 of the experiment, participants return to the study to complete session 2. The retrieval task is the first task in session 2. As in the classic version, participants must complete a task which tests their memory for the encoding task target images. Participants are asked to rate their memory for each of these target images on a scale of 1(old)-6(new). 
+Twenty-four hours after completing session 1 of the experiment, participants return to the study to complete session 2. The retrieval task is the first task in session 2. As in the classic version, participants must complete a task which tests their memory for the target images from the encoding task. Participants are asked to rate their memory for each of these target images on a scale of 1(old)-6(new). 
 
 ![ ](images/retrieve.png){width=50%}
 <br>
