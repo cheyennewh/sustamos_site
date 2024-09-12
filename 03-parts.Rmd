@@ -26,10 +26,16 @@ library(patchwork)
 
 delay_sust1 <- read_csv("./delay_data/delay_batch1/sust1.csv")
 delay_sust2 <- read_csv("./delay_data/delay_batch1/sust2.csv")
+delay_sust3 <- read_csv("./data_delay_0911/sust1.csv")
+delay_sust4 <- read_csv("./data_delay_0911/sust2.csv")
 
 delay_mem1 <- read_csv("./delay_data/delay_batch1/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_mem2 <- read_csv("./delay_data/delay_batch1/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem3 <- read_csv("./data_delay_0911/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem4 <- read_csv("./data_delay_0911/mem2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 delay_mem_early2 <- read_csv("./delay_data/mem2_early.csv")
@@ -38,6 +44,10 @@ delay_emo1 <-read_csv("./delay_data/delay_batch1/emo1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_emo2 <-read_csv("./delay_data/delay_batch1/emo2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo3 <-read_csv("./data_delay_0911/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo4 <-read_csv("./data_delay_0911/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 
 
@@ -45,9 +55,9 @@ delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 #arousal <- emo[emo$aff_type=="arousal",]
 #emo_mematt <- merge(emo, mem_att, by= c("`Participant Private ID`","Img"))
 
-sust <- rbind(delay_sust1,delay_sust2)
-memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2)
-emo <- rbind(delay_emo1,delay_emo2,delay_emo_early2)
+sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4)
+memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4)
+emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo_early2)
 
 
 
@@ -78,7 +88,11 @@ sust_full_all <- filtered_rows%>%
          Reaction.Time = ifelse(`Response Type` == "timedOut", NA, `Reaction Time`)
   )
 
-
+sust_full_all <- sust_full_all%>%
+  group_by(`Participant Private ID`)%>%
+  mutate(
+    Fitted_Values = ifelse(!is.na(`Reaction Time`), lm(`Reaction Time` ~ `Trial Number`)$fitted.values, NA),
+    Detrended_Reaction_Time = `Reaction Time` - Fitted_Values)
 
 sust_full <- sust_full_all %>%
   filter(!`Spreadsheet: type`=="filler")%>%
@@ -86,29 +100,39 @@ sust_full <- sust_full_all %>%
          `Reaction Time` = ifelse(`Response Type` == "timedOut", NA, `Reaction Time`)
   )
 
-sust_full <- sust_full%>%
-  group_by(`Participant Private ID`)%>%
-  mutate(
-    Fitted_Values = ifelse(!is.na(`Reaction Time`), lm(`Reaction Time` ~ `Trial Number`)$fitted.values, NA),
-    Detrended_Reaction_Time = `Reaction Time` - Fitted_Values)
-
 
 
 sust_full_window_rt <- sust_full %>%
-  group_by(`Participant Private ID`,Block_Number)%>%
   filter(`Spreadsheet: type` == 'window') %>%
-  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = TRUE))%>%
+  group_by(`Participant Private ID`)%>%
+  ungroup()
+
+sust_full_window_rt <- sust_full_window_rt %>%
+  group_by(`Participant Private ID`,Block_Number)%>%
+  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = TRUE),
+         Mean_Window_1 = mean(Detrended_Reaction_Time, na.rm = TRUE))%>%
   arrange(`Participant Private ID`, `Trial Number`)
 
 sust_full_target_rt <- sust_full %>%
   group_by(`Participant Private ID`,Block_Number)%>%
   filter(`Spreadsheet: type` == 'target')
 
+
+
 sust_full_rt <- rbind(sust_full_window_rt,sust_full_target_rt)%>%
+  ungroup()%>%
+  group_by(`Participant Private ID`)%>%
+  mutate(Mean_Window_Scale = scale(Mean_Window_1))%>%
+  ungroup()
+
+sust_full_rt <-sust_full_rt %>%
   arrange(`Participant Private ID`, `Trial Number`)%>%
+  group_by(`Participant Private ID`,Block_Number)%>%
   mutate(
-    Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time)
-  )
+    Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time),
+    Mean_Window_Scale = ifelse(`Spreadsheet: type` == "target", mean(Mean_Window_Scale[`Spreadsheet: type` == "window"]), Mean_Window_Scale)
+  )%>%
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" )
 
 
 # View the resulting dataframe
@@ -129,7 +153,8 @@ emo <- emo %>%
          "emo_rate" = "Response")%>%
   group_by(`Participant Private ID`,Img,aff_type) %>%
   filter(row_number() == n() | n() == 1) %>%
-  ungroup()
+  ungroup()%>%
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062" & `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065")
 
 
 #write.csv(emo,"emo.csv")
@@ -163,7 +188,8 @@ memory <-memory%>%
          d_prime = (qnorm(hit_rate) - qnorm(false_alarm_rate)) / sqrt(2)
          
   )%>%
-  mutate(group=ifelse(`Spreadsheet: memory`=="target","group1","group2"))
+  mutate(group=ifelse(`Spreadsheet: memory`=="target","group1","group2"))%>%
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" )
 
 
 #write.csv(memory, "memory.csv")
@@ -179,7 +205,7 @@ mem_only <- memory%>%
   filter(`Spreadsheet: memory`=="target")
 
 att_only <- sust_full_rt%>%
-  select(c(`Participant Private ID`,Mean_Reaction_Time,`Trial Number`,`Spreadsheet: img`,`Spreadsheet: type`))%>%
+  select(c(`Participant Private ID`,Mean_Reaction_Time,Mean_Window_Scale,`Trial Number`,`Spreadsheet: img`,`Spreadsheet: type`))%>%
   ungroup()%>%
   unique()%>%
   filter(`Spreadsheet: type`== "target")
@@ -220,12 +246,12 @@ During the go/no-go task (encoding task), participants should have withheld a re
 ```{r ,message=F,warning=F}
 
 rt_analysis <-sust_full_rt%>%
-  select(Mean_Reaction_Time,Block_Number,`Spreadsheet: type`,Response, `Spreadsheet: img`,`Participant Private ID`)%>%
+  select(Mean_Reaction_Time,Mean_Window_Scale, Block_Number,`Spreadsheet: type`,Response, `Spreadsheet: img`,`Participant Private ID`)%>%
   group_by(Block_Number,`Participant Private ID`)%>%
   unique()%>%
   mutate(
     targ_perfs = ifelse(`Spreadsheet: type` == "target" & Response == "FALSE", "Lapse", "Correct"),
-    Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time)
+    Mean_Window_Scale = ifelse(`Spreadsheet: type` == "target", mean(Mean_Window_Scale[`Spreadsheet: type` == "window"]), Mean_Window_Scale)
   )%>%
   filter(`Spreadsheet: type` == "target")
 rt_analysis$NAs = is.na(rt_analysis$targ_perfs)
@@ -275,7 +301,7 @@ all_unique_ids <- union(unique_ids_correct, unique_ids_lapse)
 
 # Calculate means for Correct performance
 means_by_participant <- tapply(
-  rt_analysis$Mean_Reaction_Time[rt_analysis$targ_perf == "Correct"],
+  rt_analysis$Mean_Window_Scale[rt_analysis$targ_perf == "Correct"],
   rt_analysis$`Participant Private ID`[rt_analysis$targ_perf == "Correct"],
   mean,
   na.rm=TRUE
@@ -283,7 +309,7 @@ means_by_participant <- tapply(
 
 # Calculate means for Lapse performance
 means_by_participant2 <- tapply(
-  rt_analysis$Mean_Reaction_Time[rt_analysis$targ_perf == "Lapse"],
+  rt_analysis$Mean_Window_Scale[rt_analysis$targ_perf == "Lapse"],
   rt_analysis$`Participant Private ID`[rt_analysis$targ_perf == "Lapse"],
   mean,
   na.rm=TRUE
@@ -306,9 +332,9 @@ laps_tot <- data.frame(
   `Lapse` = means_all_lapse
 )
 
-lapse_df <- gather(laps_tot, key = "Condition", value = "Mean_Reaction_Time", -"Participant.Private.ID")
+lapse_df <- gather(laps_tot, key = "Condition", value = "Mean_Window_Scale", -"Participant.Private.ID")
 
-ggplot(lapse_df, aes(x = Condition, y = Mean_Reaction_Time, group = `Participant.Private.ID`)) +
+ggplot(lapse_df, aes(x = Condition, y = Mean_Window_Scale, group = `Participant.Private.ID`)) +
   geom_point(aes(color = factor(`Participant.Private.ID`)), size = 3) +
   geom_line(aes(color = factor(`Participant.Private.ID`)), size = 1) +
   scale_color_viridis(discrete="True", option="A")+

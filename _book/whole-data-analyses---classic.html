@@ -913,7 +913,7 @@ total_lapses
 </h2>
 <p>The average reaction times (RTs) were linearly detrended within participant, mean reaction times were then calculated for the 3 images prior to a target (pretrial RT). In the below plot, I compare the preceding window RT for target images when the participant correctly withheld a response (correct) and when they lapsed during this task. We would expect that reaction times for the correct condition would be slower than for the lapse condition. This would indicate that participants are reacting habitually vs. reactively to the images when they lapse.</p>
 <p>From this comparison, we see that, in general, reaction time IS slower for the correct vs. lapse conditions, which is in line with prior findings.</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-118-1.png" width="672"></div>
 </div>
 <div id="is-memory-above-chance" class="section level2" number="3.3">
 <h2>
@@ -925,7 +925,7 @@ total_lapses
 I also took a look at the distributions of memory performance, using both d’ and A’prime’ as measures of performance. In both cases, it’s apparent that there are a ton of participants that are hovering just above chance. In the ‘populations’ section of this bookdown, I explore whether these ‘worse memory’ participants (under median) produce significantly different results than the ‘better memory’ participants.</p>
 <details><summary>
 Memory Performance Plots
-</summary><img src="Sustamos_files/figure-html/unnamed-chunk-7-1.png" width="672"><img src="Sustamos_files/figure-html/unnamed-chunk-7-2.png" width="672"></details>
+</summary><img src="Sustamos_files/figure-html/unnamed-chunk-119-1.png" width="672"><img src="Sustamos_files/figure-html/unnamed-chunk-119-2.png" width="672"></details>
 </div>
 <div id="is-pretrial-rt-predictive-of-memory" class="section level2" number="3.4">
 <h2>
@@ -933,7 +933,7 @@ Memory Performance Plots
 </h2>
 <p>An item is considered to be accurately remembered (‘hit’) when a participant responded with a 1-3 on the memory rating task to the target. Responses of 3 or lower were therefore taken to be a ‘hit’ and responses of 4 or higher were calculated as a ‘miss’. Below, I plot the participant-specific predictions of image recognition using a mixed effect logistic regression model with just pretrial reaction time as a predictor. This model included random slopes and intercepts for each participant and predicted memory using a binomial method. Values of 1 on the y axis represent a ‘hit’ while 0 represents a ‘miss’.</p>
 <p>Overall, there is a positive relationship between pretrial reaction time and memory. This could indicate that participants that are in a better attentional state prior to viewing a target (positive values on x axis) are more likely to correctly remember that target later on( higher values on y axis).</p>
-<img src="Sustamos_files/figure-html/unnamed-chunk-8-1.png" width="672"><details><summary>
+<img src="Sustamos_files/figure-html/unnamed-chunk-120-1.png" width="672"><details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
 
@@ -1010,7 +1010,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </h2>
 <p>A similar analysis to above was conducted, using memorability (from VAMOS) as a sole predictor of a ‘hit’ in the memory task for each individual. For this analysis, memorability score was z-scored globally. Random intercepts were included in this mixed model, as each participant may have different baseline memory. However, memorability was assumed to impact participants (more or less) equally, so no random slopes were included.</p>
 <p>One would expect that images that are more memorable across people will also be more memorable for each individual. We find that, indeed, more memorable images (positive values on x axis) are associated with better memory (higher values on y axis).</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-122-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -1101,7 +1101,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 <details><summary>
 Results
 </summary><p><br><br><br></p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-124-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -1171,7 +1171,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 </details><p><br><br><br><br></p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-126-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -1242,7 +1242,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 </details><p><br><br><br><br></p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-128-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -1332,7 +1332,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </blockquote>
 <details><summary>
 Results
-</summary><div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
+</summary><div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-130-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -1401,7 +1401,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-</details><p><br><br><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-20-1.png" width="672"></p>
+</details><p><br><br><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-132-1.png" width="672"></p>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -1470,7 +1470,7 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-</details><p><br><br><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-22-1.png" width="672"></p>
+</details><p><br><br><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-134-1.png" width="672"></p>
 <details><summary>
 Formula and Model Output
 </summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
@@ -3863,10 +3863,12 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <br><br></details><p><br><br></p>
-<p>From the many, many models in the above section, we see that the interaction which is most often significant is that between arousal and memorability. I explored this a bit more by creating a two way plot, showing the predicted memory of an image vs. the memorability of that image and split the plot into high and low arousing groups. Note that the predicted memory comes from models with the formula: <span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}\)</span>.</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-43-1.png" width="672"></div>
-<p>I also used this created a three-way version of this plot. Again, The predicted memory for each image is plotted against the memorability of the image. The line colors represent the arousal groups (high/low). However, data was separated into equally sized negative, positive, or neutral valence bins before predictions were made using the memorability x arousal prediction model. The plots below show the interaction between memorability and arousal influences on memory predictions for each valence bin.</p>
-<img src="Sustamos_files/figure-html/unnamed-chunk-45-1.png" width="672"><details><summary>
+<p>From the many, many models in the above section, we see that the interaction which is most often significant is that between arousal and memorability. I explored this a bit more by creating a two way plot, showing the predicted memory of an image vs. the memorability of that image and split the plot into high and low arousing groups. Note that the predicted memory comes from models with the formula: <span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \sim \text{Valence}+ (1 \mid \text{Participant.Private.ID}), \text{family=binomial}\)</span>.</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-155-1.png" width="672"></div>
+<p>A 3-way version of thisplot is also available.Data was separated into equally sized negative, positive, or neutral valence bins before predictions were made using the regression.The predicted memory for each image is plotted against the memorability of the image. The line colors represent the arousal groups (high/low). The plots below show the interaction between memorability and arousal influences on memory predictions for each valence bin.</p>
+<details><summary>
+3-way plots
+</summary><img src="Sustamos_files/figure-html/unnamed-chunk-157-1.png" width="672"><details><summary>
 Model details
 </summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -3893,7 +3895,7 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.87
+16.72
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -3904,10 +3906,10 @@ p
 z mem
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.02
+0.31
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.815
+<strong>0.018</strong>
 </td>
 </tr>
 <tr>
@@ -3915,7 +3917,18 @@ z mem
 za
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.39
+1.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.801
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+4.83
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -3926,10 +3939,43 @@ za
 z mem × za
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.94
+0.60
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.414
+0.270
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.31
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.008</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.87
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.544
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.64
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.208
 </td>
 </tr>
 <tr>
@@ -3945,10 +3991,10 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.019 / 0.185
+0.042 / 0.204
 </td>
 </tr>
-</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-47-1.png" width="672"><details><summary>
+</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-159-1.png" width="672"><details><summary>
 Model details
 </summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -3975,7 +4021,7 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-4.01
+3.96
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -3984,6 +4030,17 @@ p
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
 z mem
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.04
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.550
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 1.41
@@ -3994,13 +4051,13 @@ z mem
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
+zv
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.85
+1.34
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.097
+<strong>0.027</strong>
 </td>
 </tr>
 <tr>
@@ -4008,10 +4065,43 @@ za
 z mem × za
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.91
+0.88
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.245
+0.185
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.839
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.92
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.660
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.115
 </td>
 </tr>
 <tr>
@@ -4027,10 +4117,10 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.025 / 0.183
+0.027 / 0.192
 </td>
 </tr>
-</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-49-1.png" width="672"><details><summary>
+</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-161-1.png" width="672"><details><summary>
 Model details
 </summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -4057,7 +4147,7 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.66
+8.23
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -4068,10 +4158,10 @@ p
 z mem
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.26
+2.30
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.001</strong>
+0.148
 </td>
 </tr>
 <tr>
@@ -4079,10 +4169,21 @@ z mem
 za
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.02
+1.30
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.675
+0.672
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.51
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.189
 </td>
 </tr>
 <tr>
@@ -4090,10 +4191,43 @@ za
 z mem × za
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.29
+1.61
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
+0.474
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.64
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.384
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.617
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.67
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.447
 </td>
 </tr>
 <tr>
@@ -4109,16 +4243,17 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.028 / 0.185
+0.035 / 0.194
 </td>
 </tr>
-</table></details><p><br><br></p>
-<p>And because we are interested in this three-way interaction between valence, arousal, and memorability, I also tried comparing the model output when the model had random slopes (valence/arousal) vs when there were no random slopes.</p>
-<p><br><br></p>
-<span class="math display">\[
+</table></details></details><br><br>
+And because we are interested in this three-way interaction between valence, arousal, and memorability, I also tried comparing the model output when the model had random slopes (valence/arousal) vs when there were no random slopes.
+<details><summary>
+Model comparison
+</summary><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
 \]</span>
-<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
@@ -4242,11 +4377,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 0.021 / 0.178
 </td>
 </tr>
-</table></div>
+</table>
 <p><br><br><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
 \]</span></p>
-<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
@@ -4370,8 +4505,654 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 0.021 / 0.189
 </td>
 </tr>
-</table></div>
-<div id="how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal" class="section level3" number="3.8.1">
+</table></details><p><br><br></p>
+<p>An alternative version of the above models was run. Note that the model formula for this set is as follows: <span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \sim \text{Valence}+ \cdot \text{Reaction Time}(1 \mid \text{Participant.Private.ID}), \text{family=binomial}\)</span>. The 4 way interactive model accounts for the effects of all memory predictors and their interactions.</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-167-1.png" width="672"></div>
+<details><summary>
+3-way plots
+</summary><img src="Sustamos_files/figure-html/unnamed-chunk-168-1.png" width="672"><details><summary>
+Model details
+</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+hits
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Odds Ratios
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+18.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.30
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.017</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.649
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+5.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.48
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.197
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × za
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.65
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.369
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.30
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.008</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.91
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.665
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.88
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.819
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.57
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.109
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.50
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.156
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.297
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.56
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.309
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.92
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.868
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(za × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.73
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.207
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.63
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.280
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+N <sub>Participant.Private.ID</sub>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+95
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+0.054 / 0.208
+</td>
+</tr>
+</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-170-1.png" width="672"><details><summary>
+Model details
+</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+hits
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Odds Ratios
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+4.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.668
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.46
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.35
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.027</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.477
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × za
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.83
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.072
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.966
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.99
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.959
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.88
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.073
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.92
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.395
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.16
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.320
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.040</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.590
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.440
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(za × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.86
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.454
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.98
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.908
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+N <sub>Participant.Private.ID</sub>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+95
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+0.037 / 0.196
+</td>
+</tr>
+</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-172-1.png" width="672"><details><summary>
+Model details
+</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+hits
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Odds Ratios
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+7.58
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+2.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.230
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.926
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.57
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.282
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.046</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × za
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.47
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.583
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.72
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.543
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.89
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.832
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+2.18
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.192
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.928
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.061
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.542
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.76
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.470
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.56
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.276
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(za × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.876
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za × zv) × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.66
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.504
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+N <sub>Participant.Private.ID</sub>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+95
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+0.061 / 0.210
+</td>
+</tr>
+</table></details></details><div id="how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal" class="section level3" number="3.8.1">
 <h3>
 <span class="header-section-number">3.8.1</span> How do these results compare when using VAMOS vs individual ratings of valence and arousal?<a class="anchor" aria-label="anchor" href="#how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal"><i class="fas fa-link"></i></a>
 </h3>
@@ -5603,6 +6384,45 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 </tr>
 </table></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+##  Family: binomial  ( logit )
+## Formula: hits ~ z_mem * za * zv * zrt + (1 + za + zv + zrt | Participant.Private.ID)
+##    Data: group_av_emo
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##  16584.5  16692.0  -8278.3  16556.5    15883 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -6.3681 -0.7986  0.4144  0.6032  1.5403 
+## 
+## Random effects:
+##  Groups                 Name        Variance Std.Dev. Corr             
+##  Participant.Private.ID (Intercept) 0.2557   0.5057                    
+##                         za          0.6162   0.7850   -0.24            
+##                         zv          0.6552   0.8094   -0.24 -0.23      
+##                         zrt         0.1082   0.3290    0.52  0.10 -0.22
+## Number of obs: 15897, groups:  Participant.Private.ID, 95
+## 
+## Fixed effects:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  1.24700    0.09729  12.817   &lt;2e-16 ***
+## z_mem        0.20844    0.01969  10.586   &lt;2e-16 ***
+## zrt          0.11755    0.04106   2.863   0.0042 ** 
+## z_mem:zrt    0.02650    0.02073   1.278   0.2011    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Correlation of Fixed Effects:
+##           (Intr) z_mem zrt  
+## z_mem     0.018             
+## zrt       0.158  0.007      
+## z_mem:zrt 0.003  0.045 0.026
+## fit warnings:
+## fixed-effect model matrix is rank deficient so dropping 12 columns / coefficients
+## optimizer (Nelder_Mead) convergence code: 0 (OK)
+## unable to evaluate scaled gradient
+## Model failed to converge: degenerate  Hessian with 1 negative eigenvalues</code></pre>
 </div>
 <p><br><br></p>
 <div style="  text-align:center; vertical-align: middle; padding:40px 0;">
