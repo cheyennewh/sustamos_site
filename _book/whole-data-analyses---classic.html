@@ -45,8 +45,6 @@
 <li><a class="" href="index.html"><span class="header-section-number">1</span> About and Section Guide</a></li>
 <li><a class="" href="experiment-info.html"><span class="header-section-number">2</span> Experiment Info</a></li>
 <li><a class="active" href="whole-data-analyses---classic.html"><span class="header-section-number">3</span> Whole-Data Analyses - Classic</a></li>
-<li><a class="" href="whole-data-analyses---delay.html"><span class="header-section-number">4</span> Whole-Data Analyses - Delay</a></li>
-<li><a class="" href="populations.html"><span class="header-section-number">5</span> Populations</a></li>
 </ul>
 
         <div class="book-extra">
@@ -58,12 +56,22 @@
 <h1>
 <span class="header-section-number"> 3</span> Whole-Data Analyses - Classic<a class="anchor" aria-label="anchor" href="#whole-data-analyses---classic"><i class="fas fa-link"></i></a>
 </h1>
-<p>This section includes analyses of sustained attention, recognition memory, and affective rating data from the encoding and retrieval components of the ‘classic’ version of the experiment described in ‘Experiments’. All participants from the sample were included in the following analyses. For analyses split by task performance or memory accuracy, see the ‘populations’ tab.</p>
+<p>This section includes analyses of sustained attention, recognition
+memory, and affective rating data from the encoding and retrieval
+components of the ‘classic’ version of the experiment described in
+‘Experiments’. All participants from the sample were included in the
+following analyses. For analyses split by task performance or memory
+accuracy, see the ‘populations’ tab.</p>
 <div id="how-often-were-participants-lapsing-on-the-task" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> How often were participants lapsing on the task?<a class="anchor" aria-label="anchor" href="#how-often-were-participants-lapsing-on-the-task"><i class="fas fa-link"></i></a>
 </h2>
-<p>During the go/no-go task (encoding task), participants should have withheld a response when they saw a second presentation of the target image. A lapse occurs when they accidentally make a key press on one of these no-go target images. There were 50 target images shown during this task for each participant, so the maximum number of lapses is 50. Scroll through the table to see how often each participant made this mistake.</p>
+<p>During the go/no-go task (encoding task), participants should have
+withheld a response when they saw a second presentation of the target
+image. A lapse occurs when they accidentally make a key press on one of
+these no-go target images. There were 50 target images shown during this
+task for each participant, so the maximum number of lapses is 50. Scroll
+through the table to see how often each participant made this mistake.</p>
 <div style="width: 100%; height: 300px; overflow-y: auto; display: flex; justify-content: center;">
 <div style="width: auto;">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:400px; ">
@@ -911,35 +919,65 @@ total_lapses
 <h2>
 <span class="header-section-number">3.2</span> Does pretrial reaction time predict lapses?<a class="anchor" aria-label="anchor" href="#does-pretrial-reaction-time-predict-lapses"><i class="fas fa-link"></i></a>
 </h2>
-<p>The average reaction times (RTs) were linearly detrended within participant, mean reaction times were then calculated for the 3 images prior to a target (pretrial RT). In the below plot, I compare the preceding window RT for target images when the participant correctly withheld a response (correct) and when they lapsed during this task. We would expect that reaction times for the correct condition would be slower than for the lapse condition. This would indicate that participants are reacting habitually vs. reactively to the images when they lapse.</p>
-<p>From this comparison, we see that, in general, reaction time IS slower for the correct vs. lapse conditions, which is in line with prior findings.</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-118-1.png" width="672"></div>
+<p>The average reaction times (RTs) were linearly detrended within
+participant, mean reaction times were then calculated for the 3 images
+prior to a target (pretrial RT). In the below plot, I compare the
+preceding window RT for target images when the participant correctly
+withheld a response (correct) and when they lapsed during this task. We
+would expect that reaction times for the correct condition would be
+slower than for the lapse condition. This would indicate that
+participants are reacting habitually vs. reactively to the images when
+they lapse.</p>
+<p>From this comparison, we see that, in general, reaction time IS slower
+for the correct vs. lapse conditions, which is in line with prior
+findings.</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
 </div>
 <div id="is-memory-above-chance" class="section level2" number="3.3">
 <h2>
 <span class="header-section-number">3.3</span> Is memory above chance?<a class="anchor" aria-label="anchor" href="#is-memory-above-chance"><i class="fas fa-link"></i></a>
 </h2>
-<p>During the retrieval task, participants were asked to rate their memory of target images (and 50 memory lures) on a scale of 1 (sure old) - 6 (sure new). To ensure data quality for the later analyses which included participant memory data, I first checked that each participant’s memory was above chance.</p>
+<p>During the retrieval task, participants were asked to rate their memory
+of target images (and 50 memory lures) on a scale of 1 (sure old) - 6
+(sure new). To ensure data quality for the later analyses which included
+participant memory data, I first checked that each participant’s memory
+was above chance.</p>
 <div class="inline-figure"><img src="Sustamos_files/figure-html/memory-1.png" width="672"></div>
-<p><br>
-I also took a look at the distributions of memory performance, using both d’ and A’prime’ as measures of performance. In both cases, it’s apparent that there are a ton of participants that are hovering just above chance. In the ‘populations’ section of this bookdown, I explore whether these ‘worse memory’ participants (under median) produce significantly different results than the ‘better memory’ participants.</p>
+<p><br> I also took a look at the distributions of memory performance,
+using both d’ and A’prime’ as measures of performance. In both cases,
+it’s apparent that there are a ton of participants that are hovering
+just above chance. In the ‘populations’ section of this bookdown, I
+explore whether these ‘worse memory’ participants (under median) produce
+significantly different results than the ‘better memory’ participants.</p>
 <details><summary>
 Memory Performance Plots
-</summary><img src="Sustamos_files/figure-html/unnamed-chunk-119-1.png" width="672"><img src="Sustamos_files/figure-html/unnamed-chunk-119-2.png" width="672"></details>
+</summary><p><img src="Sustamos_files/figure-html/unnamed-chunk-7-1.png" width="672"><img src="Sustamos_files/figure-html/unnamed-chunk-7-2.png" width="672"></p>
+</details>
 </div>
 <div id="is-pretrial-rt-predictive-of-memory" class="section level2" number="3.4">
 <h2>
 <span class="header-section-number">3.4</span> Is pretrial RT predictive of memory?<a class="anchor" aria-label="anchor" href="#is-pretrial-rt-predictive-of-memory"><i class="fas fa-link"></i></a>
 </h2>
-<p>An item is considered to be accurately remembered (‘hit’) when a participant responded with a 1-3 on the memory rating task to the target. Responses of 3 or lower were therefore taken to be a ‘hit’ and responses of 4 or higher were calculated as a ‘miss’. Below, I plot the participant-specific predictions of image recognition using a mixed effect logistic regression model with just pretrial reaction time as a predictor. This model included random slopes and intercepts for each participant and predicted memory using a binomial method. Values of 1 on the y axis represent a ‘hit’ while 0 represents a ‘miss’.</p>
-<p>Overall, there is a positive relationship between pretrial reaction time and memory. This could indicate that participants that are in a better attentional state prior to viewing a target (positive values on x axis) are more likely to correctly remember that target later on( higher values on y axis).</p>
-<img src="Sustamos_files/figure-html/unnamed-chunk-120-1.png" width="672"><details><summary>
+<p>An item is considered to be accurately remembered (‘hit’) when a
+participant responded with a 1-3 on the memory rating task to the
+target. Responses of 3 or lower were therefore taken to be a ‘hit’ and
+responses of 4 or higher were calculated as a ‘miss’. Below, I plot the
+participant-specific predictions of image recognition using a mixed
+effect logistic regression model with just pretrial reaction time as a
+predictor. This model included random slopes and intercepts for each
+participant and predicted memory using a binomial method. Values of 1 on
+the y axis represent a ‘hit’ while 0 represents a ‘miss’.</p>
+<p>Overall, there is a positive relationship between pretrial reaction time
+and memory. This could indicate that participants that are in a better
+attentional state prior to viewing a target (positive values on x axis)
+are more likely to correctly remember that target later on( higher
+values on y axis).</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-8-1.png" width="672"></div>
+<details><summary>
 Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<p><br>
-Model Formula:
-{<span class="math display">\[
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><br> Model Formula: {<span class="math display">\[
 \text{hit} \sim   \text{(Reaction Time} + \text{(1+Reaction Time|Participant)} \text{, family="binomial")}
 \]</span>}</p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
@@ -1008,18 +1046,207 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 <h2>
 <span class="header-section-number">3.5</span> Is memorability predictive of memory?<a class="anchor" aria-label="anchor" href="#is-memorability-predictive-of-memory"><i class="fas fa-link"></i></a>
 </h2>
-<p>A similar analysis to above was conducted, using memorability (from VAMOS) as a sole predictor of a ‘hit’ in the memory task for each individual. For this analysis, memorability score was z-scored globally. Random intercepts were included in this mixed model, as each participant may have different baseline memory. However, memorability was assumed to impact participants (more or less) equally, so no random slopes were included.</p>
-<p>One would expect that images that are more memorable across people will also be more memorable for each individual. We find that, indeed, more memorable images (positive values on x axis) are associated with better memory (higher values on y axis).</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-122-1.png" width="672"></div>
+<p>A similar analysis to above was conducted, using memorability (from
+VAMOS) as a sole predictor of a ‘hit’ in the memory task for each
+individual. For this analysis, memorability score was z-scored globally.
+Random intercepts were included in this mixed model, as each participant
+may have different baseline memory. However, memorability was assumed to
+impact participants (more or less) equally, so no random slopes were
+included.</p>
+<p>One would expect that images that are more memorable across people will
+also be more memorable for each individual. We find that, indeed, more
+memorable images (positive values on x axis) are associated with better
+memory (higher values on y axis).</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-
-
-<p>Model Formula:
-<span class="math display">\[
-\text{hit} \sim   \text{(Memorability} + \text{(1|Participant)} \text{, family="binomial")}
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p>Model Formula: <span class="math display">\[
+\text{hit} \sim   \text{(Memorability} + \text{(1+Memorability|Participant)} \text{, family="binomial")}
+\]</span></p>
+<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+hits
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Odds Ratios
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.21
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.22
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+N <sub>Participant.Private.ID</sub>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+95
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+0.010 / 0.176
+</td>
+</tr>
+</table></div>
+</div>
+</details><p><br></p>
+</div>
+<div id="is-valence-predictive-of-memory" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> Is Valence Predictive of Memory?<a class="anchor" aria-label="anchor" href="#is-valence-predictive-of-memory"><i class="fas fa-link"></i></a>
+</h2>
+<p>I was also interested in exploring how valence would predict image
+recognition in a model where it was the sole predictor. However, this
+time I created 3 versions of this model:classic (VAMOS), individual
+rating, and average rating versions.</p>
+<blockquote>
+<p><b>classic (VAMOS):</b> <font color="#636363"> This version of the
+model uses VAMOS-derived scores of valence. It does NOT come from
+ratings of valence in the current experiment. Thus, the predictor
+variable is not z-scored within individual. Rather, it is z-scored
+globally. In the model formula, only random intercepts were specified,
+as it was assumed that the valence ratings from the VAMOS set can be
+used as ‘objective’ object properties. Though, I’m definitely open to
+pushback on this.</font></p>
+</blockquote>
+<blockquote>
+<p><b>individual rating:</b> <font color="#636363">This version of the
+model uses ratings of valence supplied from participants in the
+current experiment. Because each participant will have rated valence
+differently for any given image, each image has a valence rating for
+each participant in the study. This variable was then z-scored
+within-participant. Both random slopes and intercepts were included in
+the model.</font></p>
+</blockquote>
+<blockquote>
+<p><b>average rating:</b> <font color="#636363">This version of the model
+uses averaged participant ratings of valence from the current
+experiment. Each image has a single valence score which is the mean of
+all ratings for that image. This variable was then z-scored
+within-group for the two experimental conditions. Both random slopes
+and intercepts were included in the model, though I’m really not sure
+if this was the correct way to do it.</font></p>
+</blockquote>
+<p>Predictions of memory for each of these versions of the model can be
+found below, along with their model formulas and model outputs. The
+results are consistent across all versions. <b> For VAMOS ratings,
+individual ratings, or averaged ratings, positive images were more
+memorable than negative images. </b></p>
+<details><summary>
+Results
+</summary><p><br><br><br></p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-12-1.png" width="672"></div>
+<details><summary>
+Formula and Model Output
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p>Model Formula: <span class="math display">\[
+\text{hit} \sim   \text{(Valence} + \text{(1 + Valence| Participant)} \text{, family="binomial")}
+\]</span></p>
+<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+hits
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Odds Ratios
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+3.19
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>&lt;0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+<strong>0.005</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+N <sub>Participant.Private.ID</sub>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
+95
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
+0.003 / 0.169
+</td>
+</tr>
+</table></div>
+</div>
+</details><p><br><br><br><br></p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-14-1.png" width="672"></div>
+<details><summary>
+Formula and Model Output
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p>Model Formula: <span class="math display">\[
+\text{hit} \sim   \text{(Valence} + \text{(1+Valence| Participant)} \text{, family="binomial")}
 \]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -1054,173 +1281,13 @@ p
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.20
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.009 / 0.166
-</td>
-</tr>
-</table></div>
-</div>
-</details><p><br></p>
-</div>
-<div id="is-valence-predictive-of-memory" class="section level2" number="3.6">
-<h2>
-<span class="header-section-number">3.6</span> Is Valence Predictive of Memory?<a class="anchor" aria-label="anchor" href="#is-valence-predictive-of-memory"><i class="fas fa-link"></i></a>
-</h2>
-<p>I was also interested in exploring how valence would predict image recognition in a model where it was the sole predictor. However, this time I created 3 versions of this model:classic (VAMOS), individual rating, and average rating versions.</p>
-<blockquote>
-<p><b>classic (VAMOS):</b> This version of the model uses VAMOS-derived scores of valence. It does NOT come from ratings of valence in the current experiment. Thus, the predictor variable is not z-scored within individual. Rather, it is z-scored globally. In the model formula, only random intercepts were specified, as it was assumed that the valence ratings from the VAMOS set can be used as ‘objective’ object properties. Though, I’m definitely open to pushback on this.</p>
-</blockquote>
-<blockquote>
-<p><b>individual rating:</b> This version of the model uses ratings of valence supplied from participants in the current experiment. Because each participant will have rated valence differently for any given image, each image has a valence rating for each participant in the study. This variable was then z-scored within-participant. Both random slopes and intercepts were included in the model.</p>
-</blockquote>
-<blockquote>
-<p><b>average rating:</b> This version of the model uses averaged participant ratings of valence from the current experiment. Each image has a single valence score which is the mean of all ratings for that image. This variable was then z-scored within-group for the two experimental conditions. Both random slopes and intercepts were included in the model, though I’m really not sure if this was the correct way to do it.</p>
-</blockquote>
-<p>Predictions of memory for each of these versions of the model can be found below, along with their model formulas and model outputs. The results are consistent across all versions. <b> For VAMOS ratings, individual ratings, or averaged ratings, positive images were more memorable than negative images. </b></p>
-<details><summary>
-Results
-</summary><p><br><br><br></p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-124-1.png" width="672"></div>
-<details><summary>
-Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<p>Model Formula:
-<span class="math display">\[
-\text{hit} \sim   \text{(Valence} + \text{(1|Participant)} \text{, family="binomial")}
-\]</span></p>
-<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.16
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.12
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.003 / 0.160
-</td>
-</tr>
-</table></div>
-</div>
-</details><p><br><br><br><br></p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-126-1.png" width="672"></div>
-<details><summary>
-Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-
-<p>Model Formula:
-<span class="math display">\[
-\text{hit} \sim   \text{(Valence} + \text{(1+Valence|Participant)} \text{, family="binomial")}
-\]</span></p>
-<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.15
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
 z ind
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.11
+1.13
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.003</strong>
+<strong>0.009</strong>
 </td>
 </tr>
 <tr>
@@ -1236,20 +1303,19 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.003 / 0.157
+0.003 / 0.169
 </td>
 </tr>
 </table></div>
 </div>
 </details><p><br><br><br><br></p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-128-1.png" width="672"></div>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<p>Model Formula:
-<span class="math display">\[
-\text{hit} \sim   \text{(Valence} + \text{(1+group_scaled_valence|Participant)} \text{, family="binomial")}
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p>Model Formula: <span class="math display">\[
+\text{hit} \sim   \text{(Valence} + \text{(1+Valence| Participant)} \text{, family="binomial")}
 \]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -1311,35 +1377,54 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-</details><br><br></details>
+</details><p><br><br></p>
+</details>
 </div>
 <div id="is-arousal-predictive-of-memory" class="section level2" number="3.7">
 <h2>
 <span class="header-section-number">3.7</span> Is Arousal Predictive of Memory?<a class="anchor" aria-label="anchor" href="#is-arousal-predictive-of-memory"><i class="fas fa-link"></i></a>
 </h2>
-<p>For completeness, I also conducted 3 versions of a model predicting memory using just arousal: classic (VAMOS), individual rating, and average rating versions.</p>
+<p>For completeness, I also conducted 3 versions of a model predicting
+memory using just arousal: classic (VAMOS), individual rating, and
+average rating versions.</p>
 <blockquote>
-<p><b>classic (VAMOS):</b> This version of the model uses VAMOS-derived scores of varousal. It does NOT come from ratings of arousal in the current experiment. Thus, the predictor variable is not zscored within individual. Rather, it is z-scored globally.</p>
+<p><b>classic (VAMOS):</b> <font color="#636363"> This version of the
+model uses VAMOS-derived scores of varousal. It does NOT come from
+ratings of arousal in the current experiment. Thus, the predictor
+variable is not z-scored within individual. Rather, it is z-scored
+globally.</font></p>
 </blockquote>
 <blockquote>
-<p><b>individual rating:</b> This version of the model uses ratings of valence derived from the participants in the current experiment. Because each participant will have rated arousal differently for any given image, each image has an arousal rating for each participant in the study. This variable was then z-scored within-participant.</p>
+<p><b>individual rating:</b> <font color="#636363">This version of the
+model uses ratings of valence derived from the participants in the
+current experiment. Because each participant will have rated arousal
+differently for any given image, each image has an arousal rating for
+each participant in the study. This variable was then z-scored
+within-participant.</font></p>
 </blockquote>
 <blockquote>
-<p><b>average rating:</b> This version of the model uses averaged ratings of arousal from the current experiment. Each image has a single arousal score which is the mean of all ratings for that image. This variable was then z-scored within-group for the two experimental conditions.</p>
+<p><b>average rating:</b> <font color="#636363">This version of the model
+uses averaged ratings of arousal from the current experiment. Each
+image has a single arousal score which is the mean of all ratings for
+that image. This variable was then z-scored within-group for the two
+experimental conditions.</font></p>
 </blockquote>
 <blockquote>
-<p>Predictions of memory for each of these versions of the model can be found below, along with their model formulas and model outputs. The results are consistent across all versions. For VAMOS ratings, individual ratings, or averaged ratings, <b> more arousing images were more memorable than less arousing images. </b></p>
+<p>Predictions of memory for each of these versions of the model can be
+found below, along with their model formulas and model outputs. The
+results are consistent across all versions. For VAMOS ratings,
+individual ratings, or averaged ratings, <b> more arousing images were
+more memorable than less arousing images. </b></p>
 </blockquote>
 <details><summary>
 Results
-</summary><div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-130-1.png" width="672"></div>
+</summary><div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-18-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<p>Model Formula:
-<span class="math display">\[
-\text{hit} \sim   \text{(Arousal} + \text{(1|Participant)} \text{, family="binomial")}
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p>Model Formula: <span class="math display">\[
+\text{hit} \sim   \text{(Arousal} + \text{(1 + Arousal | Participant)} \text{, family="binomial")}
 \]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -1366,7 +1451,7 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.16
+3.15
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -1380,7 +1465,7 @@ za
 1.09
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.012</strong>
+<strong>0.020</strong>
 </td>
 </tr>
 <tr>
@@ -1396,19 +1481,19 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.002 / 0.159
+0.002 / NA
 </td>
 </tr>
 </table></div>
 </div>
-</details><p><br><br><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-132-1.png" width="672"></p>
+</details><p><br><br><br><br></p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-20-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-<p><br>
-Model Formula:
-<span class="math display">\[
-\text{hit} \sim   \text{(Arousal} + \text{(1+Arousal|Participant)} \text{, family="binomial")}
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><br> Model Formula: <span class="math display">\[
+\text{hit} \sim   \text{(Arousal} + \text{(1 + Arousal| Participant)} \text{, family="binomial")}
 \]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
@@ -1435,7 +1520,7 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.17
+3.18
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -1449,7 +1534,7 @@ z ind
 1.10
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.013</strong>
+<strong>0.015</strong>
 </td>
 </tr>
 <tr>
@@ -1465,20 +1550,21 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.002 / 0.150
+0.003 / NA
 </td>
 </tr>
 </table></div>
 </div>
-</details><p><br><br><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-134-1.png" width="672"></p>
+</details><p><br><br><br><br></p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-22-1.png" width="672"></div>
 <details><summary>
 Formula and Model Output
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-<p><br>
-Model Formula:</p>
-<span class="math display">\[
-\text{hit} \sim   \text{(Arousal} + \text{(1+group_scale_arousal|Participant)} \text{, family="binomial")}
-\]</span>
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><br> Model Formula:</p>
+<p><span class="math display">\[
+\text{hit} \sim   \text{(Arousal} + \text{(1+Arousal|Participant)} \text{, family="binomial")}
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1539,21 +1625,34 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-</details><br><br></details><p><br><br><br></p>
+</details><p><br><br></p>
+</details><p><br><br><br></p>
 </div>
 <div id="memory-prediction-using-simultaneous-predictors-in-a-mixed-logistic-regression-model" class="section level2" number="3.8">
 <h2>
 <span class="header-section-number">3.8</span> Memory Prediction using Simultaneous Predictors in a Mixed Logistic Regression Model<a class="anchor" aria-label="anchor" href="#memory-prediction-using-simultaneous-predictors-in-a-mixed-logistic-regression-model"><i class="fas fa-link"></i></a>
 </h2>
-<p>Finally, I threw combinations of the 4 predictors (valence, arousal, attention, memorability) into a single model that was predictive of memory (binarized or on the 1-6 scale) to understand the simultaneous influence of affective ratings, memorability, and sustained attention. For these analyses, the VAMOS valence and arousal scores were used for the affective variables. Model formula and output can be found below.</p>
-<p>For the majority of the outputs, the story is the same: valence, arousal, memorability, and attention all positively impact our memory. Images that are positive, arousing, and memorable are more likely to be remembered. Images that were see during a better attentional state were also better remember. This pattern holds true for predicting binary memory and memory on a scale of 1-6. Most interactions were not significant. Occasionally, the memorability x arousal interaction became significant.</p>
+<p>Finally, I threw combinations of the 4 predictors (valence, arousal,
+attention, memorability) into a single model that was predictive of
+memory (binarized or on the 1-6 scale) to understand the simultaneous
+influence of affective ratings, memorability, and sustained attention on on subsequent memory.
+For these analyses, the VAMOS valence and arousal scores were used for
+the affective variables. Model formula and output for all of these trials can be found below.</p>
+<p>For the majority of the outputs, the story is the same: valence,
+arousal, memorability, and attention all positively impact our memory.
+Images that are positive, arousing, and memorable are more likely to be
+remembered. Images that were see during a better attentional state were
+also better remembered. This pattern holds true for predicting binary
+memory and memory on a scale of 1-6. Most interactions were not
+significant. Occasionally, the memorability x arousal interaction became
+significant.</p>
 <details><summary>
 Models w/ random intercept only
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hit} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1681,7 +1780,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{Response(1-6)} \sim \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1|\text{Participant})
 \]</span></p>
@@ -1812,8 +1912,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -1944,8 +2044,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -2075,8 +2175,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time} + \text{Valence}, + \\ \text{(1|Participant),}\\ \text{ family="binomial"}
 \]</span></p>
@@ -2178,8 +2278,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 Models w/ Random intercept and slope
 </summary><details style="margin-left: 20px;"><summary>
 Additive models
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Arousal} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -2266,8 +2366,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{Response(1-6)} \sim \text{Arousal} + \text{Valence} + \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
 \]</span></p>
@@ -2354,8 +2454,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Memorability} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -2442,8 +2542,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Memorability} + \text{Arousal} + \text{Reaction Time} \\ +  \text{(1+Arousal|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -2531,8 +2631,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </div>
 </details><details style="margin-left: 20px;"><summary>
 Interactive Models
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -2663,8 +2763,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{Response(1-6)} \sim \text{Arousal}  \cdot \text{Valence}  \cdot \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
 \]</span></p>
@@ -2795,8 +2895,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -2927,8 +3027,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim   \text{(Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \\ + \text{(1+Arousal|Participant)} \text{, family="binomial")}
 \]</span></p>
@@ -3059,8 +3159,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} + \\ \text{(1+ Reaction Time|Participant),} \text{ family="binomial"}
 \]</span></p>
@@ -3191,8 +3291,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim \text{Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} + \\ \text{(1+ Reaction Time|Participant),} \text{ family="binomial"}
 \]</span></p>
@@ -3322,7 +3422,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \cdot \text{Valence} + \text{1 + Reaction Time}, \text{ family="binomial"}
 \]</span></p>
@@ -3542,7 +3643,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </div>
 </details></details><details><summary>
 Special models
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time}  + \text{(Memorability} \cdot \text{Reaction Time)} + \text{(Memorability} \cdot \text{Arousal)}, \text{ family="binomial"}
 \]</span></p>
@@ -3643,12 +3745,11 @@ R<sup>2</sup> Tjur
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<p><span class="math display">\[
+<p>&lt;style=” text-align:center; vertical-align: middle; padding:40px
+0;“&gt; <span class="math display">\[
 \text{hit} \sim \text{Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \cdot \text{Arousal}+ \\ \text{(1+ Reaction Time+ Valence+Arousal+Memorability|Participant),} \text{ family="binomial"}
 \]</span></p>
-<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
@@ -3860,17 +3961,14 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 0.028 / 0.207
 </td>
 </tr>
-</table></div>
+</table></details>
 </div>
-<br><br></details><p><br><br></p>
-<p>From the many, many models in the above section, we see that the interaction which is most often significant is that between arousal and memorability. I explored this a bit more by creating a two way plot, showing the predicted memory of an image vs. the memorability of that image and split the plot into high and low arousing groups. Note that the predicted memory comes from models with the formula: <span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \sim \text{Valence}+ (1 \mid \text{Participant.Private.ID}), \text{family=binomial}\)</span>.</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-155-1.png" width="672"></div>
-<p>A 3-way version of thisplot is also available.Data was separated into equally sized negative, positive, or neutral valence bins before predictions were made using the regression.The predicted memory for each image is plotted against the memorability of the image. The line colors represent the arousal groups (high/low). The plots below show the interaction between memorability and arousal influences on memory predictions for each valence bin.</p>
-<details><summary>
-3-way plots
-</summary><img src="Sustamos_files/figure-html/unnamed-chunk-157-1.png" width="672"><details><summary>
-Model details
-</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
+<p><br><br></p>
+
+<p><br><br></p>
+<p>The most complete of these models predicts memory as a function of 1) each of the 4 predictors and 2) the interactions between the main predictors. It also allows for random intercepts for each individual and randoms slopes given all 4 predictors.
+<span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}  + (1 \text{ + Reaction Time} \\ \text{+Valence+Arousal+Memorability}\ \mid \text{Participant.Private.ID}), \text{family=binomial}\)</span></p>
+<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
  
@@ -3895,7 +3993,7 @@ p
 (Intercept)
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-16.72
+3.35
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -3906,273 +4004,32 @@ p
 z mem
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.31
+1.26
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.018</strong>
+<strong>&lt;0.001</strong>
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
 za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.08
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.801
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-4.83
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.60
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.270
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.31
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.008</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.87
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.544
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.64
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.208
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.042 / 0.204
-</td>
-</tr>
-</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-159-1.png" width="672"><details><summary>
-Model details
-</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.96
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 1.04
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.550
+0.402
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
+zrt
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.41
+1.10
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.34
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.027</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.88
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.185
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.839
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.92
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.660
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.78
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.115
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.027 / 0.192
-</td>
-</tr>
-</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-161-1.png" width="672"><details><summary>
-Model details
-</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-8.23
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.30
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.148
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.30
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.672
+<strong>0.017</strong>
 </td>
 </tr>
 <tr>
@@ -4180,138 +4037,7 @@ za
 zv
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.51
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.189
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.61
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.474
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.64
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.384
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.78
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.617
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.67
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.447
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.035 / 0.194
-</td>
-</tr>
-</table></details></details><br><br>
-And because we are interested in this three-way interaction between valence, arousal, and memorability, I also tried comparing the model output when the model had random slopes (valence/arousal) vs when there were no random slopes.
-<details><summary>
-Model comparison
-</summary><span class="math display">\[
-\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
-<table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.21
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.24
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.03
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.458
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.20
+1.22
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 <strong>&lt;0.001</strong>
@@ -4325,7 +4051,29 @@ z mem × za
 1.08
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.083
+0.076
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+z mem × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.99
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.860
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+za × zrt
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.99
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.897
 </td>
 </tr>
 <tr>
@@ -4336,7 +4084,7 @@ z mem × zv
 1.06
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.140
+0.180
 </td>
 </tr>
 <tr>
@@ -4347,535 +4095,18 @@ za × zv
 0.95
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.145
+0.148
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.89
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.004</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.021 / 0.178
-</td>
-</tr>
-</table>
-<p><br><br><span class="math display">\[
-\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span></p>
-<table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.26
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.24
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.03
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.524
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.21
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.08
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.084
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.05
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.195
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.94
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.090
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.89
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.002</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.021 / 0.189
-</td>
-</tr>
-</table></details><p><br><br></p>
-<p>An alternative version of the above models was run. Note that the model formula for this set is as follows: <span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \sim \text{Valence}+ \cdot \text{Reaction Time}(1 \mid \text{Participant.Private.ID}), \text{family=binomial}\)</span>. The 4 way interactive model accounts for the effects of all memory predictors and their interactions.</p>
-<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-167-1.png" width="672"></div>
-<details><summary>
-3-way plots
-</summary><img src="Sustamos_files/figure-html/unnamed-chunk-168-1.png" width="672"><details><summary>
-Model details
-</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-18.32
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.30
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.017</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.15
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.649
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-5.17
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.48
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.197
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.65
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.369
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.30
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.008</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.91
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.665
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.88
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.819
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.57
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.109
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.50
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.156
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.69
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.297
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.56
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.309
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.92
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.868
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(za × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.73
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.207
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.63
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.280
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.054 / 0.208
-</td>
-</tr>
-</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-170-1.png" width="672"><details><summary>
-Model details
-</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-4.05
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.03
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.668
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.46
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.35
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.027</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.06
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.477
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.83
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.072
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
+zrt × zv
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 1.00
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.966
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.99
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.959
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.88
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.073
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.92
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.395
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.16
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.320
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.71
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.040</strong>
+0.912
 </td>
 </tr>
 <tr>
@@ -4883,202 +4114,10 @@ zv × zrt
 (z mem × za) × zrt
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.06
+1.03
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.590
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.10
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.440
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(za × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.86
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.454
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.98
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.908
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.037 / 0.196
-</td>
-</tr>
-</table></details><br><br><img src="Sustamos_files/figure-html/unnamed-chunk-172-1.png" width="672"><details><summary>
-Model details
-</summary><table style="border-collapse:collapse; border:none;" class="table table-sm">
-<tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
-</tr>
-<tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-7.58
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.001</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.05
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.230
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.06
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.926
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.57
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.282
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.17
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.046</strong>
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.47
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.583
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.72
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.543
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zv
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.89
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.832
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-2.18
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.192
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.06
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.928
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zv × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.37
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.061
+0.570
 </td>
 </tr>
 <tr>
@@ -5086,54 +4125,43 @@ zv × zrt
 (z mem × za) × zv
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.71
+0.90
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.542
+<strong>0.006</strong>
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.76
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.470
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × zv) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.56
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.276
-</td>
-</tr>
-<tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(za × zv) × zrt
+(z mem × zrt) × zv
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
 1.08
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.876
+0.057
 </td>
 </tr>
 <tr>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za × zv) × zrt
+(za × zrt) × zv
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.66
+1.01
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.504
+0.883
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(z mem × za × zrt) × zv
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.95
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.185
 </td>
 </tr>
 <tr>
@@ -5149,19 +4177,48 @@ N <sub>Participant.Private.ID</sub>
 Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.061 / 0.210
+0.034 / NA
 </td>
 </tr>
-</table></details></details><div id="how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal" class="section level3" number="3.8.1">
+</table></div>
+<p>From the many, many models in the above section, we see that the
+interaction which is most often significant is that between arousal and
+memorability. I explored this a bit more by creating a two way plot which displays the predicted memory of an image (memory of individuals) vs. the memorability of that
+image (across-population memory) and split the plot into high and low arousing groups. Note that
+the predicted memory comes from models with the formula:
+<br><span class="math inline">\(\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}+ \\(1 \text{ + Reaction Time+Valence+Arousal+Memorability}\ \\\mid \text{Participant}), \text{family=binomial}\)</span>.</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-44-1.png" width="672"></div>
+<p>Because the most complete model also showed that the interaction between memorability and arousal may be modulated by valence, I also created a three-way version of the above plot. Using the complete formula, predictions for individual memory were made. Then the predictions were separated into negative, positive, and neutral bins.The predicted memory for each image is plotted against the memorability of the image. The line colors represent the arousal groups (high/low). The plots below show the
+interaction between memorability and arousal influences on memory
+predictions for each valence bin.</p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-46-1.png" width="672"></div>
+<p><br><br></p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-47-1.png" width="672"></div>
+<p><br><br></p>
+<div class="inline-figure"><img src="Sustamos_files/figure-html/unnamed-chunk-48-1.png" width="672"></div>
+<p><br><br></p>
+<div id="how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal" class="section level3" number="3.8.1">
 <h3>
 <span class="header-section-number">3.8.1</span> How do these results compare when using VAMOS vs individual ratings of valence and arousal?<a class="anchor" aria-label="anchor" href="#how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal"><i class="fas fa-link"></i></a>
 </h3>
-<p>In the above analyses, VAMOS scores (group-averaged from a prior study) were used as an index of the affect that is evoked by an image. But one could imagine that the relationship between affect, memory, and the other predictors of memory may change if we use the ratings of valence and arousal which come from the same participants who completed the memory test or by using the group-averaged ratings from this collection of participants. Perhaps we may be able to find that the idiosyncratic or group-averaged ratings of valence and arousal may change how we might predict memory using regression models.</p>
-To investigate whether these rating differences would significantly affect the interactive model outputs, I ran a set interactive models in which individual ratings of valence and arousal were used as the ‘Valence’ and ‘Arousal’ terms. For z-scoring information, see the ‘individual rating’ subsection of 3.6.
+<p>In the above analyses, VAMOS scores (group-averaged from a prior study)
+were used as an index of the affect that is evoked by an image. But one
+could imagine that the relationship between affect, memory, and the
+other predictors of memory may change if we use the ratings of valence
+and arousal which come from the same participants who completed the
+memory test or by using the group-averaged ratings from this collection
+of participants. Perhaps we may be able to find that the idiosyncratic
+or group-averaged ratings of valence and arousal may change how we might
+predict memory using regression models.</p>
+<p>To investigate whether these rating differences would significantly
+affect the interactive model outputs, I ran a set interactive models in
+which individual ratings of valence and arousal were used as the
+‘Valence’ and ‘Arousal’ terms. For z-scoring information, see the
+‘individual rating’ subsection of 3.6.</p>
 <details><summary>
 Models using individual valence and arousal ratings
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Reaction Time}\mid \text{Participant.Private.ID}), \text{family=binomial}
 \]</span></p>
@@ -5380,11 +4437,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -5600,11 +4657,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -5820,10 +4877,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}, \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -6031,11 +5089,11 @@ R<sup>2</sup> Tjur
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -6163,11 +5221,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Valence}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -6294,12 +5352,16 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </tr>
 </table></div>
 </div>
-<br><br></details><p><br></p>
-Then, I ran a similar set of models using averaged participant ratings of valence/arousal from the ‘classic’ experiment as measures of valence and arousal. See the ‘average rating’ subsection of 3.6. for more information on z-scoring and averaging for this version.
+<p><br><br></p>
+</details><p><br></p>
+<p>Then, I ran a similar set of models using averaged participant ratings
+of valence/arousal from the ‘classic’ experiment as measures of valence
+and arousal. See the ‘average rating’ subsection of 3.6. for more
+information on z-scoring and averaging for this version.</p>
 <details><summary>
 Models using group-averaged valence and arousal ratings
-</summary><div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
+</summary><div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
 <p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Reaction Time}\mid \text{Participant.Private.ID}), \text{family=binomial}
 \]</span></p>
@@ -6384,7 +5446,8 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
 </tr>
 </table></div>
-<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) [
+## glmerMod]
 ##  Family: binomial  ( logit )
 ## Formula: hits ~ z_mem * za * zv * zrt + (1 + za + zv + zrt | Participant.Private.ID)
 ##    Data: group_av_emo
@@ -6425,11 +5488,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 ## Model failed to converge: degenerate  Hessian with 1 negative eigenvalues</code></pre>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -6513,11 +5576,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -6733,10 +5796,11 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}, \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -6944,143 +6008,78 @@ R<sup>2</sup> Tjur
 </table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;&gt; $$
 \text{hits} \sim \text{Memorability} \cdot \text{Arousal}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
-<div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
+$$
+
+&lt;table style=" border-collapse:collapse border:none>
 <tr>
-<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
- 
-</th>
-<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
-hits
-</th>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; "> </th>
+<th colspan="2" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">hits</th>
 </tr>
 <tr>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
-Predictors
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-Odds Ratios
-</td>
-<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
-p
-</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Odds Ratios</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">p</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(Intercept)
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-3.24
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">3.24</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.21
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>&lt;0.001</strong>
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">z mem</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.21</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>&lt;0.001</strong></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.10
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.016</strong>
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">za</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.10</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.016</strong></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.12
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-<strong>0.005</strong>
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">zrt</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.12</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  "><strong>0.005</strong></td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × za
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.05
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.244
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">z mem × za</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.05</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.244</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-z mem × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.705
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">z mem × zrt</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.02</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.705</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-za × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.00
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.979
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">za × zrt</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.979</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
-(z mem × za) × zrt
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-1.02
-</td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
-0.583
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(z mem × za) × zrt</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">1.02</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.583</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
-N <sub>Participant.Private.ID</sub>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">N <sub>Participant.Private.ID</sub>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">
-95
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="2">95</td>
 </tr>
 <tr>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
-Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </td>
-<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">
-0.017 / 0.158
-</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="2">0.017 / 0.158</td>
 </tr>
-</table></div>
 </div>
 <p><br><br></p>
-<div style="  text-align:center; vertical-align: middle; padding:40px 0;">
-
-<span class="math display">\[
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+<p><span class="math display">\[
 \text{hits} \sim \text{Memorability} \cdot \text{Valence}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
-\]</span>
+\]</span></p>
 <div class="inline-table"><table style="border-collapse:collapse; border:none;" class="table table-sm">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -7210,10 +6209,9 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </details>
 </div>
 </div>
-</div>
-  <div class="chapter-nav">
+<div class="chapter-nav">
 <div class="prev"><a href="experiment-info.html"><span class="header-section-number">2</span> Experiment Info</a></div>
-<div class="next"><a href="whole-data-analyses---delay.html"><span class="header-section-number">4</span> Whole-Data Analyses - Delay</a></div>
+<div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -7237,9 +6235,13 @@ Marginal R<sup>2</sup> / Conditional R<sup>2</sup>
 </div>
     </nav>
 </div>
+</div>
+  
+
+  
 
 </div>
-</div> <!-- .container -->
+ <!-- .container -->
 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
