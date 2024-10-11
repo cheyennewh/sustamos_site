@@ -30,6 +30,10 @@ delay_sust3 <- read_csv("./data_delay_0911/sust1.csv")
 delay_sust4 <- read_csv("./data_delay_0911/sust2.csv")
 delay_sust5 <- read_csv("./delay_data_0919/sust1.csv")
 delay_sust6 <- read_csv("./delay_data_0919/sust2.csv")
+delay_sust7 <- read_csv("./data_delay_0926/sust1.csv")
+delay_sust8 <- read_csv("./data_delay_0926/sust2.csv")
+delay_sust9 <- read_csv("./delay_data1010/sust1.csv")
+delay_sust10 <- read_csv("./delay_data1010/sust2.csv")
 
 delay_mem1 <- read_csv("./delay_data/delay_batch1/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
@@ -42,6 +46,14 @@ delay_mem4 <- read_csv("./data_delay_0911/mem2.csv")%>%
 delay_mem5 <- read_csv("./delay_data_0919/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_mem6 <- read_csv("./delay_data_0919/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem7 <- read_csv("./data_delay_0926/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem8 <- read_csv("./data_delay_0926/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem9 <- read_csv("./delay_data1010/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem10 <- read_csv("./delay_data1010/mem2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 delay_mem_early2 <- read_csv("./delay_data/mem2_early.csv")
@@ -58,6 +70,14 @@ delay_emo5 <-read_csv("./delay_data_0919/emo1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_emo6 <-read_csv("./delay_data_0919/emo2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo7 <-read_csv("./data_delay_0926/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo8 <-read_csv("./data_delay_0926/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo9 <-read_csv("./delay_data1010/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo10 <-read_csv("./delay_data1010/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 
@@ -66,9 +86,9 @@ delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 #arousal <- emo[emo$aff_type=="arousal",]
 #emo_mematt <- merge(emo, mem_att, by= c("`Participant Private ID`","Img"))
 
-sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6)
-memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6)
-emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo_early2)
+sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6,delay_sust7,delay_sust8,delay_sust9,delay_sust10)
+memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6,delay_mem7,delay_mem8,delay_mem9,delay_mem10)
+emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo7,delay_emo8,delay_emo_early2,delay_emo9,delay_emo10)
 
 
 
@@ -143,7 +163,8 @@ sust_full_rt <-sust_full_rt %>%
     Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time),
     Mean_Window_Scale = ifelse(`Spreadsheet: type` == "target", mean(Mean_Window_Scale[`Spreadsheet: type` == "window"]), Mean_Window_Scale)
   )%>%
-  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" )
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" & `Participant Private ID` !="11758423" 
+)
 
 
 # View the resulting dataframe
@@ -165,7 +186,7 @@ emo <- emo %>%
   group_by(`Participant Private ID`,Img,aff_type) %>%
   filter(row_number() == n() | n() == 1) %>%
   ungroup()%>%
-  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062" & `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065")
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062" & `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065"& `Participant Private ID` !="11758423" )
 
 
 #write.csv(emo,"emo.csv")
@@ -200,7 +221,7 @@ memory <-memory%>%
          
   )%>%
   mutate(group=ifelse(`Spreadsheet: memory`=="target","group1","group2"))%>%
-  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" )
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" & `Participant Private ID` !="11758423" )
 
 
 #write.csv(memory, "memory.csv")
@@ -512,13 +533,13 @@ ggplot(pred_data2, aes(x = zrt, y = hits)) +
   theme(legend.position = "none")+
   scale_color_viridis(option="A",discrete="True")+
   ggtitle("Random Intercept+ slopes")
-
+summary(model)
 ```
 
 
 
 ```{r,message=F,warning=F}
-
+library(sjPlot)
 model2 <- glmer(hits ~ z_mem + (1+z_mem| `Participant Private ID`), family = binomial, data = mem_att,control = glmerControl())
 mem_att_clean2 <- mem_att %>%
   filter(!is.na(z_mem) & !is.na(hits))
@@ -547,7 +568,9 @@ ggplot(pred_data2, aes(x = z_mem, y = hits)) +
   labs(color = "Participant") +
   theme(legend.position = "none")+
   scale_color_viridis(option="A",discrete="True")
+#tab_model(model2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 
+summary(model2)
 ```
 
 ```{r,message=F,warning=F}
@@ -611,7 +634,7 @@ ggplot(pred_data3, aes(x = zv, y = hits)) +
 
 
 
-
+summary(model3)
 ```
 
 
@@ -659,5 +682,7 @@ ggplot(pred_data6, aes(x = za, y = hits)) +
   theme(plot.margin = margin(0, 0, 0, 0))+
   ggtitle("Memory prediction using VAMOS Scores 
           (z-scored globally)") 
+
+summary(model6)
 ```
 
