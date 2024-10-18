@@ -35,6 +35,9 @@ delay_sust8 <- read_csv("./data_delay_0926/sust2.csv")
 delay_sust9 <- read_csv("./delay_data1010/sust1.csv")
 delay_sust10 <- read_csv("./delay_data1010/sust2.csv")
 
+delay_sust11 <- read_csv("./delay_data_1018/sust1.csv")
+delay_sust12 <- read_csv("./delay_data_1018/sust2.csv")
+
 delay_mem1 <- read_csv("./delay_data/delay_batch1/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_mem2 <- read_csv("./delay_data/delay_batch1/mem2.csv")%>%
@@ -55,6 +58,11 @@ delay_mem9 <- read_csv("./delay_data1010/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_mem10 <- read_csv("./delay_data1010/mem2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem11 <- read_csv("./delay_data_1018/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem12 <- read_csv("./delay_data_1018/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+
 
 delay_mem_early2 <- read_csv("./delay_data/mem2_early.csv")
 
@@ -78,6 +86,10 @@ delay_emo9 <-read_csv("./delay_data1010/emo1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_emo10 <-read_csv("./delay_data1010/emo2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo11 <-read_csv("./delay_data_1018/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo12 <-read_csv("./delay_data_1018/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 
@@ -86,9 +98,9 @@ delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 #arousal <- emo[emo$aff_type=="arousal",]
 #emo_mematt <- merge(emo, mem_att, by= c("`Participant Private ID`","Img"))
 
-sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6,delay_sust7,delay_sust8,delay_sust9,delay_sust10)
-memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6,delay_mem7,delay_mem8,delay_mem9,delay_mem10)
-emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo7,delay_emo8,delay_emo_early2,delay_emo9,delay_emo10)
+sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6,delay_sust7,delay_sust8,delay_sust9,delay_sust10,delay_sust11,delay_sust12)
+memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6,delay_mem7,delay_mem8,delay_mem9,delay_mem10,delay_mem11,delay_mem12)
+emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo7,delay_emo8,delay_emo_early2,delay_emo9,delay_emo10,delay_emo11,delay_emo12)
 
 
 
@@ -163,7 +175,7 @@ sust_full_rt <-sust_full_rt %>%
     Mean_Reaction_Time = ifelse(`Spreadsheet: type` == "target", mean(Mean_Reaction_Time[`Spreadsheet: type` == "window"]), Mean_Reaction_Time),
     Mean_Window_Scale = ifelse(`Spreadsheet: type` == "target", mean(Mean_Window_Scale[`Spreadsheet: type` == "window"]), Mean_Window_Scale)
   )%>%
-  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" & `Participant Private ID` !="11758423" 
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" & `Participant Private ID` !="11758423" & `Participant Private ID` !="11852271"& `Participant Private ID` !="11852272"& `Participant Private ID` !="11716965"& `Participant Private ID` !="11758506" & `Participant Private ID` !="11852314"
 )
 
 
@@ -186,7 +198,7 @@ emo <- emo %>%
   group_by(`Participant Private ID`,Img,aff_type) %>%
   filter(row_number() == n() | n() == 1) %>%
   ungroup()%>%
-  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062" & `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065"& `Participant Private ID` !="11758423" )
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062" & `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065"& `Participant Private ID` !="11758423" & `Participant Private ID` !="11852271"& `Participant Private ID` !="11852272"& `Participant Private ID` !="11716965"	& `Participant Private ID` !="11758506" & `Participant Private ID` !="11852314")
 
 
 #write.csv(emo,"emo.csv")
@@ -221,7 +233,7 @@ memory <-memory%>%
          
   )%>%
   mutate(group=ifelse(`Spreadsheet: memory`=="target","group1","group2"))%>%
-  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" & `Participant Private ID` !="11758423" )
+  filter(`Participant Private ID` !="11638956" & `Participant Private ID` !="11658165" & `Participant Private ID` !="11682062"& `Participant Private ID` !="11638973" & `Participant Private ID` !="11682065" & `Participant Private ID` !="11758423"& `Participant Private ID` !="11852271"& `Participant Private ID` !="11852272"& `Participant Private ID` !="11716965" & `Participant Private ID` !="11758506" & `Participant Private ID` !="11852314")
 
 
 #write.csv(memory, "memory.csv")
@@ -240,6 +252,9 @@ vamos_aff <- rbind(vamos_aff_s1,vamos_aff_s2)
 mem_only <- memory%>%
   select(c(`Participant Private ID`,hits,fas,`Spreadsheet: img`,`Trial Number`,Response,`Spreadsheet: memory`,group))%>%
   filter(`Spreadsheet: memory`=="target")
+mem_only2 <- memory%>%
+  select(c(`Participant Private ID`,hits,fas,`Spreadsheet: img`,`Trial Number`,Response,`Spreadsheet: memory`,group))%>%
+  filter(`Spreadsheet: memory`=="filler")
 
 att_only <- sust_full_rt%>%
   select(c(`Participant Private ID`,Mean_Reaction_Time,Mean_Window_Scale,`Trial Number`,`Spreadsheet: img`,`Spreadsheet: type`))%>%
@@ -249,11 +264,18 @@ att_only <- sust_full_rt%>%
 
 mem_att <-merge(mem_only,att_only, by=c("Spreadsheet: img","Participant Private ID"))%>%
   unique()
+mem_att2 <-merge(mem_only2,att_only, by=c("Spreadsheet: img","Participant Private ID"))%>%
+  unique()
 
 
 mem_att <- mem_att %>%
   group_by(`Participant Private ID`) %>%
   mutate(zrt = scale(Mean_Reaction_Time))%>%
+  rename('Img'= `Spreadsheet: img`)
+
+
+mem_only2 <- mem_only2 %>%
+  group_by(`Participant Private ID`) %>%
   rename('Img'= `Spreadsheet: img`)
 
 emo_mematt <- merge(emo, mem_att, by= c("Participant Private ID","Img"))
@@ -419,6 +441,7 @@ memory_unique <- memory%>%
   unique()
 
 
+
 ```
 
 <br>
@@ -441,8 +464,8 @@ geom_histogram(memory_unique, mapping=aes(x=d_prime),fill="firebrick4",alpha=.7)
 
 
 
-poor_mems <- memory_unique$`Participant Private ID`[memory_unique$APrime<.7591969]
-good_mems <- memory_unique$`Participant Private ID`[memory_unique$APrime>=.7591969]
+poor_mems <- memory_unique$`Participant Private ID`[memory_unique$APrime<0.7076572]
+good_mems <- memory_unique$`Participant Private ID`[memory_unique$APrime>=0.7076572]
 
 ```
 </details>
@@ -455,6 +478,12 @@ cross_mem_predict <- merge(vamos_aff,mem_only_2, by="Img")
 
 vamos_aff_use <- vamos_aff[c(1,3,5,6),]
 mem_att <-merge(mem_att,vamos_aff, by="Img")%>%
+  ungroup()%>%
+  mutate(zv = scale(Mean_Valence),
+         za = scale(Mean_Arousal))%>%
+  mutate(z_mem = scale(Memorability_Score))
+
+mem_only2 <-merge(mem_only2,vamos_aff, by="Img")%>%
   ungroup()%>%
   mutate(zv = scale(Mean_Valence),
          za = scale(Mean_Arousal))%>%
@@ -641,6 +670,7 @@ summary(model3)
 
 
 ```{r ,message=F,warning=F}
+bad_data <- mem_att[mem_att$`Participant Private ID` %in% poor_mems,]
 
 ind_scale_ar <-ind_scale_emo[ind_scale_emo$aff_type=="arousal",]
 
@@ -650,8 +680,123 @@ emo_group_ar <-emo_group %>%
   mutate(group_scale_ar = scale(z2))%>%
   ungroup()
 
-model6 <- glmer(hits ~ za + (1+za| `Participant Private ID`), family = binomial, data = mem_att,control = glmerControl())
+model6 <- glmer(hits ~ za + (1+za | `Participant Private ID`), family = binomial, data = mem_att,control = glmerControl())
 mem_att_clean6 <- mem_att %>%
+  filter(!is.na(za) & !is.na(hits))
+# Create a data frame with predictions
+pred_data6 <- mem_att_clean6 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model6, type = "response"),
+    se = predict(model6, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data6 <- pred_data6 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+
+ggplot(pred_data6, aes(x = za, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`)))+
+  geom_smooth(method = "glm",aes(y = pred), color = "black") + # Predicted line # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Arousal") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using VAMOS Scores 
+          (z-scored globally)") 
+
+summary(model6)
+```
+
+
+```{r,message=F,warning=F}
+
+ind_scale_emo <- emo_mematt%>%
+  select(`Participant Private ID`,Img,emo_rate,aff_type,hits,Response,group,zrt)%>%
+  group_by(`Participant Private ID`,aff_type)%>%
+  mutate(z_ind = scale(emo_rate))%>%
+  ungroup()
+
+ind_scale_val <-ind_scale_emo[ind_scale_emo$aff_type=="valence",]
+
+
+emo_group <- emo_mematt%>%
+  select(`Participant Private ID`,Img,emo_rate,aff_type,hits,Response,group,zrt)%>%
+  group_by(Img,aff_type)%>%
+  mutate(z2=mean(emo_rate))%>%
+  ungroup()
+
+emo_group_val <-emo_group %>%
+  filter(aff_type=="valence")%>%
+  group_by(group)%>%
+  mutate(group_scale_v = scale(z2))%>%
+  ungroup()
+
+
+
+
+
+
+model3 <- glmer(hits ~ zv + (1+zv| `Participant Private ID`), family = binomial, data = bad_data,control = glmerControl())
+mem_att_clean3 <- bad_data %>%
+  filter(!is.na(zv) & !is.na(hits))
+# Create a data frame with predictions
+pred_data3 <- mem_att_clean3 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model3, type = "response"),
+    se = predict(model3, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data3 <- pred_data3 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data3, aes(x = zv, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Valence") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using VAMOS Scores (z-scored globally)") 
+
+
+
+summary(model3)
+```
+
+
+
+
+
+```{r ,message=F,warning=F}
+
+ind_scale_ar <-ind_scale_emo[ind_scale_emo$aff_type=="arousal",]
+
+emo_group_ar <-emo_group %>%
+  filter(aff_type=="arousal")%>%
+  group_by(group)%>%
+  mutate(group_scale_ar = scale(z2))%>%
+  ungroup()
+
+model6 <- glmer(hits ~ za + (1+za| `Participant Private ID`), family = binomial, data = bad_data,control = glmerControl())
+mem_att_clean6 <- bad_data %>%
   filter(!is.na(za) & !is.na(hits))
 # Create a data frame with predictions
 pred_data6 <- mem_att_clean6 %>%
@@ -686,3 +831,272 @@ ggplot(pred_data6, aes(x = za, y = hits)) +
 summary(model6)
 ```
 
+
+```{r,message=F,warning=F}
+
+model2 <- glmer(hits ~ z_mem + (1+z_mem| `Participant Private ID`), family = binomial, data = bad_data,control = glmerControl())
+mem_att_clean2 <- bad_data %>%
+  filter(!is.na(z_mem) & !is.na(hits))
+# Create a data frame with predictions
+pred_data2 <- mem_att_clean2 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model2, type = "response"),
+    se = predict(model2, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data2 <- pred_data2 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data2, aes(x = z_mem, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Memorability") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")
+#tab_model(model2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+summary(model2)
+```
+
+```{r,message=F,warning=F}
+
+# Fit the GLMM model
+model2 <- glmer(hits ~ zrt + (1 +zrt| `Participant Private ID`), family = binomial, data = bad_data, control = glmerControl())
+
+mem_att_clean <-bad_data %>%
+  filter(!is.na(zrt) & !is.na(hits))
+
+# Create a data frame with predictions
+pred_data2 <- mem_att_clean %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model2, type = "response"),
+    se = predict(model2, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data2 <- pred_data2 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data2, aes(x = zrt, y = hits)) +
+  geom_point(alpha=.4) +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Pretrial RT") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+
+  ggtitle("Random Intercept+ slopes")
+summary(model2)
+```
+
+```{r,message=F,warning=F}
+
+ind_scale_emo <- emo_mematt%>%
+  select(`Participant Private ID`,Img,emo_rate,aff_type,hits,Response,group,zrt)%>%
+  group_by(`Participant Private ID`,aff_type)%>%
+  mutate(z_ind = scale(emo_rate))%>%
+  ungroup()
+
+ind_scale_val <-ind_scale_emo[ind_scale_emo$aff_type=="valence",]
+
+
+emo_group <- emo_mematt%>%
+  select(`Participant Private ID`,Img,emo_rate,aff_type,hits,Response,group,zrt)%>%
+  group_by(Img,aff_type)%>%
+  mutate(z2=mean(emo_rate))%>%
+  ungroup()
+
+emo_group_val <-emo_group %>%
+  filter(aff_type=="valence")%>%
+  group_by(group)%>%
+  mutate(group_scale_v = scale(z2))%>%
+  ungroup()
+
+
+
+good_data <- mem_att[mem_att$`Participant Private ID` %in% good_mems,]
+
+
+model3 <- glmer(hits ~ zv + (1+zv| `Participant Private ID`), family = binomial, data = good_data,control = glmerControl())
+mem_att_clean3 <- good_data %>%
+  filter(!is.na(zv) & !is.na(hits))
+# Create a data frame with predictions
+pred_data3 <- mem_att_clean3 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model3, type = "response"),
+    se = predict(model3, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data3 <- pred_data3 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data3, aes(x = zv, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Valence") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using VAMOS Scores (z-scored globally)") 
+
+
+
+summary(model3)
+```
+
+
+
+
+```{r ,message=F,warning=F}
+
+ind_scale_ar <-ind_scale_emo[ind_scale_emo$aff_type=="arousal",]
+
+emo_group_ar <-emo_group %>%
+  filter(aff_type=="arousal")%>%
+  group_by(group)%>%
+  mutate(group_scale_ar = scale(z2))%>%
+  ungroup()
+
+model6 <- glmer(hits ~ za + (1+za| `Participant Private ID`), family = binomial, data = good_data,control = glmerControl())
+mem_att_clean6 <- good_data %>%
+  filter(!is.na(za) & !is.na(hits))
+# Create a data frame with predictions
+pred_data6 <- mem_att_clean6 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model6, type = "response"),
+    se = predict(model6, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data6 <- pred_data6 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+
+ggplot(pred_data6, aes(x = za, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`)))+
+  geom_smooth(method = "lm",aes(y = pred), color = "black") + # Predicted line # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Arousal") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using VAMOS Scores 
+          (z-scored globally)") 
+
+summary(model6)
+```
+ 
+
+```{r,message=F,warning=F}
+model2 <- glmer(hits ~ z_mem + (1+z_mem| `Participant Private ID`), family = binomial, data = good_data,control = glmerControl())
+mem_att_clean2 <-good_data %>%
+  filter(!is.na(z_mem) & !is.na(hits))
+# Create a data frame with predictions
+pred_data2 <- mem_att_clean2 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model2, type = "response"),
+    se = predict(model2, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data2 <- pred_data2 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data2, aes(x = z_mem, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Memorability") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")
+#tab_model(model2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+summary(model2)
+```
+
+
+```{r,message=F,warning=F}
+
+# Fit the GLMM model
+model2 <- glmer(hits ~ zrt + (1 +zrt| `Participant Private ID`), family = binomial, data = good_data, control = glmerControl())
+
+mem_att_clean <- good_data %>%
+  filter(!is.na(zrt) & !is.na(hits))
+
+# Create a data frame with predictions
+pred_data2 <- mem_att_clean %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model2, type = "response"),
+    se = predict(model2, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data2 <- pred_data2 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data2, aes(x = zrt, y = hits)) +
+  geom_point(alpha=.4) +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Pretrial RT") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+
+  ggtitle("Random Intercept+ slopes")
+summary(model2)
+```
+
+
+```{r ,message=F,warning=F}
+model10 <- glmer(hits ~ zrt + zv + za +z_mem+ (1 +zrt+zv+za+z_mem| `Participant Private ID`), family = binomial, data = mem_att, control = glmerControl())
+summary(model10)
+```
+
+```{r ,message=F,warning=F}
+model11 <- glmer(hits ~ zrt * zv * za*z_mem + (1 +zrt+zv+za+z_mem| `Participant Private ID`), family = binomial, data = mem_att, control = glmerControl())
+summary(model11)
+```

@@ -46,7 +46,7 @@ We are also able to predict memory of items through understanding the individual
 
 ```{r, eval=FALSE,echo=FALSE}
 bookdown::clean_book(TRUE)
-bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd", quiet = FALSE)
 
 ```
 

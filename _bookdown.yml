@@ -7,7 +7,6 @@ book_filename: "Sustamos"
 rmd_files: ["index.Rmd",
   "02-cross-refs.Rmd",
   "01-intro.Rmd",
-  '03-parts.Rmd',
-  "07-references.Rmd",
+  "03-parts.Rmd"
 ]
 output_dir: "_book"

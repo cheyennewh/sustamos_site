@@ -1474,23 +1474,25 @@ individ_emo <- merge(individ_emo, mem_att_condense, by = "Img")
   
 group_averaged_emo1 <- emo_mematt %>%
   group_by(group,Img)%>%
+  filter(aff_type=="valence")%>%
   mutate(
-    emorate1 = mean(emo_rate)
+    emorate1 = mean(emo_rate),
+     zv = scale(emorate1)
   )%>%
-  select(Img,Participant.Private.ID,hits,emorate1)%>%
-  ungroup()%>%
-  mutate(zv = scale(emorate1))
+  select(Img,Participant.Private.ID,hits,emorate1,zv)%>%
+  ungroup()
 
 
 
 group_averaged_emo2 <- emo_mematt %>%
   ungroup() %>%
   group_by(group,Img)%>%
+  filter(aff_type=="arousal")%>%
   mutate(
-    emorate2 = mean(emo_rate))%>%
-  select(Img, Participant.Private.ID,zrt,emorate2) %>%
-  ungroup()%>%
-  mutate(za = scale(emorate2))
+    emorate2 = mean(emo_rate),
+  za = scale(emorate2))%>%
+  select(Img, Participant.Private.ID,zrt,emorate2,za) %>%
+  ungroup()
   
   group_av_emo <- merge(group_averaged_emo1,group_averaged_emo2, by=c("Img","Participant.Private.ID"))
   
@@ -1534,7 +1536,7 @@ $$
 
 ```{r , message=F,warning=F}
   individ_emo$Participant.Private.ID <- as.factor(individ_emo$Participant.Private.ID)
-z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv+zrt|Participant.Private.ID),individ_emo,family="binomial")
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv+zrt|Participant.Private.ID),individ_emo,family="binomial",control= glmerControl())
 tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
 
 
@@ -1667,7 +1669,7 @@ $$
 
 z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv|Participant.Private.ID),group_av_emo,family="binomial")
 tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
-
+summary(z)
 ```
 
 

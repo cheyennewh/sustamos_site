@@ -1,5 +1,173 @@
 # Populations 
 
+looking at delay data just for participants with lower intercepts on the memory
+
+```{r}
+library(lme4)
+
+# Assuming your glmer model is stored in the object 'model'
+# Extract random effects
+random_effects <- ranef(model2)$`Participant Private ID`  # Adjust 'participant' to match your grouping factor
+
+# Extract intercepts and slopes for each participant
+intercepts <- random_effects[, "(Intercept)"]
 
 
-Populations tab TBD.
+# Calculate the average slope
+average_int <- median(intercepts)
+
+# Filter participants where intercept < average slope
+filtered_participants <- random_effects[intercepts < average_int, ]
+
+# View filtered participants
+# Extract participant IDs from row names
+participant_ids <- rownames(filtered_participants)
+
+# View or print the participant IDs
+participant_ids
+
+
+```
+
+
+```{r,message=F,warning=F}
+library(sjPlot)
+
+mem_low <- pred_data2[pred_data2$`Participant Private ID` %in% participant_ids,]
+
+mem_high <- pred_data2[!pred_data2$`Participant Private ID` %in% participant_ids,]
+ggplot(mem_low, aes(x = z_mem, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Memorability") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")
+#tab_model(model2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+ggplot(mem_high, aes(x = z_mem, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Memorability") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")
+summary(model2)
+```
+
+
+```{r}
+library(lme4)
+
+# Fit the GLMM model
+model <- glmer(fas ~ z_mem + (1 | `Participant Private ID`), family = binomial, data = mem_only2, control = glmerControl())
+
+mem_att_clean <- mem_only2 %>%
+  filter(!is.na(z_mem) & !is.na(fas))
+
+# Create a data frame with predictions
+pred_data <- mem_att_clean %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model, type = "response"),
+    se = predict(model, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data <- pred_data %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data, aes(x = z_mem, y = fas)) +
+  geom_point(alpha=.4) +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line  
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Membility") +
+  ylab("FA?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+
+  ggtitle("Random Intercept")
+
+
+
+# Fit the GLMM model
+model2 <- glmer(fas ~ za + (1 +za| `Participant Private ID`), family = binomial, data = mem_only2, control = glmerControl())
+
+mem_att_clean <- mem_only2 %>%
+  filter(!is.na(za) & !is.na(hits))
+
+# Create a data frame with predictions
+pred_data2 <- mem_att_clean %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model2, type = "response"),
+    se = predict(model2, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data2 <- pred_data2 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data2, aes(x = za, y = fas)) +
+  geom_point(alpha=.4) +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Arousal") +
+  ylab("FA?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+
+  ggtitle("Random Intercept+ slopes")
+summary(model2)
+
+
+
+# Fit the GLMM model
+model3 <- glmer(fas ~ zv + (1 +zv| `Participant Private ID`), family = binomial, data = mem_only2, control = glmerControl())
+
+mem_att_clean3 <- mem_only2 %>%
+  filter(!is.na(zv) & !is.na(hits))
+
+# Create a data frame with predictions
+pred_data3 <- mem_att_clean3 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model3, type = "response"),
+    se = predict(model3, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data3 <- pred_data3 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data3, aes(x = zv, y = fas)) +
+  geom_point(alpha=.4) +
+  geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Valence") +
+  ylab("FA?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+
+  ggtitle("Random Intercept+ slopes")
+summary(model3)
+```
