@@ -25,3 +25,7 @@ whole-data-analyses---delay
 how-often-were-participants-lapsing-on-the-task-1
 does-pretrial-reaction-time-predict-lapses-1
 is-memory-above-chance-1
+<<<<<<< HEAD
+=======
+populations
+>>>>>>> 3601e8803dfe86cefeecd7338a1490ee074d43d0

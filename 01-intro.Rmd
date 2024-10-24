@@ -242,7 +242,7 @@ memory_unique <- memory%>%
   select(APrime,d_prime,Participant.Private.ID)%>%
   unique()
 
-
+mean(memory$APrime)
 ```
 
 <br> I also took a look at the distributions of memory performance,
