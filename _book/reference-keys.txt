@@ -11,21 +11,23 @@ delay
 encoding-task-1
 retrieval-task-1
 affective-rating-task-1
-whole-data-analyses---classic
+whole-data-analyses-delay
 how-often-were-participants-lapsing-on-the-task
 does-pretrial-reaction-time-predict-lapses
 is-memory-above-chance
+how-does-pretrial-reaction-time-relate-to-memory-after-a-24-hr-delay
+how-does-memorability-relate-to-memory-after-a-24-hr-delay
+how-does-valence-relate-to-memory-after-a-24-hr-delay
+how-does-arousal-relate-to-memory-after-a-24-hr-delay
+interactive-model
+how-quickly-are-participants-completing-the-memory-task
+whole-data-analyses---classic
+how-often-were-participants-lapsing-on-the-task-1
+does-pretrial-reaction-time-predict-lapses-1
+is-memory-above-chance-1
 is-pretrial-rt-predictive-of-memory
 is-memorability-predictive-of-memory
 is-valence-predictive-of-memory
 is-arousal-predictive-of-memory
 memory-prediction-using-simultaneous-predictors-in-a-mixed-logistic-regression-model
 how-do-these-results-compare-when-using-vamos-vs-individual-ratings-of-valence-and-arousal
-whole-data-analyses---delay
-how-often-were-participants-lapsing-on-the-task-1
-does-pretrial-reaction-time-predict-lapses-1
-is-memory-above-chance-1
-<<<<<<< HEAD
-=======
-populations
->>>>>>> 3601e8803dfe86cefeecd7338a1490ee074d43d0

@@ -1,6 +1,7 @@
 ---
 title: "Sustamos"
 site: bookdown::bookdown_site
+author: "Cheyenne Wakeland-Hart"
 output:
   bookdown::bs4_book:
     config:
@@ -45,7 +46,7 @@ We are also able to predict memory of items through understanding the individual
 
 
 ```{r, eval=FALSE,echo=FALSE}
-bookdown::clean_book(TRUE)
+bookdown::clean_book(FALSE)
 bookdown::render_book("index.Rmd", quiet = FALSE)
 
 ```
