@@ -1,0 +1,775 @@
+"0",""
+"0","delay_sust1 <- read_csv(""./delay_data/delay_batch1/sust1.csv"")"
+"1","[1mRows: [22m[34m10720[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust2 <- read_csv(""./delay_data/delay_batch1/sust2.csv"")"
+"1","[1mRows: [22m[34m8036[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust3 <- read_csv(""./data_delay_0911/sust1.csv"")"
+"1","[1mRows: [22m[34m12606[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust4 <- read_csv(""./data_delay_0911/sust2.csv"")"
+"1","[1mRows: [22m[34m17519[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust5 <- read_csv(""./delay_data_0919/sust1.csv"")"
+"1","[1mRows: [22m[34m6409[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust6 <- read_csv(""./delay_data_0919/sust2.csv"")"
+"1","[1mRows: [22m[34m7888[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust7 <- read_csv(""./data_delay_0926/sust1.csv"")"
+"1","[1mRows: [22m[34m17678[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust8 <- read_csv(""./data_delay_0926/sust2.csv"")"
+"1","[1mRows: [22m[34m17682[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust9 <- read_csv(""./delay_data1010/sust1.csv"")"
+"1","[1mRows: [22m[34m1594[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust10 <- read_csv(""./delay_data1010/sust2.csv"")"
+"1","[1mRows: [22m[34m4841[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust11 <- read_csv(""./delay_data_1018/sust1.csv"")"
+"1","[1mRows: [22m[34m15582[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust12 <- read_csv(""./delay_data_1018/sust2.csv"")"
+"1","[1mRows: [22m[34m17719[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust13 <- read_csv(""./data_delay_1101/sust1.csv"")"
+"1","[1mRows: [22m[34m8062[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_sust14 <- read_csv(""./data_delay_1101/sust2.csv"")"
+"1","[1mRows: [22m[34m16090[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (30): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem1 <- read_csv(""./delay_data/delay_batch1/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m729[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem2 <- read_csv(""./delay_data/delay_batch1/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m420[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem3 <- read_csv(""./data_delay_0911/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m833[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem4 <- read_csv(""./data_delay_0911/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1145[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem5 <- read_csv(""./delay_data_0919/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m417[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem6 <- read_csv(""./delay_data_0919/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m521[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem7 <- read_csv(""./data_delay_0926/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1146[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem8 <- read_csv(""./data_delay_0926/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1195[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem9 <- read_csv(""./delay_data1010/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m105[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem10 <- read_csv(""./delay_data1010/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m314[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem11 <- read_csv(""./delay_data_1018/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1041[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem12 <- read_csv(""./delay_data_1018/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1150[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem13 <- read_csv(""./data_delay_1101/mem1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m521[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem14 <- read_csv(""./data_delay_1101/mem2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1044[39m [1mColumns: [22m[34m64[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (9): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_mem_early2 <- read_csv(""./delay_data/mem2_early.csv"")"
+"1","[1mRows: [22m[34m209[39m [1mColumns: [22m[34m61[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (23): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (7): Participant Starting Group, Participant Completion Code, Checkpoint, Room ID, Tag, Spreadsheet: border, Manipulati...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo1 <-read_csv(""./delay_data/delay_batch1/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m4229[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo2 <-read_csv(""./delay_data/delay_batch1/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m2417[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo3 <-read_csv(""./data_delay_0911/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m4833[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo4 <-read_csv(""./data_delay_0911/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m6645[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo5 <-read_csv(""./delay_data_0919/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m2417[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo6 <-read_csv(""./delay_data_0919/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m3021[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo7 <-read_csv(""./data_delay_0926/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m6645[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo8 <-read_csv(""./data_delay_0926/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m6645[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo9 <-read_csv(""./delay_data1010/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m605[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo10 <-read_csv(""./delay_data1010/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m1813[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo11 <-read_csv(""./delay_data_1018/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m6041[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo12 <-read_csv(""./delay_data_1018/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m6645[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo13 <-read_csv(""./data_delay_1101/emo1.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m3021[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo14 <-read_csv(""./data_delay_1101/emo2.csv"")%>%"
+"0","  select(-c(""branch-ck1c"",""randomiser-8rl3"",""branch-tpdd""))"
+"1","[1mRows: [22m[34m6041[39m [1mColumns: [22m[34m65[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (24): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m (10): Participant Starting Group, Participant Completion Code, Participant External Session ID, Checkpoint, Room ID, bra...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_emo_early2 <- read_csv(""./delay_data/emo2_early.csv"")"
+"1","[1mRows: [22m[34m1209[39m [1mColumns: [22m[34m62[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (31): Event Index, UTC Date and Time, Local Date and Time, Tree Node Key, Repeat Key, Participant Public ID, Participant...
+[32mdbl[39m (23): UTC Timestamp, Local Timestamp, Local Timezone, Experiment ID, Experiment Version, Schedule ID, Participant Privat...
+[33mlgl[39m  (8): Participant Starting Group, Participant Completion Code, Checkpoint, Room ID, Tag, Spreadsheet: mem_type, Spreadsh...
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","#valence <- emo[emo$aff_type==""valence"",]"
+"0","#arousal <- emo[emo$aff_type==""arousal"",]"
+"0","#emo_mematt <- merge(emo, mem_att, by= c(""`Participant Private ID`"",""Img""))"
+"0",""
+"0","delay_sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6,delay_sust7,delay_sust8,delay_sust9,delay_sust10,delay_sust11,delay_sust12,delay_sust13,delay_sust14)%>%"
+"0","  filter(`Participant Private ID` !=""11638973"" &`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682065"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11758423"" &`Participant Private ID` !=""11638956"" &`Participant Private ID` !=""11682066"" &`Participant Private ID` !=""11852272"" &`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11716965"" &`Participant Private ID` !=""11852271"" &`Participant Private ID` !=""11852272""  &`Participant Private ID` !=""11658184""&`Participant Private ID` !="" 11639011"")"
+"0","delay_memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6,delay_mem7,delay_mem8,delay_mem9,delay_mem10,delay_mem11,delay_mem12,delay_mem13,delay_mem14)%>%"
+"0","  filter(`Participant Private ID` !=""11638973"" &`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682065"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11758423"" &`Participant Private ID` !=""11638956"" &`Participant Private ID` !=""11682066"" &`Participant Private ID` !=""11852272""&`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11716965"" &`Participant Private ID` !=""11852271"" &`Participant Private ID` !=""11852272"" &`Participant Private ID` !=""11658184""&`Participant Private ID` !="" 11639011"")"
+"0","delay_emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo7,delay_emo8,delay_emo_early2,delay_emo9,delay_emo10,delay_emo11,delay_emo12,delay_emo13,delay_emo14)%>%"
+"0","  filter(`Participant Private ID` !=""11638973"" &`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682065"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11758423"" &`Participant Private ID` !=""11638956"" &`Participant Private ID` !=""11682066"" &`Participant Private ID` !=""11852272""&`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11716965"" &`Participant Private ID` !=""11852271"" &`Participant Private ID` !=""11852272"" &`Participant Private ID` !=""11658184""&`Participant Private ID` !="" 11639011"")"
+"0",""
+"0",""
+"0",""
+"0",""
+"0","## Filter out the first presentation of the target and only keep responses to the second"
+"0","delay_unique_rows <- delay_sust%>%"
+"0","  filter(`Spreadsheet: display`==""image"")"
+"0","# Filter rows to keep only those with 'F' if it exists, otherwise keep any row"
+"0","delay_filtered_rows <- delay_unique_rows %>%"
+"0","  group_by(`Trial Number`,`Participant Private ID`) %>%"
+"0","  filter(!`Response Type`==""continue"")%>%"
+"0","  filter(if(any(Response == 'F', na.rm = TRUE)) Response == 'F' else TRUE) %>%"
+"0","  slice(1)%>%"
+"0","  ungroup()"
+"0","delay_filtered_rows <- delay_filtered_rows %>%"
+"0","  group_by(`Spreadsheet: img`, `Spreadsheet: type`, `Participant Private ID`) %>%"
+"0","  mutate(num_rows = n())%>%"
+"0","  filter(num_rows == 1 | row_number() == 2) %>%"
+"0","  ungroup() %>%"
+"0","  select(-num_rows)"
+"0",""
+"0",""
+"0",""
+"0",""
+"0","delay_sust_full_all <- delay_filtered_rows%>%"
+"0","  arrange(`Participant Private ID`, `Trial Number`)%>%"
+"0","  mutate(Block_Number = NA,"
+"0","         Reaction.Time = ifelse(`Response Type` == ""timedOut"", NA, `Reaction Time`)"
+"0","  )"
+"0",""
+"0","delay_sust_full_all <- delay_sust_full_all%>%"
+"0","  group_by(`Participant Private ID`)%>%"
+"0","  mutate("
+"0","    Fitted_Values = ifelse(!is.na(`Reaction.Time`), lm(`Reaction.Time` ~ `Trial Number`)$fitted.values, NA),"
+"0","    Detrended_Reaction_Time = `Reaction.Time` - Fitted_Values)"
+"0",""
+"0","delay_sust_full <-delay_sust_full_all %>%"
+"0","  filter(!`Spreadsheet: type`==""filler"")%>%"
+"0","  mutate(Block_Number = rep(1:(n() %/% 4 + ifelse(n() %% 4 > 0, 1, 0)), each = 4)[1:n()],"
+"0","         `Reaction Time` = ifelse(`Response Type` == ""timedOut"", NA, `Reaction.Time`)"
+"0","  )"
+"0",""
+"0",""
+"0",""
+"0","delay_sust_full_window_rt <- delay_sust_full %>%"
+"0","  filter(`Spreadsheet: type` == 'window') %>%"
+"0","  group_by(`Participant Private ID`)%>%"
+"0","  ungroup()"
+"0",""
+"0","delay_sust_full_window_rt <- delay_sust_full_window_rt %>%"
+"0","  group_by(`Participant Private ID`,Block_Number)%>%"
+"0","  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = FALSE),"
+"0","         Mean_Window_1 = mean(Detrended_Reaction_Time, na.rm = FALSE))%>%"
+"0","  arrange(`Participant Private ID`, `Trial Number`)"
+"0",""
+"0","delay_sust_full_target_rt <- delay_sust_full %>%"
+"0","  group_by(`Participant Private ID`,Block_Number)%>%"
+"0","  filter(`Spreadsheet: type` == 'target')"
+"0",""
+"0",""
+"0",""
+"0","delay_sust_full_rt <- rbind(delay_sust_full_window_rt,delay_sust_full_target_rt)%>%"
+"0","  ungroup()%>%"
+"0","  group_by(`Participant Private ID`)%>%"
+"0","  mutate(Mean_Window_Scale = scale(Mean_Window_1))%>%"
+"0","  ungroup()"
+"0",""
+"0","delay_sust_full_rt <-delay_sust_full_rt %>%"
+"0","  arrange(`Participant Private ID`, `Trial Number`)%>%"
+"0","  group_by(`Participant Private ID`,Block_Number)%>%"
+"0","  mutate("
+"0","    Mean_Reaction_Time = ifelse(`Spreadsheet: type` == ""target"", mean(Mean_Reaction_Time[`Spreadsheet: type` == ""window""]), Mean_Reaction_Time),"
+"0","    Mean_Window_Scale = ifelse(`Spreadsheet: type` == ""target"", mean(Mean_Window_Scale[`Spreadsheet: type` == ""window""]), Mean_Window_Scale)"
+"0","  )%>%"
+"0","  filter("
+"0",")"
+"0",""
+"0",""
+"0","# View the resulting dataframe"
+"0",""
+"0","#write.csv(sust_full_rt,""sust_full_rt.csv"")"
+"0",""
+"0",""
+"0","delay_emo <- delay_emo %>%"
+"0","  select(`Participant Private ID`, Display, Response, `Spreadsheet: memory`, `Spreadsheet: img`, `Object ID`) %>%"
+"0","  filter(`Participant Private ID` !=""11638973"" &`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682065"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11758423"" )%>%"
+"0","  filter(Display == ""image"","
+"0","         `Spreadsheet: memory` == ""target"") %>%"
+"0","  mutate(Response=as.numeric(Response),"
+"0","         aff_type = ifelse(`Object ID` == ""object-51"", ""valence"", "
+"0","                           ifelse(`Object ID` == ""object-78"", ""arousal"", NA)))%>%"
+"0","  drop_na()%>%"
+"0","  filter(Response>=1 & Response<=9)%>%"
+"0","  rename(""Img""=""Spreadsheet: img"","
+"0","         ""emo_rate"" = ""Response"")%>%"
+"0","  group_by(`Participant Private ID`,Img,aff_type) %>%"
+"0","  filter(row_number() == n() | n() == 1) %>%"
+"0","  ungroup()%>%"
+"0","  filter()"
+"0",""
+"0",""
+"0","#write.csv(emo,""emo.csv"")"
+"0",""
+"0",""
+"0",""
+"0",""
+"0",""
+"0","delay_memory <- delay_memory %>%"
+"0","  filter(Display==""image"","
+"0","         Response>0,"
+"0","         Response<7,"
+"0","         !`Participant Private ID`==""9957478"")%>%"
+"0","  filter(`Participant Private ID` !=""11638973"" &`Participant Private ID` !=""11658165"" &`Participant Private ID` !=""11682065"" &`Participant Private ID` !=""11682062"" &`Participant Private ID` !=""11758423"" )%>%"
+"0","  mutate(hits = ifelse(`Spreadsheet: memory` == ""target"" & (Response == 1 | Response == 2| Response == 3), 1, 0),"
+"0","         fas = ifelse(`Spreadsheet: memory` == ""filler"" & (Response == 1 | Response == 2| Response == 3), 1, 0),"
+"0","         miss = ifelse(`Spreadsheet: memory` == ""target"" & (Response == 6 |Response == 4 | Response == 5), 1, 0),"
+"0","         crs = ifelse(`Spreadsheet: memory` == ""filler"" & (Response == 6 |Response == 4 | Response == 5), 1, 0))"
+"0","delay_memory[] <- lapply(delay_memory, function(x) ifelse(x == ""A"", 1,"
+"0","                                              ifelse(x == ""B"", 2,"
+"0","                                                     ifelse(x == ""C"", 3,"
+"0","                                                            ifelse(x == ""D"", 4,"
+"0","                                                                   ifelse(x == ""E"", 5,"
+"0","                                                                          ifelse(x == ""F"", 6, x)))))))"
+"0","delay_memory <-delay_memory%>%"
+"0","  group_by(`Participant Private ID`)%>%"
+"0","  mutate(hit_rate = sum(hits) / (sum(hits)+sum(miss)),"
+"0","         false_alarm_rate = sum(fas) / (sum(crs)+sum(fas)),"
+"0","         APrime = ifelse(hit_rate >= false_alarm_rate, "
+"0","                         ((hit_rate - false_alarm_rate) * (1 + hit_rate - false_alarm_rate)) / (4 * hit_rate * (1 - false_alarm_rate)) + 0.5, "
+"0","                         0.5 - (false_alarm_rate - hit_rate) * (1 + false_alarm_rate - hit_rate) / (4 *false_alarm_rate * (1 - hit_rate))),"
+"0","         d_prime = (qnorm(hit_rate) - qnorm(false_alarm_rate)) / sqrt(2)"
+"0","         "
+"0","  )%>%"
+"0","  mutate(group=ifelse(`Spreadsheet: memory`==""target"",""group1"",""group2""))%>%"
+"0","  filter()"
+"0",""
+"0",""
+"0","#write.csv(memory, ""memory.csv"")"
+"0","delay_vamos_aff_s1 <- read_csv(""./VAMOS_Set_1_img_info.csv"")"
+"1","[1mRows: [22m[34m809[39m [1mColumns: [22m[34m6[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (2): Img, Image_Set
+[32mdbl[39m (4): Memorability_Score, Num_Ratings, Mean_Valence, Mean_Arousal
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_vamos_aff_s2 <- read_csv(""./NAPS_img_info.csv"")"
+"1","[1mRows: [22m[34m97[39m [1mColumns: [22m[34m6[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m────────────────────────────────────────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (2): Img, Image_Set
+[32mdbl[39m (4): Memorability_Score, Num_Ratings, Mean_Valence, Mean_Arousal
+"
+"1","
+[36mℹ[39m Use `spec()` to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","delay_valence <- delay_emo[delay_emo$aff_type==""valence"",]"
+"0","delay_vamos_aff <- rbind(delay_vamos_aff_s1,delay_vamos_aff_s2)"
