@@ -1,0 +1,1861 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Whole-Data Analyses - Classic
+
+This section includes analyses of sustained attention, recognition
+memory, and affective rating data from the encoding and retrieval
+components of the 'classic' version of the experiment described in
+'Experiments'. All participants from the sample were included in the
+following analyses. For analyses split by task performance or memory
+accuracy, see the 'populations' tab.
+
+```{r , include=FALSE}
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+#rm(list = ls())
+#load libraries
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(tidyverse)
+library(hrbrthemes)
+#library(viridis)
+library(kableExtra)
+library(dplyr)
+library(viridis)
+library(lme4)
+library(ggpubr)
+library(patchwork)
+
+```
+
+```{r, echo=F,include=FALSE}
+
+sust_full_rt <- read.csv("./sust_full_rt.csv")%>%
+  filter(Participant.Private.ID !="10781005" & Participant.Private.ID !="10778628" & Participant.Private.ID !="10781005"& Participant.Private.ID !="11347303" & Participant.Private.ID !="11416571" & Participant.Private.ID !="11455940" & Participant.Private.ID !="11456046" & Participant.Private.ID !="11456136" & Participant.Private.ID !="11497631" & Participant.Private.ID !="11525317"& Participant.Private.ID !="11525285" & Participant.Private.ID !="11456057")
+
+
+sust_full_rt <- sust_full_rt%>%
+  group_by(`Participant.Private.ID`)%>%
+  mutate(
+    Fitted_Values = ifelse(!is.na(`Reaction.Time`), lm(`Reaction.Time` ~ `Trial.Number`)$fitted.values, NA),
+    Detrended_Reaction_Time = `Reaction.Time` - Fitted_Values)
+
+sust_full_rt <-sust_full_rt %>%
+  filter(!`Spreadsheet..type`=="filler")%>%
+  mutate(Block_Number = rep(1:(n() %/% 4 + ifelse(n() %% 4 > 0, 1, 0)), each = 4)[1:n()],
+         `Reaction.Time` = ifelse(`Response.Type` == "timedOut", NA, `Reaction.Time`)
+  )
+
+
+
+sust_full_window_rt <- sust_full_rt %>%
+  filter(`Spreadsheet..type` == 'window') %>%
+  group_by(`Participant.Private.ID`)%>%
+  ungroup()
+
+sust_full_window_rt <- sust_full_window_rt %>%
+  group_by(`Participant.Private.ID`,Block_Number)%>%
+  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = FALSE),
+         Mean_Window_1 = mean(Detrended_Reaction_Time, na.rm = FALSE))%>%
+  arrange(`Participant.Private.ID`, `Trial.Number`)
+
+sust_full_target_rt <- sust_full_rt %>%
+  group_by(`Participant.Private.ID`,Block_Number)%>%
+  filter(`Spreadsheet..type` == 'target')
+
+
+
+sust_full_rt <- rbind(sust_full_window_rt,sust_full_target_rt)%>%
+  ungroup()%>%
+  group_by(`Participant.Private.ID`)%>%
+  mutate(Mean_Window_Scale = scale(Mean_Window_1))%>%
+  ungroup()
+
+sust_full_rt <-sust_full_rt %>%
+  arrange(`Participant.Private.ID`, `Trial.Number`)%>%
+  group_by(`Participant.Private.ID`,Block_Number)%>%
+  mutate(
+    Mean_Reaction_Time = ifelse(`Spreadsheet..type` == "target", mean(Mean_Reaction_Time[`Spreadsheet..type` == "window"]), Mean_Reaction_Time),
+    Mean_Window_Scale = ifelse(`Spreadsheet..type` == "target", mean(Mean_Window_Scale[`Spreadsheet..type` == "window"]), Mean_Window_Scale)
+  )%>%
+  filter(
+)
+
+
+memory <- read.csv("./memory.csv")%>%
+  filter(Participant.Private.ID !="10781005" & Participant.Private.ID !="10778628" & Participant.Private.ID !="10781005"& Participant.Private.ID !="11347303" & Participant.Private.ID !="11416571" & Participant.Private.ID !="11455940" & Participant.Private.ID !="11456046" & Participant.Private.ID !="11456136" & Participant.Private.ID !="11497631"& Participant.Private.ID !="11525317"& Participant.Private.ID !="11525285"& Participant.Private.ID !="11456057")%>%
+  group_by(Spreadsheet..memory,Spreadsheet..img)%>%
+  mutate(group=ifelse(Tree.Node.Key=="task-6sfn","group1","group2"))%>%
+  ungroup()
+
+emo <- read.csv("./emo.csv")%>%
+  filter(Participant.Private.ID !="10781005" & Participant.Private.ID !="10778628" & Participant.Private.ID !="10781005"& Participant.Private.ID !="11347303" & Participant.Private.ID !="11416571" & Participant.Private.ID !="11455940" & Participant.Private.ID !="11456046" & Participant.Private.ID !="11456136" & Participant.Private.ID !="11497631"& Participant.Private.ID !="11525317"& Participant.Private.ID !="11525285"& Participant.Private.ID !="11456057")
+vamos_aff_s1 <- read_csv("./VAMOS_Set_1_img_info.csv")
+vamos_aff_s2 <- read_csv("./NAPS_img_info.csv")
+
+
+valence <- emo[emo$aff_type=="valence",]
+arousal <- emo[emo$aff_type=="arousal",]
+#emo_mematt <- merge(emo, mem_att, by= c("Participant.Private.ID","Img"))
+
+
+
+mem_only <- memory%>%
+  select(c(Participant.Private.ID,hits,fas,Spreadsheet..img,Trial.Number,Response,Spreadsheet..memory,group))%>%
+  filter(Spreadsheet..memory=="target")
+
+att_only <- sust_full_rt%>%
+  select(c(Participant.Private.ID,Mean_Reaction_Time,Trial.Number,Spreadsheet..img,Spreadsheet..type))%>%
+  ungroup()%>%
+  unique()%>%
+  filter(Spreadsheet..type== "target")
+
+mem_att <-merge(mem_only,att_only, by=c("Spreadsheet..img","Participant.Private.ID"))%>%
+  unique()
+
+
+mem_att <- mem_att %>%
+  group_by(Participant.Private.ID) %>%
+  mutate(zrt = scale(Mean_Reaction_Time))%>%
+  rename('Img'= "Spreadsheet..img")
+
+emo_mematt <- merge(emo, mem_att, by= c("Participant.Private.ID","Img"))
+valence_mematt <- emo_mematt%>%
+  filter(aff_type=="valence")
+
+arousal_mematt <- emo_mematt%>%
+  filter(aff_type=="arousal")
+
+mem_only_2 <- mem_only%>%
+  rename('Img' ='Spreadsheet..img')
+vamos_aff <- rbind(vamos_aff_s1,vamos_aff_s2)
+
+```
+
+## How often were participants lapsing on the task?
+
+During the go/no-go task (encoding task), participants should have
+withheld a response when they saw a second presentation of the target
+image. A lapse occurs when they accidentally make a key press on one of
+these no-go target images. There were 50 target images shown during this
+task for each participant, so the maximum number of lapses is 50. Scroll
+through the table to see how often each participant made this mistake.
+
+<div style="width: 100%; height: 300px; overflow-y: auto; display: flex; justify-content: center;">
+<div style="width: auto;">
+
+```{r ,message=F,warning=F}
+
+rt_analysis <-sust_full_rt%>%
+  select(Mean_Reaction_Time,Block_Number,Spreadsheet..type,Response, Spreadsheet..img,Participant.Private.ID, Mean_window_scale)%>%
+  group_by(Block_Number,Participant.Private.ID)%>%
+  unique()%>%
+  mutate(
+    targ_perfs = ifelse(Spreadsheet..type == "target" & Response == "FALSE", "Lapse", "Correct"),
+    Mean_window_scale = ifelse(Spreadsheet..type == "target", mean(Mean_window_scale[Spreadsheet..type == "window"]), Mean_window_scale)
+  )%>%
+  filter(Spreadsheet..type == "target")
+rt_analysis$NAs = is.na(rt_analysis$targ_perfs)
+
+rt_analysis <- rt_analysis%>%
+  mutate(
+    targ_perf = ifelse(`Spreadsheet..type` == "target" & NAs == "TRUE", "Correct", "Lapse")
+  )%>%
+  ungroup()%>%
+  group_by(`Participant.Private.ID`)
+
+lapse_total <- summarise(rt_analysis, `target errors` = sum(targ_perf == "Lapse"))
+    
+
+
+rt_analysis2 <- sust_full_rt%>%
+  select(Mean_Reaction_Time,Block_Number,`Spreadsheet..type`, Response, `Spreadsheet..img`,`Participant.Private.ID`)%>%
+  group_by(Block_Number,`Participant.Private.ID`)%>%
+  unique()%>%
+  filter(`Spreadsheet..type` == "window"|`Spreadsheet..type` == "filler")%>%
+  mutate(
+    fill_wind_perfs = ifelse(Response == "FALSE", "Correct", "Lapse")
+  )%>%
+  ungroup()%>%
+  group_by(`Participant.Private.ID`)
+
+rt_analysis2$NAs = is.na(rt_analysis2$fill_wind_perfs)
+
+rt_analysis2 <- rt_analysis2%>%
+  mutate(
+    fill_wind_perf = ifelse(NAs == "TRUE", "Lapse", "Correct")
+  )%>%
+  ungroup()%>%
+  group_by(`Participant.Private.ID`)
+
+lapse_total2 <- summarise(rt_analysis2, `filler & window errors` = sum(fill_wind_perf == "Lapse"))
+    
+
+remove_fills1 <- lapse_total2 %>%
+  filter(`filler & window errors` <mean(lapse_total2$`filler & window errors`) + (2* sd(lapse_total2$`filler & window errors`)))
+
+remove_targs1 <- lapse_total %>%
+  filter(`target errors` <25)
+
+
+
+
+
+
+
+    
+laps_tot2<- merge(remove_targs1,remove_fills1)
+laps_tot3 <- laps_tot2 %>%
+  kable("html") %>%
+  kable_styling(full_width = FALSE)%>%
+  scroll_box(width="400px",height = "300px") 
+laps_tot3
+
+
+mem_att <- mem_att%>%
+  filter(`Participant.Private.ID` %in% laps_tot2$`Participant.Private.ID`)
+```
+</div>
+</div>
+
+## Does pretrial reaction time predict lapses?
+
+The average reaction times (RTs) were linearly detrended within
+participant, mean reaction times were then calculated for the 3 images
+prior to a target (pretrial RT). In the below plot, I compare the
+preceding window RT for target images when the participant correctly
+withheld a response (correct) and when they lapsed during this task. We
+would expect that reaction times for the correct condition would be
+slower than for the lapse condition. This would indicate that
+participants are reacting habitually vs. reactively to the images when
+they lapse.
+
+From this comparison, we see that, in general, reaction time IS slower
+for the correct vs. lapse conditions, which is in line with prior
+findings.
+
+```{r, warning=FALSE,message=FALSE}
+
+unique_ids <- unique(rt_analysis$Participant.Private.ID)
+# Get unique Participant IDs for Correct and Lapse performances
+unique_ids_correct <- unique(rt_analysis$Participant.Private.ID[rt_analysis$targ_perf == "Correct"])
+unique_ids_lapse <- unique(rt_analysis$Participant.Private.ID[rt_analysis$targ_perf == "Lapse"])
+
+# Get a union of all unique Participant IDs
+all_unique_ids <- union(unique_ids_correct, unique_ids_lapse)
+
+# Calculate means for Correct performance
+means_by_participant <- tapply(
+  rt_analysis$Mean_window_scale[rt_analysis$targ_perf == "Correct"],
+  rt_analysis$Participant.Private.ID[rt_analysis$targ_perf == "Correct"],
+  mean,
+  na.rm=TRUE
+)
+
+# Calculate means for Lapse performance
+means_by_participant2 <- tapply(
+  rt_analysis$Mean_window_scale[rt_analysis$targ_perf == "Lapse"],
+  rt_analysis$Participant.Private.ID[rt_analysis$targ_perf == "Lapse"],
+  mean,
+  na.rm=TRUE
+)
+
+# Initialize vectors to store means for all unique Participant IDs
+means_all_correct <- rep(0, length(all_unique_ids))
+means_all_lapse <- rep(0, length(all_unique_ids))
+
+# Replace means for Correct performance with calculated means
+means_all_correct[match(names(means_by_participant), all_unique_ids)] <- unname(means_by_participant)
+
+# Replace means for Lapse performance with calculated means
+means_all_lapse[match(names(means_by_participant2), all_unique_ids)] <- unname(means_by_participant2)
+
+# Convert the result to a data frame
+laps_tot <- data.frame(
+  Participant.Private.ID = all_unique_ids,
+  `Correct` = means_all_correct,
+  `Lapse` = means_all_lapse
+)
+
+lapse_df <- gather(laps_tot, key = "Condition", value = "Mean_window_scale", -Participant.Private.ID)
+
+ggplot(lapse_df, aes(x = Condition, y = Mean_window_scale, group = Participant.Private.ID)) +
+  geom_point(aes(color = factor(Participant.Private.ID)), size = 3) +
+  geom_line(aes(color = factor(Participant.Private.ID)), size = 1) +
+  scale_color_viridis(discrete="True", option="A")+
+  theme_minimal() +
+  xlab("Target Response") +
+  ylab(" Mean Window Reaction Time") +
+  labs(color = "Participant")+
+  theme(legend.position = "none")
+```
+
+## Is memory above chance?
+
+During the retrieval task, participants were asked to rate their memory
+of target images (and 50 memory lures) on a scale of 1 (sure old) - 6
+(sure new). To ensure data quality for the later analyses which included
+participant memory data, I first checked that each participant's memory
+was above chance.
+
+```{r , warning=FALSE,message=FALSE}
+
+random_hit_rate <-0.3
+random_fa_rate<-0.3
+
+chance_d_prime <- (qnorm(random_hit_rate) - qnorm(random_fa_rate))/ sqrt(2)
+
+ggplot(memory,aes(x=as.character(Participant.Private.ID),y=APrime,color =as.factor( Participant.Private.ID)))+
+  geom_point()+
+  geom_hline(yintercept = 0.50, color="red")+
+  ylim(0,1)+
+  theme_ipsum(axis_title_just = "cc",axis_title_size = 12,axis_text_size = 9)+
+  xlab("Participant")+
+  ylab("A'")+
+  scale_color_viridis(option="A",discrete="True")+
+  labs(color = "Participant",
+       title="Memory performance (Inclusive)")+
+  theme(legend.position="none",
+        axis.text.x = element_blank())
+
+
+# Assuming 'memory' is your data frame
+memory2 <- memory %>%
+  group_by(Participant.Private.ID) %>%
+  summarise(total_hits = sum(hits, na.rm = TRUE),
+            total_miss = sum(miss, na.rm = TRUE),
+            total_fas = sum(fas, na.rm = TRUE), 
+            total_crs = sum(crs, na.rm = TRUE))
+memory_unique <- memory%>%
+  select(APrime,d_prime,Participant.Private.ID)%>%
+  unique()
+
+#mean(memory$APrime)
+```
+<details> <summary> More </summary>
+<br> I also took a look at the distributions of memory performance,
+using both d' and A'prime' as measures of performance. In both cases,
+it's apparent that there are a ton of participants that are hovering
+just above chance. In the 'populations' section of this bookdown, I
+explore whether these 'worse memory' participants (under median) produce
+significantly different results than the 'better memory' participants.
+
+<details>
+
+<summary>Memory Performance Plots</summary>
+
+```{r, message=FALSE, warning=FALSE}
+library(ggpubr)
+ggplot()+
+geom_histogram(memory_unique, mapping=aes(x=APrime),fill="tomato1",alpha=.7)+
+  theme_minimal() +
+  ylab("Number of participants")
+
+ ggplot()+
+geom_histogram(memory_unique, mapping=aes(x=d_prime),fill="firebrick4",alpha=.7)+
+  theme_minimal()+
+  ylab("Number of participants")
+
+
+
+poor_mems <- memory_unique$Participant.Private.ID[memory_unique$APrime<.7591969]
+good_mems <- memory_unique$Participant.Private.ID[memory_unique$APrime>=.7591969]
+
+```
+
+</details>
+</details>
+
+## Is pretrial RT predictive of memory?
+
+An item is considered to be accurately remembered ('hit') when a
+participant responded with a 1-3 on the memory rating task to the
+target. Responses of 3 or lower were therefore taken to be a 'hit' and
+responses of 4 or higher were calculated as a 'miss'. Below, I plot the
+participant-specific predictions of image recognition using a mixed
+effect logistic regression model with just pretrial reaction time as a
+predictor. This model included random slopes and intercepts for each
+participant and predicted memory using a binomial method. Values of 1 on
+the y axis represent a 'hit' while 0 represents a 'miss'.
+
+Overall, there is a positive relationship between pretrial reaction time
+and memory. This could indicate that participants that are in a better
+attentional state prior to viewing a target (positive values on x axis)
+are more likely to correctly remember that target later on( higher
+values on y axis).
+
+```{r,message=F,warning=F}
+
+cross_mem_predict <- merge(vamos_aff,mem_only_2, by="Img")
+
+
+vamos_aff_use <- vamos_aff[c(1,3,5,6),]
+mem_att <-merge(mem_att,vamos_aff, by="Img")%>%
+  ungroup()%>%
+  mutate(zv = scale(Mean_Valence),
+         za = scale(Mean_Arousal))%>%
+  mutate(z_mem = scale(Memorability_Score))
+
+
+
+library(lme4)
+
+# Fit the GLMM model
+model <- glmer(hits ~ zrt + (1 + zrt | Participant.Private.ID), family = binomial, data = mem_att, control = glmerControl())
+library(ggplot2)
+library(dplyr)
+library(broom.mixed)
+mem_att_clean <- mem_att %>%
+  filter(!is.na(zrt) & !is.na(hits))
+
+# Create a data frame with predictions
+pred_data <- mem_att_clean %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model, type = "response"),
+    se = predict(model, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data <- pred_data %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data, aes(x = zrt, y = hits)) +
+  geom_point(alpha=.4) +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Pretrial RT") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")
+
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> <br> Model Formula: {\small$$
+\text{hit} \sim   \text{(Reaction Time} + \text{(1+Reaction Time|Participant)} \text{, family="binomial")} 
+$$}
+
+```{r,message=F,warning=F}
+library(sjPlot)
+tab_model(model, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+
+<br> <br>
+
+## Is memorability predictive of memory?
+
+A similar analysis to above was conducted, using memorability (from
+VAMOS) as a sole predictor of a 'hit' in the memory task for each
+individual. For this analysis, memorability score was z-scored globally.
+Random intercepts were included in this mixed model, as each participant
+may have different baseline memory. However, memorability was assumed to
+impact participants (more or less) equally, so no random slopes were
+included.
+
+One would expect that images that are more memorable across people will
+also be more memorable for each individual. We find that, indeed, more
+memorable images (positive values on x axis) are associated with better
+memory (higher values on y axis).
+
+```{r,message=F,warning=F}
+
+model2 <- glmer(hits ~ z_mem + (1+z_mem| Participant.Private.ID), family = binomial, data = mem_att,control = glmerControl())
+mem_att_clean2 <- mem_att %>%
+  filter(!is.na(z_mem) & !is.na(hits))
+# Create a data frame with predictions
+pred_data2 <- mem_att_clean2 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model2, type = "response"),
+    se = predict(model2, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data2 <- pred_data2 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data2, aes(x = z_mem, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Memorability") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")
+
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> Model Formula: 
+$$
+\text{hit} \sim   \text{(Memorability} + \text{(1+Memorability|Participant)} \text{, family="binomial")}
+$$
+
+```{r,message=F,warning=F}
+tab_model(model2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+
+<br>
+
+## Is Valence Predictive of Memory?
+
+I was also interested in exploring how valence would predict image
+recognition in a model where it was the sole predictor. However, this
+time I created 3 versions of this model:classic (VAMOS), individual
+rating, and average rating versions.
+
+<details><summary> More </summary>
+
+> <b>classic (VAMOS):</b> <font color="#636363"> This version of the
+> model uses VAMOS-derived scores of valence. It does NOT come from
+> ratings of valence in the current experiment. Thus, the predictor
+> variable is not z-scored within individual. Rather, it is z-scored
+> globally. In the model formula, only random intercepts were specified,
+> as it was assumed that the valence ratings from the VAMOS set can be
+> used as 'objective' object properties. Though, I'm definitely open to
+> pushback on this.</font>
+
+> <b>individual rating:</b> <font color="#636363">This version of the
+> model uses ratings of valence supplied from participants in the
+> current experiment. Because each participant will have rated valence
+> differently for any given image, each image has a valence rating for
+> each participant in the study. This variable was then z-scored
+> within-participant. Both random slopes and intercepts were included in
+> the model.</font>
+
+> <b>average rating:</b> <font color="#636363">This version of the model
+> uses averaged participant ratings of valence from the current
+> experiment. Each image has a single valence score which is the mean of
+> all ratings for that image. This variable was then z-scored
+> within-group for the two experimental conditions. Both random slopes
+> and intercepts were included in the model, though I'm really not sure
+> if this was the correct way to do it.</font>
+
+
+
+Predictions of memory for each of these versions of the model can be
+found below, along with their model formulas and model outputs. The
+results are consistent across all versions. <b> For VAMOS ratings,
+individual ratings, or averaged ratings, positive images were more
+memorable than negative images. </b>
+</details>
+<details>
+
+<summary>Results</summary>
+
+<br> <br> <br>
+
+```{r,message=F,warning=F}
+
+ind_scale_emo <- emo_mematt%>%
+  select(Participant.Private.ID,Img,emo_rate,aff_type,hits,Response,group,zrt)%>%
+  group_by(Participant.Private.ID,aff_type)%>%
+  mutate(z_ind = scale(emo_rate))%>%
+  ungroup()
+
+ind_scale_val <-ind_scale_emo[ind_scale_emo$aff_type=="valence",]
+
+
+emo_group <- emo_mematt%>%
+  select(Participant.Private.ID,Img,emo_rate,aff_type,hits,Response,group,zrt)%>%
+  group_by(Img,aff_type)%>%
+  mutate(z2=mean(emo_rate))%>%
+  ungroup()
+
+emo_group_val <-emo_group %>%
+  filter(aff_type=="valence")%>%
+  group_by(group)%>%
+  mutate(group_scale_v = scale(z2))%>%
+  ungroup()
+
+
+
+
+
+
+model3 <- glmer(hits ~ zv + (1+zv| Participant.Private.ID), family = binomial, data = mem_att,control = glmerControl())
+mem_att_clean3 <- mem_att %>%
+  filter(!is.na(zv) & !is.na(hits))
+# Create a data frame with predictions
+pred_data3 <- mem_att_clean3 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model3, type = "response"),
+    se = predict(model3, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data3 <- pred_data3 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data3, aes(x = zv, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Valence") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using VAMOS Scores (z-scored globally)") 
+
+
+
+
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> Model Formula: 
+$$
+\text{hit} \sim   \text{(Valence} + \text{(1 + Valence| Participant)} \text{, family="binomial")} 
+$$
+
+```{r,message=F,warning=F }
+
+tab_model(model3, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+
+<br> <br> <br> <br>
+
+```{r,message=F,warning=F}
+model4 <- glmer(hits ~ z_ind + (1+z_ind| Participant.Private.ID), family = binomial, data = ind_scale_val,control = glmerControl())
+mem_att_clean4 <- ind_scale_val %>%
+  filter(!is.na(z_ind) & !is.na(hits))
+# Create a data frame with predictions
+pred_data4 <- mem_att_clean4 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model4, type = "response"),
+    se = predict(model4, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data4 <- pred_data4 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data4, aes(x = z_ind, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(aes(y = pred),method="lm", color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Valence") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using Individual Scores 
+          (z-scored within individual)") 
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> Model Formula: 
+$$
+\text{hit} \sim   \text{(Valence} + \text{(1+Valence| Participant)} \text{, family="binomial")} 
+$$
+
+```{r,message=F,warning=F}
+tab_model(model4, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+
+<br> <br> <br> <br>
+
+```{r,message=F,warning=F}
+
+model5 <- glmer(hits ~ group_scale_v + (1+group_scale_v| Participant.Private.ID), family = binomial, data = emo_group_val,control = glmerControl())
+mem_att_clean5 <- emo_group_val %>%
+  filter(!is.na(group_scale_v) & !is.na(hits))
+# Create a data frame with predictions
+pred_data5 <- mem_att_clean5 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model5, type = "response"),
+    se = predict(model5, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data5 <- pred_data5 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data5, aes(x = group_scale_v, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Valence") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using Average 
+          Image Scores (z-scored within condition)") 
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> Model Formula: 
+$$
+\text{hit} \sim   \text{(Valence} + \text{(1+Valence| Participant)} \text{, family="binomial")} 
+$$
+
+```{r,message=F,warning=F}
+tab_model(model5, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+</details>
+
+<br> <br>
+
+</details>
+
+## Is Arousal Predictive of Memory?
+
+For completeness, I also conducted 3 versions of a model predicting
+memory using just arousal: classic (VAMOS), individual rating, and
+average rating versions.
+
+<details><summary> More </summary>
+
+> <b>classic (VAMOS):</b> <font color="#636363"> This version of the
+> model uses VAMOS-derived scores of varousal. It does NOT come from
+> ratings of arousal in the current experiment. Thus, the predictor
+> variable is not z-scored within individual. Rather, it is z-scored
+> globally.</font>
+
+> <b>individual rating:</b> <font color="#636363">This version of the
+> model uses ratings of valence derived from the participants in the
+> current experiment. Because each participant will have rated arousal
+> differently for any given image, each image has an arousal rating for
+> each participant in the study. This variable was then z-scored
+> within-participant.</font>
+
+> <b>average rating:</b> <font color="#636363">This version of the model
+> uses averaged ratings of arousal from the current experiment. Each
+> image has a single arousal score which is the mean of all ratings for
+> that image. This variable was then z-scored within-group for the two
+> experimental conditions.</font>
+
+> Predictions of memory for each of these versions of the model can be
+> found below, along with their model formulas and model outputs. The
+> results are consistent across all versions. For VAMOS ratings,
+> individual ratings, or averaged ratings, <b> more arousing images were
+> more memorable than less arousing images. </b>
+
+</details>
+<details>
+
+<summary>Results</summary>
+
+```{r,message=F,warning=F}
+
+ind_scale_ar <-ind_scale_emo[ind_scale_emo$aff_type=="arousal",]
+
+emo_group_ar <-emo_group %>%
+  filter(aff_type=="arousal")%>%
+  group_by(group)%>%
+  mutate(group_scale_ar = scale(z2))%>%
+  ungroup()
+
+model6 <- glmer(hits ~ za + (1+za| Participant.Private.ID), family = binomial, data = mem_att,control = glmerControl())
+mem_att_clean6 <- mem_att %>%
+  filter(!is.na(za) & !is.na(hits))
+# Create a data frame with predictions
+pred_data6 <- mem_att_clean6 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model6, type = "response"),
+    se = predict(model6, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data6 <- pred_data6 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data6, aes(x = za, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(method = "lm",aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Arousal") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using VAMOS Scores 
+          (z-scored globally)") 
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> Model Formula: 
+$$
+\text{hit} \sim   \text{(Arousal} + \text{(1 + Arousal | Participant)} \text{, family="binomial")} 
+$$
+
+```{r,message=F,warning=F}
+
+tab_model(model6, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+</div>
+
+</details>
+
+<br> <br> <br> <br>
+
+```{r,message=FALSE,warning=F}
+
+model7 <- glmer(hits ~ z_ind + (1+z_ind| Participant.Private.ID), family = binomial, data = ind_scale_ar,control = glmerControl())
+mem_att_clean7 <- ind_scale_ar %>%
+  filter(!is.na(z_ind) & !is.na(hits))
+# Create a data frame with predictions
+pred_data7 <- mem_att_clean7 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model7, type = "response"),
+    se = predict(model7, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data7 <- pred_data7 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data7, aes(x = z_ind, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(method = "lm",aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Arousal") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using Individual Scores 
+          (z-scored within individual)") 
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> <br> Model Formula: 
+$$
+\text{hit} \sim   \text{(Arousal} + \text{(1 + Arousal| Participant)} \text{, family="binomial")} 
+$$
+
+```{r,message=F,warning=F}
+tab_model(model7, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+
+<br> <br> <br> <br>
+
+```{r, message=F,warning=FALSE}
+model8 <- glmer(hits ~ group_scale_ar + (1+group_scale_ar| Participant.Private.ID), family = binomial, data = emo_group_ar,control = glmerControl())
+mem_att_clean8 <- emo_group_ar %>%
+  filter(!is.na(group_scale_ar) & !is.na(hits))
+# Create a data frame with predictions
+pred_data8 <- mem_att_clean8 %>%
+  # Create a new data frame for prediction with original values
+  mutate(
+    pred = predict(model8, type = "response"),
+    se = predict(model8, type = "link", se.fit = TRUE)$se.fit
+  )
+
+# Calculate confidence intervals
+pred_data8 <- pred_data8 %>%
+  mutate(
+    lwr = pred - 1.96 * se,
+    upr = pred + 1.96 * se
+  )
+ggplot(pred_data8, aes(x = group_scale_ar, y = hits)) +
+  geom_point() +
+  geom_line(aes(y = pred, color = as.factor(Participant.Private.ID))) + 
+  geom_smooth(method = "lm",aes(y = pred), color = "black") + # Predicted line
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2, fill = "blue") +  # Confidence intervals
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0, 1) +
+  xlab("Arousal") +
+  ylab("HIT?") +
+  labs(color = "Participant") +
+  theme(legend.position = "none")+
+  scale_color_viridis(option="A",discrete="True")+ 
+  theme(plot.margin = margin(0, 0, 0, 0))+
+  ggtitle("Memory prediction using Average 
+          Image Scores (z-scored within condition)") 
+```
+
+<details>
+
+<summary>Formula and Model Output</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> <br> Model Formula:
+
+$$
+\text{hit} \sim   \text{(Arousal} + \text{(1+Arousal|Participant)} \text{, family="binomial")} 
+$$
+
+```{r,message=F,warning=F}
+tab_model(model8, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+</details>
+
+<br> <br>
+
+</details>
+
+<br> <br> <br>
+
+## Memory Prediction using Simultaneous Predictors in a Mixed Logistic Regression Model
+
+Finally, I threw combinations of the 4 predictors (valence, arousal,
+attention, memorability) into a single model that was predictive of
+memory (binarized or on the 1-6 scale) to understand the simultaneous
+influence of affective ratings, memorability, and sustained attention on on subsequent memory.
+For these analyses, the VAMOS valence and arousal scores were used for
+the affective variables. Model formula and output for all of these trials can be found below.
+
+For the majority of the outputs, the story is the same: valence,
+arousal, memorability, and attention all positively impact our memory.
+Images that are positive, arousing, and memorable are more likely to be
+remembered. Images that were see during a better attentional state were
+also better remembered. This pattern holds true for predicting binary
+memory and memory on a scale of 1-6. Most interactions were not
+significant. Occasionally, the memorability x arousal interaction became
+significant.
+
+<details>
+
+<summary>Models w/ random intercept only</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+mem_att$Response <- as.numeric(mem_att$Response)
+
+
+
+z <- glmer(hits ~ zrt* zv *za +(1|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{Response(1-6)} \sim \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1|\text{Participant})
+$$
+
+```{r, message=F,warning=FALSE}
+z <- lmerTest::lmer(Response ~ zrt* zv *za +(1|Participant.Private.ID), mem_att,control = lmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ zrt* zv*z_mem+(1|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \\ + \text{(1|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ zrt* za*z_mem+(1|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time} + \text{Valence}, + \\ \text{(1|Participant),}\\ \text{ family="binomial"}
+$$
+
+```{r, message=F,warning=FALSE}
+z <- glmer(hits ~ zrt +za+z_mem+zv+(1|Participant.Private.ID), mem_att, family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br>
+
+</details>
+
+<details>
+
+<summary>Models w/ Random intercept and slope</summary>
+
+<details style="margin-left: 20px;">
+
+<summary>Additive models</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Arousal} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+mem_att$Response <- as.numeric(mem_att$Response)
+
+
+
+z <- glmer(hits ~ zrt+ zv +za +(1+zv+za|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{Response(1-6)} \sim \text{Arousal} + \text{Valence} + \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
+$$
+
+```{r, message=F,warning=FALSE}
+z <- lmerTest::lmer(Response ~ zrt+ zv +za +(1+zv+za|Participant.Private.ID), mem_att,control = lmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Memorability} + \text{Valence} + \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE }
+
+z <- glmer(hits ~ zrt+ zv+z_mem+(1+zv|Participant.Private.ID), mem_att, family="binomial",control = glmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Memorability} + \text{Arousal} + \text{Reaction Time} \\ +  \text{(1+Arousal|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE }
+
+z <- glmer(hits ~ zrt+za+z_mem+(1+za|Participant.Private.ID), mem_att, family="binomial",control = glmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+
+<details style="margin-left: 20px;">
+
+<summary>Interactive Models</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1+Valence+Arousal|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+mem_att$Response <- as.numeric(mem_att$Response)
+
+
+
+z <- glmer(hits ~ zrt* zv *za +(1+zv+za|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+ 
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{Response(1-6)} \sim \text{Arousal}  \cdot \text{Valence}  \cdot \text{Reaction Time} \\ + \left(1 + \text{Valence} + \text{Arousal} \mid \text{Participant}\right)
+$$
+
+```{r, message=F,warning=FALSE}
+z <- lmerTest::lmer(Response ~ zrt* zv *za +(1+zv+za|Participant.Private.ID), mem_att,control = lmerControl())
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \\ + \text{(1+Valence|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ zrt* zv*z_mem+(1+zv|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim   \text{(Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \\ + \text{(1+Arousal|Participant)} \text{, family="binomial")} 
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ zrt* za*z_mem+(1+za|Participant.Private.ID), mem_att,control = glmerControl(), family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} + \\ \text{(1+ Reaction Time|Participant),} \text{ family="binomial"}
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ z_mem * za * zrt + (1 + zrt | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br> <br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim \text{Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} + \\ \text{(1+ Reaction Time|Participant),} \text{ family="binomial"}
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ z_mem * zv * zrt + (1 + zrt | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Reaction Time} \cdot \text{Valence} + \text{1 + Reaction Time}, \text{ family="binomial"}
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ z_mem * zv * zrt * za + (1 + zrt | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+</details>
+</details>
+<details>
+<summary>Special models</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim \text{Memorability} + \text{Arousal} + \text{Reaction Time}  + \text{(Memorability} \cdot \text{Reaction Time)} + \text{(Memorability} \cdot \text{Arousal)}, \text{ family="binomial"}
+$$
+
+```{r, message=F,warning=FALSE}
+z <- glm(hits ~ zrt+za+z_mem+ zrt*z_mem +za*z_mem, mem_att,family="binomial")
+
+# Plot fixed effects
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+<br> <br>
+
+<style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hit} \sim \text{Memorability} \cdot \text{Valence} \cdot \text{Reaction Time} \cdot \text{Arousal}+ \\ \text{(1+ Reaction Time+ Valence+Arousal+Memorability|Participant),} \text{ family="binomial"}
+$$
+
+```{r, message=F,warning=FALSE}
+
+z <- glmer(hits ~ z_mem * zv * zrt *za+ (1 + zrt +za+zv+z_mem| Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> 
+
+</details>
+
+The most complete of these models predicts memory as a function of 1) each of the 4 predictors and 2) the interactions between the main predictors. It also allows for random intercepts for each individual and randoms slopes given all 4 predictors.
+$\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}  + (1 \text{ + Reaction Time} \\ \text{+Valence+Arousal+Memorability}\ \mid \text{Participant.Private.ID}), \text{family=binomial}$
+
+```{r, message=F,warning=F}
+z_ultimate <- glmer(hits ~ z_mem * za *zrt*zv + (1+za+zv+zrt+z_mem | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+
+tab_model(z_ultimate, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+
+From the many, many models in the above section, we see that the
+interaction which is most often significant is that between arousal and
+memorability. I explored this a bit more by creating a two way plot which displays the predicted memory of an image (memory of individuals) vs. the memorability of that
+image (across-population memory) and split the plot into high and low arousing groups. Note that
+the predicted memory comes from models with the formula:
+<br>
+<br>
+
+$\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}+(1 \text{ + Reaction Time}\\ \text{+Valence+Arousal+Memorability}\ \mid \text{Participant}), \text{family=binomial}$.
+
+```{r, warning=FALSE,message=FALSE, echo=FALSE, results='hide'}
+z <- glmer(hits ~ z_mem  + (1 | Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+#tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+z2 <- glmer(hits ~ z_mem * za *zv*zrt + (1 +za+zv+z_mem+zrt| Participant.Private.ID),mem_att,family="binomial",control=glmerControl())
+#tab_model(z2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+mem_att_clean9 <- mem_att %>%
+  filter(!is.na(z_mem) & !is.na(hits)& !is.na(za)& !is.na(zv)& !is.na(zrt))
+pred_data9 <- mem_att_clean9 %>%
+  mutate(
+    pred2 = predict(z2, type = "response")
+  )
+
+
+binomial_smooth <- function(...) {
+  geom_smooth(method = "glm", method.args = list(family = "binomial"), ...)
+}
+
+
+#use_plot <- pivot_longer(pred_data9,cols=c(pred1,pred2),names_to = "pred_type", values_to = "pred")
+#use_plot$pred_type <- factor(use_plot$pred_type, levels = c("pred1", "pred2"), labels = c("Individual Model", "Interactive w Arousal"))
+
+#ggplot(use_plot, aes(x = z_mem, y = hits)) +
+ # binomial_smooth(aes(y = pred,  color = pred_type),se=F, alpha=.8, size= .7) + 
+  #theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+# ylim(.4,.9) + 
+  #xlab("Memorability") +
+ # ylab("HIT?") +
+  #labs(color = "Participant") +
+  #scale_color_manual(
+   # values = c("Individual Model" = "gold2", "Interactive w Arousal" = "red4"),
+   # name = "Model Type"
+ # )
+
+
+
+```
+
+```{r, message=F,warning=FALSE}
+pred_data9 <- mem_att_clean9 %>%
+  mutate(
+    ar = factor(ifelse(mem_att_clean9$Mean_Arousal>4.48,"high_ar","low_ar"), labels = c("High Arousal", "Low Arousal"))
+)
+  
+pred_data9$`val_groups`<- cut_number(pred_data9$Mean_Valence ,3)
+
+z2 <- glmer(hits ~ z_mem * za * zv *zrt+ (1 +z_mem+zrt+zv+za| Participant.Private.ID),mem_att_clean9,family="binomial",control=glmerControl())
+#tab_model(z2, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+pred_data9 <- pred_data9 %>%
+  mutate(
+    pred2 = predict(z2, type = "response")
+  )
+
+ggplot(pred_data9, aes(x = Memorability_Score, y = hits, color=ar)) +
+  binomial_smooth(aes(y = pred2,  color = ar),se=F, alpha=.8, size= .7) + 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0,1) + 
+  xlab("Memorability") +
+  ylab("HIT?") +
+  scale_color_manual(
+    values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
+    name = "Model Type"
+  )+
+  ggtitle("Memorability x Arousal (Two Way)") 
+  
+```
+
+Because the most complete model also showed that the interaction between memorability and arousal may be modulated by valence, I also created a three-way version of the above plot. Using the complete formula, predictions for individual memory were made. Then the predictions were separated into negative, positive, and neutral bins.The predicted memory for each image is plotted against the memorability of the image. The line colors represent the arousal groups (high/low). The plots below show the
+interaction between memorability and arousal influences on memory
+predictions for each valence bin.
+
+
+
+<details><summary> More </summary>
+
+```{r, message=F,warning=FALSE}
+
+
+high_v <- pred_data9[pred_data9$val_groups=="(5.95,7.07]",]
+mid_v <- pred_data9[pred_data9$val_groups=="(2.98,5.95]",]
+low_v <- pred_data9[pred_data9$val_groups=="[1.49,2.98]",]
+
+
+p1 <- ggplot(low_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
+  binomial_smooth(aes(y =  pred2,  color = ar),se=F, alpha=.8, size= .7) + 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0,1) + 
+  xlab("Memorability") +
+  ylab("HIT?") +
+  scale_color_manual(
+    values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
+    name = "Model Type"
+  )+
+  ggtitle("Memorability x Arousal (Negative)") + 
+  xlim(0.4,1) 
+
+
+p2 <- ggplot(mid_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
+  binomial_smooth(aes(y = pred2,  color = ar),se=F, alpha=.8, size= .7) + 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  ylim(0,1) + 
+  xlab("Memorability") +
+  ylab("HIT?") +
+  scale_color_manual(
+    values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
+    name = "Model Type"
+  )+
+  ggtitle("Memorability x Arousal (Neutral)") + 
+  xlim(0.4,1) 
+
+
+
+p3 <- ggplot(high_v, aes(x =  Memorability_Score, y = hits, color=ar)) +
+  binomial_smooth(aes(y =  pred2,  color = ar),se=F, alpha=.8, size= .7) + 
+  theme_ipsum(axis_title_just = "cc", axis_title_size = 12, axis_text_size = 9) +
+  xlab("Memorability") +
+  ylab("HIT?") +
+  scale_color_manual(
+    values = c("High Arousal" = "gold2", "Low Arousal" = "red4"),
+    name = "Model Type"
+  )+
+  ggtitle("Memorability x Arousal (Positive)") +
+  ylim(0,1) + 
+  xlim(0.4,1) 
+#summary(high_v$Memorability_Score[high_v$ar=="High Arousal"])
+#summary(high_v$Memorability_Score[high_v$ar=="Low Arousal"])
+
+
+#t.test(unique(pred_data9$Memorability_Score[high_v$ar=="High Arousal"]),unique(pred_data9$Memorability_Score[high_v$ar=="Low Arousal"]))
+
+
+
+```
+
+```{r,message=FALSE,warning=FALSE}
+p1
+```
+
+<br> <br>
+
+```{r,message=FALSE,warning=FALSE}
+p2
+```
+
+<br> <br>
+
+```{r,message=FALSE,warning=FALSE}
+p3
+```
+</details>
+
+<br> <br>
+
+### How do these results compare when using VAMOS vs individual ratings of valence and arousal?
+
+In the above analyses, VAMOS scores (group-averaged from a prior study)
+were used as an index of the affect that is evoked by an image. But one
+could imagine that the relationship between affect, memory, and the
+other predictors of memory may change if we use the ratings of valence
+and arousal which come from the same participants who completed the
+memory test or by using the group-averaged ratings from this collection
+of participants. Perhaps we may be able to find that the idiosyncratic
+or group-averaged ratings of valence and arousal may change how we might
+predict memory using regression models.
+```{r, message=F,warning=F}
+individ_emo1 <- emo_mematt %>%
+  filter(aff_type=="valence")%>%
+  ungroup() %>%
+  group_by(Participant.Private.ID) %>%
+  mutate(
+    zv = scale(emo_rate)
+  )%>%
+  ungroup()%>%
+  select(Img, zv,Participant.Private.ID,zrt)
+
+individ_emo2 <- emo_mematt %>%
+  filter(aff_type=="arousal")%>%
+  ungroup() %>%
+  group_by(Participant.Private.ID) %>%
+  mutate(
+    za = if_else(aff_type == "arousal", scale(emo_rate), NA_real_)
+  )%>%
+  ungroup()%>%
+  select(Img,za,Participant.Private.ID,hits)
+mem_att_condense <- mem_att[c("z_mem","Img")]%>%
+  unique()
+
+individ_emo <- merge(individ_emo1, individ_emo2, by = c("Img","Participant.Private.ID"))
+individ_emo <- merge(individ_emo, mem_att_condense, by = "Img")
+
+  
+group_averaged_emo1 <- emo_mematt %>%
+  group_by(group,Img)%>%
+  filter(aff_type=="valence")%>%
+  mutate(
+    emorate1 = mean(emo_rate),
+     zv = scale(emorate1)
+  )%>%
+  select(Img,Participant.Private.ID,hits,emorate1,zv)%>%
+  ungroup()
+
+
+
+group_averaged_emo2 <- emo_mematt %>%
+  ungroup() %>%
+  group_by(group,Img)%>%
+  filter(aff_type=="arousal")%>%
+  mutate(
+    emorate2 = mean(emo_rate),
+  za = scale(emorate2))%>%
+  select(Img, Participant.Private.ID,zrt,emorate2,za) %>%
+  ungroup()
+  
+  group_av_emo <- merge(group_averaged_emo1,group_averaged_emo2, by=c("Img","Participant.Private.ID"))
+  
+  group_av_emo <- merge(group_av_emo,mem_att_condense, by="Img")
+```
+
+```{r }
+group_averaged_emo3 <- emo_mematt %>%
+  filter(group=="group1",
+         aff_type=="valence")%>%
+  group_by(Img)%>%
+  mutate(
+    group_av_v = mean(Response)
+  )
+group_averaged_emo4 <- emo_mematt %>%
+  filter(group=="group2",
+         aff_type=="valence")%>%
+  group_by(Img)%>%
+  mutate(
+    group_av_v = mean(Response)
+  )
+
+group_av_valence <- rbind(group_averaged_emo3,group_averaged_emo4)
+```
+
+Model w/ group-averaged ratings of valence & arousal
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Memorability} \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+```{r, message=F,warning=F}
+
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv+zrt+z_mem|Participant.Private.ID),group_av_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+Model w/ individual ratings of valence & arousal
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Memorability} \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+<details><summary> Interactions Using individual and group-averaged ratings of affect </summary>
+
+
+
+
+To investigate whether these rating differences would significantly
+affect the interactive model outputs, I ran a set interactive models in
+which individual ratings of valence and arousal were used as the
+'Valence' and 'Arousal' terms. For z-scoring information, see the
+'individual rating' subsection of 3.6.
+
+<details>
+
+<Summary>Models using individual valence and arousal ratings</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Reaction Time}\mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r , message=F,warning=F}
+  individ_emo$Participant.Private.ID <- as.factor(individ_emo$Participant.Private.ID)
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv+zrt|Participant.Private.ID),individ_emo,family="binomial",control= glmerControl())
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}, \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z <- glm(hits ~ z_mem * za * zv *zrt, 
+           data = individ_emo, 
+           family = "binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+
+</div>
+
+<br>
+<br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Valence}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br>
+
+</details>
+
+<br>
+
+Then, I ran a similar set of models using averaged participant ratings
+of valence/arousal from the 'classic' experiment as measures of valence
+and arousal. See the 'average rating' subsection of 3.6. for more
+information on z-scoring and averaging for this version.
+
+<details>
+
+<Summary>Models using group-averaged valence and arousal ratings
+</summary>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;">
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} + \text{Reaction Time}\mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F }
+  #individ_emo$Participant.Private.ID <- as.factor(individ_emo$Participant.Private.ID)
+z  <- glm(hits ~ z_mem *za*zv*zrt+(1+za+zv+zrt),group_av_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+#summary(z)
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 + \text{Arousal} + \text{Valence} \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1+za+zv|Participant.Private.ID),group_av_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+summary(z)
+```
+
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal} \cdot \text{Valence} \cdot \text{Reaction Time}, \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z <- glm(hits ~ z_mem * za * zv *zrt, 
+           data = individ_emo, 
+           family = "binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+
+
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Arousal}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * za*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+<br> <br>
+
+<div style=" text-align:center; vertical-align: middle; padding:40px
+0;"> 
+$$
+\text{hits} \sim \text{Memorability} \cdot \text{Valence}  \cdot \text{Reaction Time} + (1 \mid \text{Participant.Private.ID}), \text{family=binomial}
+$$
+
+```{r, message=F,warning=F}
+z  <- glmer(hits ~ z_mem * zv*zrt +(1|Participant.Private.ID),individ_emo,family="binomial")
+tab_model(z, show.ci = FALSE,show.re.var=FALSE,show.icc=FALSE,show.obs=FALSE)
+```
+
+</div>
+
+</details>
+</details>
