@@ -1,7 +1,7 @@
 ---
 title: "Sustamos"
 site: bookdown::bookdown_site
-author: "Cheyenne Wakeland-Hart"
+author: "Cheyenne Wakeland-Hart" 
 output:
   bookdown::bs4_book:
     config:

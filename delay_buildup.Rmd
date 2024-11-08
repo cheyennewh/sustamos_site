@@ -3,7 +3,7 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-# Whole-Data Analyses Delay
+# Whole-Data Analyses - Delay
 
 This section includes analyses of sustained attention, recognition memory, and affective rating data from the encoding and retrieval components of the 'delay' version of the experiment described in 'Experiments'. All participants from the sample were included in the following analyses. For analyses split by task performance or memory accuracy, see the 'populations' tab.
 
@@ -153,13 +153,13 @@ delay_sust_full_all <- delay_filtered_rows%>%
 delay_sust_full_all <- delay_sust_full_all%>%
   group_by(`Participant Private ID`)%>%
   mutate(
-    Fitted_Values = ifelse(!is.na(`Reaction Time`), lm(`Reaction Time` ~ `Trial Number`)$fitted.values, NA),
-    Detrended_Reaction_Time = `Reaction Time` - Fitted_Values)
+    Fitted_Values = ifelse(!is.na(`Reaction.Time`), lm(`Reaction.Time` ~ `Trial Number`)$fitted.values, NA),
+    Detrended_Reaction_Time = `Reaction.Time` - Fitted_Values)
 
 delay_sust_full <-delay_sust_full_all %>%
   filter(!`Spreadsheet: type`=="filler")%>%
   mutate(Block_Number = rep(1:(n() %/% 4 + ifelse(n() %% 4 > 0, 1, 0)), each = 4)[1:n()],
-         `Reaction Time` = ifelse(`Response Type` == "timedOut", NA, `Reaction Time`)
+         `Reaction Time` = ifelse(`Response Type` == "timedOut", NA, `Reaction.Time`)
   )
 
 
@@ -171,8 +171,8 @@ delay_sust_full_window_rt <- delay_sust_full %>%
 
 delay_sust_full_window_rt <- delay_sust_full_window_rt %>%
   group_by(`Participant Private ID`,Block_Number)%>%
-  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = TRUE),
-         Mean_Window_1 = mean(Detrended_Reaction_Time, na.rm = TRUE))%>%
+  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = FALSE),
+         Mean_Window_1 = mean(Detrended_Reaction_Time, na.rm = FALSE))%>%
   arrange(`Participant Private ID`, `Trial Number`)
 
 delay_sust_full_target_rt <- delay_sust_full %>%
@@ -370,14 +370,30 @@ delay_rt_analysis2 <- delay_rt_analysis2%>%
   group_by(`Participant Private ID`)
 
 delay_lapse_total2 <- summarise(delay_rt_analysis2, `filler & window errors` = sum(fill_wind_perf == "Lapse"))
+
+
+remove_fills <- delay_lapse_total2 %>%
+  filter(`filler & window errors` <mean(delay_lapse_total2$`filler & window errors`) + (2* sd(delay_lapse_total2$`filler & window errors`)))
+
+remove_targs <- delay_lapse_total %>%
+  filter(`target errors` <25)
+
+
+
+
+
+
+
     
- delay_laps_tot2<- cbind(delay_lapse_total,delay_lapse_total2)%>%
-   select(1,2,4)
- delay_laps_tot2 <- delay_laps_tot2 %>%
+ delay_laps_tot2<- merge(remove_targs,remove_fills)
+ delay_laps_tot3 <- delay_laps_tot2 %>%
   kable("html") %>%
   kable_styling(full_width = FALSE)%>%
   scroll_box(width="400px",height = "300px") 
-delay_laps_tot2
+delay_laps_tot3
+
+delay_mem_att <- delay_mem_att%>%
+  filter(`Participant Private ID` %in% delay_laps_tot2$`Participant Private ID`)
 
 
 ```
@@ -488,6 +504,8 @@ delay_memory_unique <- delay_memory%>%
 
 
 
+
+
 ```
 
 <br>
@@ -512,6 +530,8 @@ geom_histogram(delay_memory_unique, mapping=aes(x=d_prime),fill="firebrick4",alp
 
 delay_poor_mems <- delay_memory_unique$`Participant Private ID`[delay_memory_unique$APrime<0.7076572]
 delay_good_mems <- delay_memory_unique$`Participant Private ID`[delay_memory_unique$APrime>=0.7076572]
+
+delay_mem_fails <- delay_memory_unique$`Participant Private ID`[delay_memory_unique$APrime<.5]
 
 ```
 </details>
@@ -540,6 +560,8 @@ delay_mem_only2 <-merge(delay_mem_only2,delay_vamos_aff, by="Img")%>%
 
 
 delay_mem_att$`Participant Private ID` <- as.factor(delay_mem_att$`Participant Private ID`)
+delay_mem_att <- delay_mem_att%>%
+  filter(!`Participant Private ID` %in% delay_mem_fails)
 
 
 # Fit the GLMM model
@@ -598,7 +620,12 @@ fixed_effects_table
 
 ## How does memorability relate to memory after a 24 hr delay?
 ```{r,message=F,warning=F}
-delay_model3 <- glmer(hits ~ z_mem + (1+z_mem| `Participant Private ID`), family = binomial, data = delay_mem_att,control = glmerControl())
+
+delay_mem_att_unique <- delay_mem_att%>%
+  select(`Participant Private ID`,za,hits,z_mem)%>%
+  unique()
+
+delay_model3 <- glmer(hits ~ z_mem + (1+z_mem| `Participant Private ID`), family = binomial, data = delay_mem_att_unique,control = glmerControl())
 delay_mem_att_clean3 <- delay_mem_att %>%
   filter(!is.na(z_mem) & !is.na(hits))
 # Create a data frame with predictions
@@ -617,7 +644,7 @@ delay_pred_data3 <- delay_pred_data3 %>%
   )
 ```
 
-```{r, include=F}
+```{r }
 ggplot(delay_pred_data3, aes(x = z_mem, y = hits)) +
   geom_point() +
   geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
