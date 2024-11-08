@@ -502,7 +502,7 @@ delay_memory_unique <- delay_memory%>%
   select(APrime,d_prime,`Participant Private ID`)%>%
   unique()
 
-
+mem_att
 
 
 
@@ -644,7 +644,7 @@ delay_pred_data3 <- delay_pred_data3 %>%
   )
 ```
 
-```{r }
+```{r, include= F }
 ggplot(delay_pred_data3, aes(x = z_mem, y = hits)) +
   geom_point() +
   geom_line(aes(y = pred, color = as.factor(`Participant Private ID`))) + 
@@ -889,7 +889,7 @@ ggplot(delay_memory, aes(fill=Response, y=tot, x=`Participant Private ID`)) +
         axis.text.x = element_blank())
 
 
-# Step 1: Identify participants with a dominant response
+
 filtered_participants <- delay_memory %>%
   group_by(`Participant Private ID`) %>%
   summarise(
