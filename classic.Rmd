@@ -36,6 +36,55 @@ library(patchwork)
 sust_full_rt <- read.csv("./sust_full_rt.csv")%>%
   filter(Participant.Private.ID !="10781005" & Participant.Private.ID !="10778628" & Participant.Private.ID !="10781005"& Participant.Private.ID !="11347303" & Participant.Private.ID !="11416571" & Participant.Private.ID !="11455940" & Participant.Private.ID !="11456046" & Participant.Private.ID !="11456136" & Participant.Private.ID !="11497631" & Participant.Private.ID !="11525317"& Participant.Private.ID !="11525285" & Participant.Private.ID !="11456057")
 
+
+sust_full_rt <- sust_full_rt%>%
+  group_by(`Participant.Private.ID`)%>%
+  mutate(
+    Fitted_Values = ifelse(!is.na(`Reaction.Time`), lm(`Reaction.Time` ~ `Trial.Number`)$fitted.values, NA),
+    Detrended_Reaction_Time = `Reaction.Time` - Fitted_Values)
+
+sust_full_rt <-sust_full_rt %>%
+  filter(!`Spreadsheet..type`=="filler")%>%
+  mutate(Block_Number = rep(1:(n() %/% 4 + ifelse(n() %% 4 > 0, 1, 0)), each = 4)[1:n()],
+         `Reaction.Time` = ifelse(`Response.Type` == "timedOut", NA, `Reaction.Time`)
+  )
+
+
+
+sust_full_window_rt <- sust_full_rt %>%
+  filter(`Spreadsheet..type` == 'window') %>%
+  group_by(`Participant.Private.ID`)%>%
+  ungroup()
+
+sust_full_window_rt <- sust_full_window_rt %>%
+  group_by(`Participant.Private.ID`,Block_Number)%>%
+  mutate(Mean_Reaction_Time = mean(Detrended_Reaction_Time, na.rm = FALSE),
+         Mean_Window_1 = mean(Detrended_Reaction_Time, na.rm = FALSE))%>%
+  arrange(`Participant.Private.ID`, `Trial.Number`)
+
+sust_full_target_rt <- sust_full_rt %>%
+  group_by(`Participant.Private.ID`,Block_Number)%>%
+  filter(`Spreadsheet..type` == 'target')
+
+
+
+sust_full_rt <- rbind(sust_full_window_rt,sust_full_target_rt)%>%
+  ungroup()%>%
+  group_by(`Participant.Private.ID`)%>%
+  mutate(Mean_Window_Scale = scale(Mean_Window_1))%>%
+  ungroup()
+
+sust_full_rt <-sust_full_rt %>%
+  arrange(`Participant.Private.ID`, `Trial.Number`)%>%
+  group_by(`Participant.Private.ID`,Block_Number)%>%
+  mutate(
+    Mean_Reaction_Time = ifelse(`Spreadsheet..type` == "target", mean(Mean_Reaction_Time[`Spreadsheet..type` == "window"]), Mean_Reaction_Time),
+    Mean_Window_Scale = ifelse(`Spreadsheet..type` == "target", mean(Mean_Window_Scale[`Spreadsheet..type` == "window"]), Mean_Window_Scale)
+  )%>%
+  filter(
+)
+
+
 memory <- read.csv("./memory.csv")%>%
   filter(Participant.Private.ID !="10781005" & Participant.Private.ID !="10778628" & Participant.Private.ID !="10781005"& Participant.Private.ID !="11347303" & Participant.Private.ID !="11416571" & Participant.Private.ID !="11455940" & Participant.Private.ID !="11456046" & Participant.Private.ID !="11456136" & Participant.Private.ID !="11497631"& Participant.Private.ID !="11525317"& Participant.Private.ID !="11525285"& Participant.Private.ID !="11456057")%>%
   group_by(Spreadsheet..memory,Spreadsheet..img)%>%
@@ -144,14 +193,30 @@ rt_analysis2 <- rt_analysis2%>%
 
 lapse_total2 <- summarise(rt_analysis2, `filler & window errors` = sum(fill_wind_perf == "Lapse"))
     
- laps_tot2<- cbind(lapse_total,lapse_total2)%>%
-   select(1,2,4)
-laps_tot2 <- laps_tot2 %>%
+
+remove_fills1 <- lapse_total2 %>%
+  filter(`filler & window errors` <mean(lapse_total2$`filler & window errors`) + (2* sd(lapse_total2$`filler & window errors`)))
+
+remove_targs1 <- lapse_total %>%
+  filter(`target errors` <25)
+
+
+
+
+
+
+
+    
+laps_tot2<- merge(remove_targs1,remove_fills1)
+laps_tot3 <- laps_tot2 %>%
   kable("html") %>%
   kable_styling(full_width = FALSE)%>%
   scroll_box(width="400px",height = "300px") 
-laps_tot2
+laps_tot3
 
+
+mem_att <- mem_att%>%
+  filter(`Participant.Private.ID` %in% laps_tot2$`Participant.Private.ID`)
 ```
 </div>
 </div>
