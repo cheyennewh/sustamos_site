@@ -45,6 +45,8 @@ delay_sust11 <- read_csv("./delay_data_1018/sust1.csv")
 delay_sust12 <- read_csv("./delay_data_1018/sust2.csv")
 delay_sust13 <- read_csv("./data_delay_1101/sust1.csv")
 delay_sust14 <- read_csv("./data_delay_1101/sust2.csv")
+delay_sust15 <- read_csv("./data_delay_1115/sust1.csv")
+delay_sust16 <- read_csv("./data_delay_1115/sust2.csv")
 
 delay_mem1 <- read_csv("./delay_data/delay_batch1/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
@@ -73,6 +75,10 @@ delay_mem12 <- read_csv("./delay_data_1018/mem2.csv")%>%
 delay_mem13 <- read_csv("./data_delay_1101/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_mem14 <- read_csv("./data_delay_1101/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem15 <- read_csv("./data_delay_1115/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem16 <- read_csv("./data_delay_1115/mem2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 
@@ -105,6 +111,10 @@ delay_emo12 <-read_csv("./delay_data_1018/emo2.csv")%>%
 delay_emo13 <-read_csv("./data_delay_1101/emo1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_emo14 <-read_csv("./data_delay_1101/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo15 <-read_csv("./data_delay_1115/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo16 <-read_csv("./data_delay_1115/emo2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
@@ -247,9 +257,7 @@ delay_memory <-delay_memory%>%
   group_by(`Participant Private ID`)%>%
   mutate(hit_rate = sum(hits) / (sum(hits)+sum(miss)),
          false_alarm_rate = sum(fas) / (sum(crs)+sum(fas)),
-         APrime = ifelse(hit_rate >= false_alarm_rate, 
-                         ((hit_rate - false_alarm_rate) * (1 + hit_rate - false_alarm_rate)) / (4 * hit_rate * (1 - false_alarm_rate)) + 0.5, 
-                         0.5 - (false_alarm_rate - hit_rate) * (1 + false_alarm_rate - hit_rate) / (4 *false_alarm_rate * (1 - hit_rate))),
+         APrime =  0.5 * (1 + ((hit_rate - false_alarm_rate) / (1 - false_alarm_rate))),
          d_prime = (qnorm(hit_rate) - qnorm(false_alarm_rate)) / sqrt(2)
          
   )%>%
@@ -316,17 +324,8 @@ delay_mem_only_2 <- delay_mem_only%>%
 
 ```
 
-
-
-## How often were participants lapsing on the task?
-
-During the go/no-go task (encoding task), participants should have withheld a response when they saw a second presentation of the target image. A lapse occurs when they accidentally make a key press on one of these no-go target images. There were 50 target images shown during this task for each participant, so the maximum number of lapses is 50. Scroll through the table to see how often each participant made this mistake. 
-
-<div style="width: 100%; height: 300px; overflow-y: auto; display: flex; justify-content: center;">
-  <div style="width: auto;">
-
-```{r ,message=F,warning=F}
-
+```{r filters}
+## For just RT lapse stuff
 delay_rt_analysis <-delay_sust_full_rt%>%
   select(Mean_Reaction_Time,Mean_Window_Scale, Block_Number,`Spreadsheet: type`,Response, `Spreadsheet: img`,`Participant Private ID`)%>%
   group_by(Block_Number,`Participant Private ID`)%>%
@@ -345,10 +344,12 @@ delay_rt_analysis <- delay_rt_analysis%>%
   ungroup()%>%
   group_by(`Participant Private ID`)
 
+
+
 delay_lapse_total <- summarise(delay_rt_analysis, `target errors` = sum(targ_perf == "Lapse"))
     
 
-
+## for RT  timing/lapse
 delay_rt_analysis2 <-delay_sust_full_all%>%
   select(`Reaction Time`,Block_Number,`Spreadsheet: type`,Response, `Spreadsheet: img`,`Participant Private ID`)%>%
   group_by(Block_Number,`Participant Private ID`)%>%
@@ -373,7 +374,7 @@ delay_lapse_total2 <- summarise(delay_rt_analysis2, `filler & window errors` = s
 
 
 remove_fills <- delay_lapse_total2 %>%
-  filter(`filler & window errors` <mean(delay_lapse_total2$`filler & window errors`) + (2* sd(delay_lapse_total2$`filler & window errors`)))
+  filter(`filler & window errors` <55)
 
 remove_targs <- delay_lapse_total %>%
   filter(`target errors` <25)
@@ -386,31 +387,10 @@ remove_targs <- delay_lapse_total %>%
 
     
  delay_laps_tot2<- merge(remove_targs,remove_fills)
- delay_laps_tot3 <- delay_laps_tot2 %>%
-  kable("html") %>%
-  kable_styling(full_width = FALSE)%>%
-  scroll_box(width="400px",height = "300px") 
-delay_laps_tot3
 
 delay_mem_att <- delay_mem_att%>%
   filter(`Participant Private ID` %in% delay_laps_tot2$`Participant Private ID`)
 
-
-```
-
-</div>
-</div>
-
-
-## Does pretrial reaction time predict lapses?
-
-The average reaction times (RTs) were linearly detrended within participant, mean reaction times were then calculated for the 3 images prior to a target (pretrial RT). In the below plot, I compare the preceding window RT for target images when the participant correctly withheld a response (correct) and when they lapsed during this task. We would expect that reaction times for the correct condition would be slower than for the lapse condition. This would indicate that participants are reacting habitually vs. reactively to the images when they lapse.
-
-
-From this comparison, we see that, in general, reaction time IS slower for the correct vs. lapse conditions, which is in line with prior findings.
-
-
-```{r, warning=FALSE,message=FALSE}
 
 delay_unique_ids <- unique(delay_rt_analysis$`Participant Private ID`)
 # Get unique Participant IDs for Correct and Lapse performances
@@ -455,40 +435,50 @@ delay_laps_tot <- data.frame(
 
 delay_lapse_df <- gather(delay_laps_tot, key = "Condition", value = "Mean_Window_Scale", -"Participant.Private.ID")
 
-ggplot(delay_lapse_df, aes(x = Condition, y = Mean_Window_Scale, group = `Participant.Private.ID`)) +
-  geom_point(aes(color = factor(`Participant.Private.ID`)), size = 3) +
-  geom_line(aes(color = factor(`Participant.Private.ID`)), size = 1) +
-  scale_color_viridis(discrete="True", option="A")+
-  theme_minimal() +
-  xlab("Target Response") +
-  ylab(" Mean Window Reaction Time") +
-  labs(color = "Participant")+
-  theme(legend.position = "none")
-```
 
-## Is memory above chance?
+# binom test chance 
+# Hypothesized probability of success (e.g., 0.5)
+p <- 0.5
+
+# Summarize data: Sum hits, crs, and count rows (number of trials) for each participant
+delay_memory_summary <- delay_memory %>%
+  group_by(`Participant Private ID`) %>%
+  summarise(
+    total_hits = sum(hits),
+    total_crs = sum(crs),
+    total_success = total_hits + total_crs,  # Sum hits + crs for total success
+    n_trials = n()  # Count of rows (number of trials)
+  )
+
+# Function to apply the binomial test for each participant
+apply_binomial_test <- function(total_success, n_trials, p) {
+  k <- total_success  # Total successes
+  n <- n_trials        # Total trials
+  test_result <- binom.test(k, n, p)  # Perform the binomial test
+  return(test_result$p.value)  # Return the p-value
+}
+
+# Apply the function to each participant using mapply
+delay_memory_summary$p_value <- mapply(apply_binomial_test, 
+                                        delay_memory_summary$total_success, 
+                                        delay_memory_summary$n_trials,
+                                        MoreArgs = list(p = p))
+
+# View the results with the p-values
+delay_memory_summary_parts <- delay_memory_summary$`Participant Private ID`[delay_memory_summary$p_value>= 0.05]
 
 
-During the retrieval task, participants were asked to rate their memory of target images (and 50 memory lures) on a scale of 1 (sure old) - 6 (sure new). To ensure data quality for the later analyses which included participant memory data, I first checked that each participant's memory was above chance.
 
-```{r , warning=FALSE,message=FALSE}
+
+delay_memory <- delay_memory%>%
+  filter(!`Participant Private ID` %in% delay_memory_summary_parts)
+
+
 
 delay_random_hit_rate <-0.3
 delay_random_fa_rate<-0.3
 
 delay_chance_d_prime <- (qnorm(delay_random_hit_rate) - qnorm(delay_random_fa_rate))/ sqrt(2)
-
-ggplot(delay_memory,aes(x=as.character(`Participant Private ID`),y=APrime,color =as.factor( `Participant Private ID`)))+
-  geom_point()+
-  geom_hline(yintercept = 0.50, color="red")+
-  ylim(0,1)+
-  theme_ipsum(axis_title_just = "cc",axis_title_size = 12,axis_text_size = 9)+
-  xlab("Participant")+
-  ylab("A'")+
-  scale_color_viridis(option="A",discrete="True")+
-  labs(color = "Participant",
-       title="Memory performance (Inclusive)")+
-  theme(legend.position="none",axis.text.x = element_blank())
 
 
 # Assuming 'memory' is your data frame
@@ -504,41 +494,12 @@ delay_memory_unique <- delay_memory%>%
 
 
 
-
-
-```
-
-<br>
-I also took a look at the distributions of memory performance, using both d' and A'prime' as measures of performance. In both cases, it's apparent that there are a ton of participants that are hovering just above chance. In the 'populations' section of this bookdown, I explore whether these 'worse memory' participants (under median) produce significantly different results than the 'better memory' participants.
-
-<details>
-  <summary> Memory Performance Plots </summary>
-
-```{r, message=FALSE, warning=FALSE}
-library(ggpubr)
-ggplot()+
-geom_histogram(delay_memory_unique, mapping=aes(x=APrime),fill="tomato1",alpha=.7)+
-  theme_minimal() +
-  ylab("Number of participants")
-
- ggplot()+
-geom_histogram(delay_memory_unique, mapping=aes(x=d_prime),fill="firebrick4",alpha=.7)+
-  theme_minimal()+
-  ylab("Number of participants")
-
-
-
 delay_poor_mems <- delay_memory_unique$`Participant Private ID`[delay_memory_unique$APrime<0.7076572]
 delay_good_mems <- delay_memory_unique$`Participant Private ID`[delay_memory_unique$APrime>=0.7076572]
 
 delay_mem_fails <- delay_memory_unique$`Participant Private ID`[delay_memory_unique$APrime<.5]
 
-```
-</details>
 
-
-## How does pretrial reaction time relate to memory after a 24 hr delay?
-```{r,message=F,warning=F}
 
 delay_cross_mem_predict <- merge(delay_vamos_aff,delay_mem_only_2, by="Img")
 
@@ -561,7 +522,112 @@ delay_mem_only2 <-merge(delay_mem_only2,delay_vamos_aff, by="Img")%>%
 
 delay_mem_att$`Participant Private ID` <- as.factor(delay_mem_att$`Participant Private ID`)
 delay_mem_att <- delay_mem_att%>%
-  filter(!`Participant Private ID` %in% delay_mem_fails)
+  filter(!`Participant Private ID` %in% delay_mem_fails & !`Participant Private ID` %in% delay_memory_summary_parts)
+
+
+```
+
+
+
+## How often were participants lapsing on the task?
+
+During the go/no-go task (encoding task), participants should have withheld a response when they saw a second presentation of the target image. A lapse occurs when they accidentally make a key press on one of these no-go target images. There were 50 target images shown during this task for each participant, so the maximum number of lapses is 50. Scroll through the table to see how often each participant made this mistake. 
+
+<div style="width: 100%; height: 300px; overflow-y: auto; display: flex; justify-content: center;">
+  <div style="width: auto;">
+
+```{r ,message=F,warning=F}
+
+delay_laps_tot2 <- delay_laps_tot2%>%
+  filter(delay_laps_tot2$`Participant Private ID` %in% delay_mem_att$`Participant Private ID`)
+
+ delay_laps_tot3 <- delay_laps_tot2 %>%
+  kable("html") %>%
+  kable_styling(full_width = FALSE)%>%
+  scroll_box(width="400px",height = "300px") 
+delay_laps_tot3
+
+```
+
+</div>
+</div>
+
+
+## Does pretrial reaction time predict lapses?
+
+The average reaction times (RTs) were linearly detrended within participant, mean reaction times were then calculated for the 3 images prior to a target (pretrial RT). In the below plot, I compare the preceding window RT for target images when the participant correctly withheld a response (correct) and when they lapsed during this task. We would expect that reaction times for the correct condition would be slower than for the lapse condition. This would indicate that participants are reacting habitually vs. reactively to the images when they lapse.
+
+
+From this comparison, we see that, in general, reaction time IS slower for the correct vs. lapse conditions, which is in line with prior findings.
+
+
+```{r, warning=FALSE,message=FALSE}
+
+delay_lapse_df <- delay_lapse_df %>%
+  filter(!`Participant.Private.ID` %in% delay_mem_fails & !`Participant.Private.ID` %in% delay_memory_summary_parts)
+
+ggplot(delay_lapse_df, aes(x = Condition, y = Mean_Window_Scale, group = `Participant.Private.ID`)) +
+  geom_point(aes(color = factor(`Participant.Private.ID`)), size = 3) +
+  geom_line(aes(color = factor(`Participant.Private.ID`)), size = 1) +
+  scale_color_viridis(discrete="True", option="A")+
+  theme_minimal() +
+  xlab("Target Response") +
+  ylab(" Mean Window Reaction Time") +
+  labs(color = "Participant")+
+  theme(legend.position = "none")
+```
+
+## Is memory above chance?
+
+
+During the retrieval task, participants were asked to rate their memory of target images (and 50 memory lures) on a scale of 1 (sure old) - 6 (sure new). To ensure data quality for the later analyses which included participant memory data, I first checked that each participant's memory was above chance.
+
+
+
+```{r , warning=FALSE,message=FALSE}
+delay_memory <- delay_memory %>%
+  filter(`Participant Private ID` %in% delay_mem_att$`Participant Private ID`)
+
+ggplot(delay_memory,aes(x=as.character(`Participant Private ID`),y=APrime,color =as.factor( `Participant Private ID`)))+
+  geom_point()+
+  geom_hline(yintercept = 0.50, color="red")+
+  theme_ipsum(axis_title_just = "cc",axis_title_size = 12,axis_text_size = 9)+
+  xlab("Participant")+
+  ylab("A'")+
+  scale_color_viridis(option="A",discrete="True")+
+  labs(color = "Participant",
+       title="Memory performance (Inclusive)")+
+  theme(legend.position="none",axis.text.x = element_blank())
+
+```
+
+
+
+<br>
+I also took a look at the distributions of memory performance, using both d' and A'prime' as measures of performance. In both cases, it's apparent that there are a ton of participants that are hovering just above chance. In the 'populations' section of this bookdown, I explore whether these 'worse memory' participants (under median) produce significantly different results than the 'better memory' participants.
+
+<details>
+  <summary> Memory Performance Plots </summary>
+
+```{r, message=FALSE, warning=FALSE}
+delay_memory_unique <- delay_memory_unique %>%
+  filter(`Participant Private ID` %in% delay_mem_att$`Participant Private ID`)
+ggplot()+
+geom_histogram(delay_memory_unique, mapping=aes(x=APrime),fill="tomato1",alpha=.7)+
+  theme_minimal() +
+  ylab("Number of participants")
+
+ ggplot()+
+geom_histogram(delay_memory_unique, mapping=aes(x=d_prime),fill="firebrick4",alpha=.7)+
+  theme_minimal()+
+  ylab("Number of participants")
+
+```
+</details>
+
+
+## How does pretrial reaction time relate to memory after a 24 hr delay?
+```{r,message=F,warning=F}
 
 
 # Fit the GLMM model
@@ -611,9 +677,10 @@ model_summary <- summary(delay_model2)
 fixed_effects_table <- model_summary$coefficients
 
 fixed_effects_table
+
+
+model_summary
 ```
-
-
 
 <br>
 <br>
@@ -872,16 +939,18 @@ ggplot(delay_mem_rt, aes(x=`Participant Private ID`, y=mean_rt))+
 
 
 
-  delay_memory <-  delay_memory%>%
+  delay_memory2 <-  delay_memory%>%
+    select(`Participant Private ID`,Response,`Spreadsheet: img`)%>%
+    unique()%>%
    group_by(`Participant Private ID`)%>%
-   mutate(tot = length(Response))
+   mutate(tot = 1)
  
- delay_memory$Response <-as.character(  delay_memory$Response)
-  delay_memory$`Participant Private ID` <-as.factor( delay_memory$`Participant Private ID`)
+ delay_memory2$Response <-as.character(  delay_memory2$Response)
+  delay_memory2$`Participant Private ID` <-as.factor( delay_memory2$`Participant Private ID`)
 # Stacked
-ggplot(delay_memory, aes(fill=Response, y=tot, x=`Participant Private ID`)) + 
+ggplot(delay_memory2, aes(fill=Response, y=tot, x=`Participant Private ID`)) + 
     geom_bar(position="stack", stat="identity")+
-  ylim(0,10000)+
+  ylim(0,100)+
   xlab("Participant")+
   labs(color = "Participant",
        title="Memory performance (Inclusive)")+
@@ -891,7 +960,11 @@ ggplot(delay_memory, aes(fill=Response, y=tot, x=`Participant Private ID`)) +
 
 
 filtered_participants <- delay_memory %>%
-  group_by(`Participant Private ID`) %>%
+  group_by(`Participant Private ID`)%>%
+  select(`Participant Private ID`,Response,`Spreadsheet: img`)
+
+filtered_participants2 <- filtered_participants%>%
+  group_by(`Participant Private ID`)%>%
   summarise(
     total_responses = n(),
     dominant_response = names(which.max(table(Response))),
@@ -902,3 +975,4 @@ filtered_participants <- delay_memory %>%
   pull(`Participant Private ID`)
 
 ```
+

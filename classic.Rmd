@@ -195,14 +195,146 @@ lapse_total2 <- summarise(rt_analysis2, `filler & window errors` = sum(fill_wind
     
 
 remove_fills1 <- lapse_total2 %>%
-  filter(`filler & window errors` <mean(lapse_total2$`filler & window errors`) + (2* sd(lapse_total2$`filler & window errors`)))
+  filter(`filler & window errors` < 50)
 
 remove_targs1 <- lapse_total %>%
   filter(`target errors` <25)
 
 
+unique_ids <- unique(rt_analysis$`Participant.Private.ID`)
+# Get unique Participant IDs for Correct and Lapse performances
+unique_ids_correct <- unique(rt_analysis$`Participant.Private.ID`[rt_analysis$targ_perf == "Correct"])
+unique_ids_lapse <- unique(rt_analysis$`Participant.Private.ID`[rt_analysis$targ_perf == "Lapse"])
+
+# Get a union of all unique Participant IDs
+all_unique_ids <- union(unique_ids_correct, unique_ids_lapse)
+
+# Calculate means for Correct performance
+means_by_participant <- tapply(
+  rt_analysis$Mean_window_scale[rt_analysis$targ_perf == "Correct"],
+  rt_analysis$`Participant.Private.ID`[rt_analysis$targ_perf == "Correct"],
+  mean,
+  na.rm=TRUE
+)
+
+# Calculate means for Lapse performance
+means_by_participant2 <- tapply(
+  rt_analysis$Mean_window_scale[rt_analysis$targ_perf == "Lapse"],
+  rt_analysis$`Participant.Private.ID`[rt_analysis$targ_perf == "Lapse"],
+  mean,
+  na.rm=TRUE
+)
 
 
+
+# Initialize vectors to store means for all unique Participant IDs
+means_all_correct <- rep(0, length(all_unique_ids))
+means_all_lapse <- rep(0, length(all_unique_ids))
+
+# Replace means for Correct performance with calculated means
+means_all_correct[match(names(means_by_participant), all_unique_ids)] <- unname(means_by_participant)
+
+# Replace means for Lapse performance with calculated means
+means_all_lapse[match(names(means_by_participant2), all_unique_ids)] <- unname(means_by_participant2)
+
+# Convert the result to a data frame
+laps_tot <- data.frame(
+  `Participant.Private.ID` = all_unique_ids,
+  `Correct` = means_all_correct,
+  `Lapse` = means_all_lapse
+)
+
+
+lapse_df <- gather(laps_tot, key = "Condition", value = "Mean_Window_Scale", -"Participant.Private.ID")
+
+
+# binom test chance 
+# Hypothesized probability of success (e.g., 0.5)
+p <- 0.5
+
+# Summarize data: Sum hits, crs, and count rows (number of trials) for each participant
+memory_summary <- memory %>%
+  group_by(`Participant.Private.ID`) %>%
+  summarise(
+    total_hits = sum(hits),
+    total_crs = sum(crs),
+    total_success = total_hits + total_crs,  # Sum hits + crs for total success
+    n_trials = n()  # Count of rows (number of trials)
+  )
+
+# Function to apply the binomial test for each participant
+apply_binomial_test <- function(total_success, n_trials, p) {
+  k <- total_success  # Total successes
+  n <- n_trials        # Total trials
+  test_result <- binom.test(k, n, p)  # Perform the binomial test
+  return(test_result$p.value)  # Return the p-value
+}
+
+# Apply the function to each participant using mapply
+memory_summary$p_value <- mapply(apply_binomial_test, 
+                                        memory_summary$total_success, 
+                                        memory_summary$n_trials,
+                                        MoreArgs = list(p = p))
+
+# View the results with the p-values
+memory_summary_parts <- memory_summary$`Participant.Private.ID`[memory_summary$p_value>= 0.05]
+
+
+
+
+memory <- memory%>%
+  filter(!`Participant.Private.ID` %in% memory_summary_parts)
+
+
+
+random_hit_rate <-0.3
+random_fa_rate<-0.3
+
+chance_d_prime <- (qnorm(random_hit_rate) - qnorm(random_fa_rate))/ sqrt(2)
+
+
+# Assuming 'memory' is your data frame
+memory2 <- memory %>%
+  group_by(`Participant.Private.ID`) %>%
+  summarise(total_hits = sum(hits, na.rm = TRUE),
+            total_miss = sum(miss, na.rm = TRUE),
+            total_fas = sum(fas, na.rm = TRUE), 
+            total_crs = sum(crs, na.rm = TRUE))
+memory_unique <- memory%>%
+  select(APrime,d_prime,`Participant.Private.ID`)%>%
+  unique()
+
+
+
+poor_mems <- memory_unique$`Participant.Private.ID`[memory_unique$APrime<0.7076572]
+good_mems <- memory_unique$`Participant.Private.ID`[memory_unique$APrime>=0.7076572]
+
+mem_fails <- memory_unique$`Participant.Private.ID`[memory_unique$APrime<.5]
+
+
+
+cross_mem_predict <- merge(vamos_aff,mem_only_2, by="Img")
+
+
+vamos_aff_use <- vamos_aff[c(1,3,5,6),]
+mem_att <-merge(mem_att,vamos_aff, by="Img")%>%
+  ungroup()%>%
+  mutate(zv = scale(Mean_Valence),
+         za = scale(Mean_Arousal))%>%
+  mutate(z_mem = scale(Memorability_Score))
+
+mem_only_2 <-merge(mem_only_2,vamos_aff, by="Img")%>%
+  ungroup()%>%
+  mutate(zv = scale(Mean_Valence),
+         za = scale(Mean_Arousal))%>%
+  mutate(z_mem = scale(Memorability_Score))
+
+
+
+
+mem_att$`Participant.Private.ID` <- as.factor(mem_att$`Participant.Private.ID`)
+mem_att <- mem_att%>%
+  filter(!`Participant.Private.ID` %in% mem_fails & !`Participant.Private.ID` %in% memory_summary_parts)
 
 
 
@@ -217,6 +349,9 @@ laps_tot3
 
 mem_att <- mem_att%>%
   filter(`Participant.Private.ID` %in% laps_tot2$`Participant.Private.ID`)
+
+
+
 ```
 </div>
 </div>
@@ -392,21 +527,10 @@ values on y axis).
 cross_mem_predict <- merge(vamos_aff,mem_only_2, by="Img")
 
 
-vamos_aff_use <- vamos_aff[c(1,3,5,6),]
-mem_att <-merge(mem_att,vamos_aff, by="Img")%>%
-  ungroup()%>%
-  mutate(zv = scale(Mean_Valence),
-         za = scale(Mean_Arousal))%>%
-  mutate(z_mem = scale(Memorability_Score))
-
-
-
-library(lme4)
 
 # Fit the GLMM model
 model <- glmer(hits ~ zrt + (1 + zrt | Participant.Private.ID), family = binomial, data = mem_att, control = glmerControl())
-library(ggplot2)
-library(dplyr)
+
 library(broom.mixed)
 mem_att_clean <- mem_att %>%
   filter(!is.na(zrt) & !is.na(hits))
