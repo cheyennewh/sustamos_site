@@ -454,7 +454,7 @@ delay_memory_summary <- delay_memory %>%
 apply_binomial_test <- function(total_success, n_trials, p) {
   k <- total_success  # Total successes
   n <- n_trials        # Total trials
-  test_result <- binom.test(k, n, p)  # Perform the binomial test
+  test_result <- binom.test(k, n, p,alternative="greater")  # Perform the binomial test
   return(test_result$p.value)  # Return the p-value
 }
 

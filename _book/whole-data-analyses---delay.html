@@ -115,6 +115,17 @@ filler &amp; window errors
 </tr>
 <tr>
 <td style="text-align:right;">
+11682072
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 11682073
 </td>
 <td style="text-align:right;">
@@ -148,6 +159,28 @@ filler &amp; window errors
 </tr>
 <tr>
 <td style="text-align:right;">
+11682083
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11682085
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 11682102
 </td>
 <td style="text-align:right;">
@@ -166,6 +199,17 @@ filler &amp; window errors
 </td>
 <td style="text-align:right;">
 4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11716961
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+39
 </td>
 </tr>
 <tr>
@@ -236,6 +280,17 @@ filler &amp; window errors
 </tr>
 <tr>
 <td style="text-align:right;">
+11758400
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 11758405
 </td>
 <td style="text-align:right;">
@@ -243,6 +298,17 @@ filler &amp; window errors
 </td>
 <td style="text-align:right;">
 3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11758407
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
 </td>
 </tr>
 <tr>
@@ -331,6 +397,17 @@ filler &amp; window errors
 </td>
 <td style="text-align:right;">
 2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11852210
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+3
 </td>
 </tr>
 <tr>
@@ -500,6 +577,17 @@ filler &amp; window errors
 </tr>
 <tr>
 <td style="text-align:right;">
+11982674
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
 11982683
 </td>
 <td style="text-align:right;">
@@ -550,64 +638,64 @@ Memory Performance Plots
 <h2>
 <span class="header-section-number">3.4</span> How does pretrial reaction time relate to memory after a 24 hr delay?<a class="anchor" aria-label="anchor" href="#how-does-pretrial-reaction-time-relate-to-memory-after-a-24-hr-delay"><i class="fas fa-link"></i></a>
 </h2>
-<pre><code>##               Estimate Std. Error     z value     Pr(&gt;|z|)
-## (Intercept) 0.68878540 0.10821467 6.364990806 1.953014e-10
-## zrt         0.00044247 0.05194982 0.008517257 9.932043e-01</code></pre>
+<pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept) 0.59982421 0.10007676 5.9936414 2.051936e-09
+## zrt         0.01207122 0.04900222 0.2463404 8.054188e-01</code></pre>
 <pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
 ##  Family: binomial  ( logit )
 ## Formula: hits ~ zrt + (1 + zrt | `Participant Private ID`)
 ##    Data: delay_mem_att
 ## 
 ##      AIC      BIC   logLik deviance df.resid 
-##   2425.5   2453.4  -1207.8   2415.5     1936 
+##   2956.1   2984.8  -1473.0   2946.1     2324 
 ## 
 ## Scaled residuals: 
 ##     Min      1Q  Median      3Q     Max 
-## -2.2062 -1.0499  0.5641  0.7087  1.4035 
+## -2.1816 -1.0259  0.5688  0.7287  1.4672 
 ## 
 ## Random effects:
 ##  Groups                 Name        Variance Std.Dev. Corr 
-##  Participant Private ID (Intercept) 0.366183 0.60513       
-##                         zrt         0.004221 0.06497  -0.18
-## Number of obs: 1941, groups:  Participant Private ID, 40
+##  Participant Private ID (Intercept) 0.38103  0.6173        
+##                         zrt         0.01368  0.1170   -0.09
+## Number of obs: 2329, groups:  Participant Private ID, 48
 ## 
 ## Fixed effects:
-##              Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) 0.6887854  0.1082147   6.365 1.95e-10 ***
-## zrt         0.0004425  0.0519498   0.009    0.993    
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  0.59982    0.10008   5.994 2.05e-09 ***
+## zrt          0.01207    0.04900   0.246    0.805    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Correlation of Fixed Effects:
 ##     (Intr)
-## zrt -0.033</code></pre>
+## zrt -0.029</code></pre>
 <p><br><br></p>
 </div>
 <div id="how-does-memorability-relate-to-memory-after-a-24-hr-delay" class="section level2" number="3.5">
 <h2>
 <span class="header-section-number">3.5</span> How does memorability relate to memory after a 24 hr delay?<a class="anchor" aria-label="anchor" href="#how-does-memorability-relate-to-memory-after-a-24-hr-delay"><i class="fas fa-link"></i></a>
 </h2>
-<pre><code>##                Estimate Std. Error    z value     Pr(&gt;|z|)
-## (Intercept) 0.675400495 0.10999943 6.14003657 8.250248e-10
-## z_mem       0.005046484 0.05648632 0.08933993 9.288118e-01</code></pre>
+<pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept) 0.58658969 0.10110049 5.8020460 6.551059e-09
+## z_mem       0.01059175 0.05062222 0.2092312 8.342677e-01</code></pre>
 <p><br><br></p>
 </div>
 <div id="how-does-valence-relate-to-memory-after-a-24-hr-delay" class="section level2" number="3.6">
 <h2>
 <span class="header-section-number">3.6</span> How does valence relate to memory after a 24 hr delay?<a class="anchor" aria-label="anchor" href="#how-does-valence-relate-to-memory-after-a-24-hr-delay"><i class="fas fa-link"></i></a>
 </h2>
-<pre><code>##                Estimate Std. Error    z value     Pr(&gt;|z|)
-## (Intercept)  0.67541387 0.10999218  6.1405625 8.222979e-10
-## zv          -0.05156664 0.05264413 -0.9795327 3.273169e-01</code></pre>
+<pre><code>##                Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept)  0.58777195 0.10088626  5.826085 5.674263e-09
+## zv          -0.06069946 0.04659015 -1.302839 1.926297e-01</code></pre>
 <p><br><br></p>
 </div>
 <div id="how-does-arousal-relate-to-memory-after-a-24-hr-delay" class="section level2" number="3.7">
 <h2>
 <span class="header-section-number">3.7</span> How does arousal relate to memory after a 24 hr delay?<a class="anchor" aria-label="anchor" href="#how-does-arousal-relate-to-memory-after-a-24-hr-delay"><i class="fas fa-link"></i></a>
 </h2>
-<pre><code>##                 Estimate Std. Error     z value     Pr(&gt;|z|)
-## (Intercept)  0.672950686 0.10919460  6.16285708 7.144399e-10
-## za          -0.003134217 0.04931523 -0.06355475 9.493248e-01</code></pre>
+<pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept) 0.58458763 0.10040247 5.8224426 5.799372e-09
+## za          0.02393741 0.04530364 0.5283773 5.972375e-01</code></pre>
 <p><br><br></p>
 <div id="interactive-model" class="section level3" number="3.7.1">
 <h3>
@@ -620,60 +708,60 @@ Memory Performance Plots
 ## Control: glmerControl()
 ## 
 ##      AIC      BIC   logLik deviance df.resid 
-##   2456.5   2629.2  -1197.3   2394.5     1910 
+##   2976.8   3155.2  -1457.4   2914.8     2298 
 ## 
 ## Scaled residuals: 
 ##     Min      1Q  Median      3Q     Max 
-## -3.1477 -1.0095  0.5366  0.7046  1.7955 
+## -3.2994 -1.0042  0.5353  0.7239  1.9276 
 ## 
 ## Random effects:
-##  Groups                 Name        Variance  Std.Dev. Corr                   
-##  Participant Private ID (Intercept) 0.3928954 0.62681                         
-##                         zrt         0.0002294 0.01515  -1.00                  
-##                         zv          0.0525080 0.22915  -0.36  0.36            
-##                         za          0.0017124 0.04138   0.99 -0.99 -0.25      
-##                         z_mem       0.0637406 0.25247  -0.18  0.18  0.98 -0.07
-## Number of obs: 1941, groups:  Participant Private ID, 40
+##  Groups                 Name        Variance Std.Dev. Corr                   
+##  Participant Private ID (Intercept) 0.421154 0.64896                         
+##                         zrt         0.015116 0.12295  -0.14                  
+##                         zv          0.053392 0.23107  -0.44  0.68            
+##                         za          0.009076 0.09527   0.02 -0.51  0.22      
+##                         z_mem       0.063712 0.25241  -0.29  0.80  0.98  0.08
+## Number of obs: 2329, groups:  Participant Private ID, 48
 ## 
 ## Fixed effects:
-##                  Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)      0.705591   0.112759   6.258 3.91e-10 ***
-## zrt             -0.015959   0.055124  -0.290    0.772    
-## zv              -0.019656   0.069367  -0.283    0.777    
-## za              -0.045316   0.058903  -0.769    0.442    
-## z_mem            0.006983   0.068025   0.103    0.918    
-## zrt:zv          -0.005477   0.058646  -0.093    0.926    
-## zrt:za           0.070867   0.056160   1.262    0.207    
-## zv:za           -0.080767   0.051261  -1.576    0.115    
-## zrt:z_mem       -0.033959   0.058713  -0.578    0.563    
-## zv:z_mem        -0.022992   0.059257  -0.388    0.698    
-## za:z_mem         0.067731   0.059847   1.132    0.258    
-## zrt:zv:za        0.019130   0.049349   0.388    0.698    
-## zrt:zv:z_mem    -0.049863   0.060824  -0.820    0.412    
-## zrt:za:z_mem    -0.061504   0.064691  -0.951    0.342    
-## zv:za:z_mem     -0.024430   0.054438  -0.449    0.654    
-## zrt:zv:za:z_mem  0.034737   0.058035   0.599    0.549    
+##                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)      0.6091564  0.1053729   5.781 7.43e-09 ***
+## zrt             -0.0051421  0.0530815  -0.097    0.923    
+## zv              -0.0327330  0.0628120  -0.521    0.602    
+## za              -0.0116554  0.0554415  -0.210    0.833    
+## z_mem            0.0094055  0.0615399   0.153    0.879    
+## zrt:zv           0.0096989  0.0539344   0.180    0.857    
+## zrt:za           0.0780661  0.0517294   1.509    0.131    
+## zv:za           -0.0720180  0.0469685  -1.533    0.125    
+## zrt:z_mem       -0.0314413  0.0544321  -0.578    0.564    
+## zv:z_mem        -0.0553342  0.0535410  -1.033    0.301    
+## za:z_mem         0.0750532  0.0552047   1.360    0.174    
+## zrt:zv:za        0.0009899  0.0454254   0.022    0.983    
+## zrt:zv:z_mem    -0.0721793  0.0569412  -1.268    0.205    
+## zrt:za:z_mem    -0.0739028  0.0605735  -1.220    0.222    
+## zv:za:z_mem     -0.0325851  0.0503365  -0.647    0.517    
+## zrt:zv:za:z_mem  0.0506813  0.0544244   0.931    0.352    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## optimizer (Nelder_Mead) convergence code: 0 (OK)
-## boundary (singular) fit: see help('isSingular')</code></pre>
-<pre><code>##                     Estimate Std. Error     z value     Pr(&gt;|z|)
-## (Intercept)      0.705590942 0.11275887  6.25752067 3.911458e-10
-## zrt             -0.015958711 0.05512435 -0.28950381 7.721959e-01
-## zv              -0.019656400 0.06936667 -0.28336952 7.768936e-01
-## za              -0.045315522 0.05890333 -0.76932026 4.417032e-01
-## z_mem            0.006982622 0.06802534  0.10264736 9.182429e-01
-## zrt:zv          -0.005476557 0.05864630 -0.09338282 9.255994e-01
-## zrt:za           0.070867299 0.05616003  1.26188150 2.069914e-01
-## zv:za           -0.080767224 0.05126073 -1.57561589 1.151144e-01
-## zrt:z_mem       -0.033959130 0.05871343 -0.57838783 5.630023e-01
-## zv:z_mem        -0.022991936 0.05925714 -0.38800280 6.980140e-01
-## za:z_mem         0.067730718 0.05984679  1.13173526 2.577458e-01
-## zrt:zv:za        0.019129714 0.04934888  0.38764235 6.982807e-01
-## zrt:zv:z_mem    -0.049863288 0.06082374 -0.81979979 4.123303e-01
-## zrt:za:z_mem    -0.061503847 0.06469107 -0.95073167 3.417406e-01
-## zv:za:z_mem     -0.024430161 0.05443793 -0.44877090 6.535969e-01
-## zrt:zv:za:z_mem  0.034736849 0.05803542  0.59854570 5.494759e-01</code></pre>
+## Model failed to converge with max|grad| = 0.00786996 (tol = 0.002, component 1)</code></pre>
+<pre><code>##                      Estimate Std. Error     z value     Pr(&gt;|z|)
+## (Intercept)      0.6091563795 0.10537286  5.78096108 7.427507e-09
+## zrt             -0.0051420679 0.05308150 -0.09687119 9.228287e-01
+## zv              -0.0327329978 0.06281201 -0.52112646 6.022787e-01
+## za              -0.0116553573 0.05544150 -0.21022803 8.334897e-01
+## z_mem            0.0094054837 0.06153990  0.15283555 8.785280e-01
+## zrt:zv           0.0096989302 0.05393441  0.17982825 8.572874e-01
+## zrt:za           0.0780660833 0.05172939  1.50912427 1.312670e-01
+## zv:za           -0.0720180011 0.04696850 -1.53332553 1.251957e-01
+## zrt:z_mem       -0.0314413335 0.05443205 -0.57762533 5.635171e-01
+## zv:z_mem        -0.0553342279 0.05354102 -1.03349229 3.013736e-01
+## za:z_mem         0.0750531987 0.05520466  1.35954465 1.739741e-01
+## zrt:zv:za        0.0009898707 0.04542537  0.02179114 9.826146e-01
+## zrt:zv:z_mem    -0.0721792734 0.05694117 -1.26761136 2.049368e-01
+## zrt:za:z_mem    -0.0739028335 0.06057349 -1.22005249 2.224450e-01
+## zv:za:z_mem     -0.0325850872 0.05033652 -0.64734484 5.174088e-01
+## zrt:zv:za:z_mem  0.0506812670 0.05442438  0.93122364 3.517379e-01</code></pre>
 </div>
 <div id="how-quickly-are-participants-completing-the-memory-task" class="section level3" number="3.7.2">
 <h3>
