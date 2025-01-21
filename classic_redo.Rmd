@@ -18,12 +18,10 @@ options(repos = c(CRAN = "https://cran.rstudio.com/"))
 #rm(list = ls())
 #load libraries
 knitr::opts_chunk$set(echo = FALSE)
-library(ggplot2)
 library(tidyverse)
 library(hrbrthemes)
 #library(viridis)
 library(kableExtra)
-library(dplyr)
 library(viridis)
 library(lme4)
 library(ggpubr)
@@ -645,5 +643,15 @@ summary(model7)
 ```
 
 ```{r}
+memory_rt <- memory %>%
+  select(`Reaction Time`,`Participant Private ID`, `Spreadsheet: img`, `Absolute Reaction Time`)
+
+ggplot(memory_rt, aes(x=as.character(`Participant Private ID`),y=`Reaction Time`,group=as.character(`Participant Private ID`)))+
+  geom_violin()
+
+ggplot(memory_rt, aes(x=as.character(`Participant Private ID`),y=`Reaction Time`,fill=as.character(`Spreadsheet: img`)))+
+  geom_bar(position="fill",stat="identity")+
+  theme(legend.position = "none")
+  
 
 ```
