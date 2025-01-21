@@ -80,6 +80,10 @@ delay_mem15 <- read_csv("./data_delay_1115/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_mem16 <- read_csv("./data_delay_1115/mem2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem17 <- read_csv("./data_delay_1206/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_mem18 <- read_csv("./data_delay_1206/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 
 delay_mem_early2 <- read_csv("./delay_data/mem2_early.csv")
@@ -116,6 +120,10 @@ delay_emo15 <-read_csv("./data_delay_1115/emo1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 delay_emo16 <-read_csv("./data_delay_1115/emo2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo17 <-read_csv("./data_delay_1206/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+delay_emo18 <-read_csv("./data_delay_1206/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 
@@ -124,11 +132,11 @@ delay_emo_early2 <- read_csv("./delay_data/emo2_early.csv")
 #arousal <- emo[emo$aff_type=="arousal",]
 #emo_mematt <- merge(emo, mem_att, by= c("`Participant Private ID`","Img"))
 
-delay_sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6,delay_sust7,delay_sust8,delay_sust9,delay_sust10,delay_sust11,delay_sust12,delay_sust13,delay_sust14)%>%
+delay_sust <- rbind(delay_sust1,delay_sust2,delay_sust3,delay_sust4,delay_sust5,delay_sust6,delay_sust7,delay_sust8,delay_sust9,delay_sust10,delay_sust11,delay_sust12,delay_sust13,delay_sust14,delay_sust15,delay_sust16,delay_sust17,delay_sust18 )%>%
   filter(`Participant Private ID` !="11638973" &`Participant Private ID` !="11658165" &`Participant Private ID` !="11682065" &`Participant Private ID` !="11682062" &`Participant Private ID` !="11758423" &`Participant Private ID` !="11638956" &`Participant Private ID` !="11682066" &`Participant Private ID` !="11852272" &`Participant Private ID` !="11658165" &`Participant Private ID` !="11682062" &`Participant Private ID` !="11716965" &`Participant Private ID` !="11852271" &`Participant Private ID` !="11852272"  &`Participant Private ID` !="11658184"&`Participant Private ID` !=" 11639011")
-delay_memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6,delay_mem7,delay_mem8,delay_mem9,delay_mem10,delay_mem11,delay_mem12,delay_mem13,delay_mem14)%>%
+delay_memory <- rbind(delay_mem1,delay_mem2,delay_mem_early2,delay_mem3,delay_mem4,delay_mem5,delay_mem6,delay_mem7,delay_mem8,delay_mem9,delay_mem10,delay_mem11,delay_mem12,delay_mem13,delay_mem14,delay_mem15,delay_mem16,delay_mem17,delay_mem18)%>%
   filter(`Participant Private ID` !="11638973" &`Participant Private ID` !="11658165" &`Participant Private ID` !="11682065" &`Participant Private ID` !="11682062" &`Participant Private ID` !="11758423" &`Participant Private ID` !="11638956" &`Participant Private ID` !="11682066" &`Participant Private ID` !="11852272"&`Participant Private ID` !="11658165" &`Participant Private ID` !="11682062" &`Participant Private ID` !="11716965" &`Participant Private ID` !="11852271" &`Participant Private ID` !="11852272" &`Participant Private ID` !="11658184"&`Participant Private ID` !=" 11639011")
-delay_emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo7,delay_emo8,delay_emo_early2,delay_emo9,delay_emo10,delay_emo11,delay_emo12,delay_emo13,delay_emo14)%>%
+delay_emo <- rbind(delay_emo1,delay_emo2,delay_emo3,delay_emo4,delay_emo5,delay_emo6,delay_emo7,delay_emo8,delay_emo_early2,delay_emo9,delay_emo10,delay_emo11,delay_emo12,delay_emo13,delay_emo14,delay_emo15,delay_emo16,delay_emo17,delay_emo18)%>%
   filter(`Participant Private ID` !="11638973" &`Participant Private ID` !="11658165" &`Participant Private ID` !="11682065" &`Participant Private ID` !="11682062" &`Participant Private ID` !="11758423" &`Participant Private ID` !="11638956" &`Participant Private ID` !="11682066" &`Participant Private ID` !="11852272"&`Participant Private ID` !="11658165" &`Participant Private ID` !="11682062" &`Participant Private ID` !="11716965" &`Participant Private ID` !="11852271" &`Participant Private ID` !="11852272" &`Participant Private ID` !="11658184"&`Participant Private ID` !=" 11639011")
 
 

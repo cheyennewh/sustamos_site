@@ -1,0 +1,588 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# image data- new set
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+vamos_aff_s1 <- read_csv("./VAMOS_Set_1_img_info.csv")
+vamos_aff_s2 <- read_csv("./NAPS_img_info.csv")
+vamos_aff <- rbind(vamos_aff_s1,vamos_aff_s2)
+```
+
+
+```{r,echo=F }
+# choose targets
+
+vamos_aff <- vamos_aff %>%
+  mutate(Arousal_cutoff = factor(ifelse(vamos_aff$Mean_Arousal>4.36,"High Arousal","Low Arousal"), labels = c("High Arousal", "Low Arousal"))
+)%>%
+  mutate(
+    val = case_when(
+    ntile(Mean_Valence, 3) == 1 ~ "Negative",  # Bottom third
+    ntile(Mean_Valence, 3) == 2 ~ "Neutral",  # Middle third
+    ntile(Mean_Valence, 3) == 3 ~ "Positive"))
+    
+#max for val negative = 3.955556
+#max for val neutral = 5.418605
+#max for val positive  = 8.422222
+
+
+
+neut_low2<- vamos_aff[vamos_aff$val=="Neutral" & vamos_aff$Arousal_cutoff=="Low Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+neut_high2 <- vamos_aff[vamos_aff$val=="Neutral" & vamos_aff$Arousal_cutoff=="High Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+neg_low2<- vamos_aff[vamos_aff$val=="Negative" & vamos_aff$Arousal_cutoff=="Low Arousal",]%>%
+  arrange(desc(Mean_Arousal))%>%
+  group_by(Img)
+neg_high2 <- vamos_aff[vamos_aff$val=="Negative" & vamos_aff$Arousal_cutoff=="High Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+pos_low2<- vamos_aff[vamos_aff$val=="Positive" & vamos_aff$Arousal_cutoff=="Low Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+pos_high2 <- vamos_aff[vamos_aff$val=="Positive" & vamos_aff$Arousal_cutoff=="High Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+
+
+#split each category one by one into the two sets
+neg_highgroup1 <- neg_high2[seq(1, nrow(neg_high2), by = 2), ]
+neg_highgroup2 <- neg_high2[seq(2, nrow(neg_high2), by = 2), ]
+neg_lowgroup1 <- neg_low2[seq(1, nrow(neg_low2), by = 2), ]
+neg_lowgroup2 <- neg_low2[seq(2, nrow(neg_low2), by = 2), ]
+pos_highgroup1 <- pos_high2[seq(1, nrow(pos_high2), by = 2), ]
+pos_highgroup2 <- pos_high2[seq(2, nrow(pos_high2), by = 2), ]
+pos_lowgroup1 <- pos_low2[seq(1, nrow(pos_low2), by = 2), ]
+pos_lowgroup2 <- pos_low2[seq(2, nrow(pos_low2), by = 2), ]
+neut_highgroup1 <- neut_high2[seq(1, nrow(neut_high2), by = 2), ]
+neut_highgroup2 <- neut_high2[seq(2, nrow(neut_high2), by = 2), ]
+neut_lowgroup1 <- neut_low2[seq(1, nrow(neut_low2), by = 2), ]
+neut_lowgroup2 <- neut_low2[seq(2, nrow(neut_low2), by = 2), ]
+
+safe_sample <- function(data, size) {
+  if (nrow(data) >= size) {
+    return(data[sample(nrow(data), size, replace = FALSE), ])
+  } else {
+    return(data)
+  }
+}
+
+set.seed(1134)
+neg_high2group11 <- neg_highgroup1 %>%
+  filter(Mean_Valence > 2.8, Mean_Valence < 3.8, Mean_Arousal > 4.6) %>%
+  safe_sample(2)
+neg_high2group12 <- neg_highgroup1[c(3,17,32,27,29,22),]
+neg_high2group1 <- rbind(neg_high2group11,neg_high2group12 )
+
+
+neg_high2group21 <- neg_highgroup2 %>%
+  filter(Mean_Valence > 2.4, Mean_Valence < 3.8, Mean_Arousal > 4.6) %>%
+  safe_sample(3)
+neg_high2group22 <-  neg_highgroup2[c(2,15,36,58,20),]
+neg_high2group2 <- rbind(neg_high2group21,neg_high2group22 )
+
+neut_high2group1 <- neut_highgroup1 %>%
+  filter(Mean_Arousal > 4.6 & Mean_Valence > 4.2 & Mean_Valence <5.5) %>%
+  safe_sample(8)
+
+neut_high2group2 <- neut_highgroup2 %>%
+  filter(Mean_Arousal > 4.6 & Mean_Valence > 4.2 & Mean_Valence <5.4 ) %>%
+  safe_sample(8)
+
+pos_high2group11 <- pos_highgroup1 %>%
+  filter(Mean_Valence > 5.55, Mean_Valence < 6.4, Mean_Arousal > 4.6) %>%
+  safe_sample(6)
+pos_high2group12 <- pos_highgroup1[c(11,22),]
+
+pos_high2group1 <-rbind(pos_high2group11,pos_high2group12)
+
+pos_high2group21 <- pos_highgroup2 %>%
+  filter(Mean_Valence > 5.7, Mean_Valence < 6.4, Mean_Arousal > 4.6) %>%
+  safe_sample(5)
+pos_high2group22 <- pos_highgroup2[c(3,13,4),]
+pos_high2group2 <-rbind(pos_high2group21,pos_high2group22)
+
+neg_low2group11 <- neg_lowgroup1 %>%
+  filter( Mean_Valence < 3.7, Mean_Arousal < 4.1) %>%
+  safe_sample(6)
+neg_low2group12 <- neg_lowgroup1 %>%
+  filter( Mean_Valence < 2.5, Mean_Arousal < 4.1) %>%
+  safe_sample(2)
+neg_low2group1 <- rbind(neg_low2group12,neg_low2group11)
+
+neg_low2group21 <- neg_lowgroup2 %>%
+  filter( Mean_Valence < 3.7, Mean_Arousal < 4.1) %>%
+  safe_sample(6)
+neg_low2group22 <- neg_lowgroup2 %>%
+  filter( Mean_Valence < 2.7, Mean_Arousal < 4.1) %>%
+  safe_sample(1)
+neg_low2group23 <- neg_lowgroup2 %>%
+  filter( Mean_Arousal < 3) %>%
+  safe_sample(1)
+neg_low2group2 <- rbind(neg_low2group21,neg_low2group22,neg_low2group23)
+
+neut_low2group1 <- neut_lowgroup1 %>%
+  filter(Mean_Arousal < 4.0) %>%
+  safe_sample(8)
+
+neut_low2group2 <- neut_lowgroup2 %>%
+  filter(Mean_Arousal < 4.0 & Mean_Valence > 4.2 & Mean_Valence <5.4) %>%
+  safe_sample(8)
+
+pos_low2group11 <- pos_lowgroup1 %>%
+  filter(Mean_Valence > 5.6, Mean_Arousal < 4.2) %>%
+  safe_sample(6)
+pos_low2group12 <- pos_lowgroup1 %>%
+  filter(!Img %in% pos_low2group11$Img) %>%
+  filter(Mean_Valence > 5.8, Mean_Arousal < 4.2) %>%
+  safe_sample(2)
+pos_low2group1 <- rbind(pos_low2group11,pos_low2group12)
+
+pos_low2group21 <- pos_lowgroup2 %>%
+  filter(Mean_Valence > 5.55, Mean_Arousal < 4.2) %>%
+  safe_sample(6)
+pos_low2group22 <- pos_lowgroup2 %>%
+  filter(!Img %in% pos_low2group21$Img) %>%
+  filter(Mean_Valence > 5.8, Mean_Arousal < 4.2) %>%
+  safe_sample(2)
+pos_low2group2 <- rbind(pos_low2group21,pos_low2group22)
+
+
+targs <- rbind(neg_low2group1,neg_low2group2,neut_low2group1,neut_low2group2,pos_low2group1,pos_low2group2,neg_high2group1,neg_high2group2,neut_high2group1,neut_high2group2,pos_high2group1,pos_high2group2)
+
+
+#302 neutral images
+#302 negative images
+# 302 positive images
+vamos_aff2 <- vamos_aff[!vamos_aff$Img %in% targs$Img,]
+neut_low<- vamos_aff2[vamos_aff2$val=="Neutral" & vamos_aff2$Arousal_cutoff=="Low Arousal",]
+neut_high <- vamos_aff2[vamos_aff2$val=="Neutral" & vamos_aff2$Arousal_cutoff=="High Arousal",]
+
+
+neut_highgroup1 <- neut_high[1:63,]
+neut_lowgroup1 <- neut_low[1:81,]
+
+
+windows <- rbind(neut_highgroup1,neut_lowgroup1)
+
+vamos_aff3 <- vamos_aff[(!vamos_aff$Img %in% targs$Img) & (!vamos_aff$Img %in% windows$Img),]
+
+
+
+
+neut_low3<- vamos_aff3[vamos_aff3$val=="Neutral" & vamos_aff3$Arousal_cutoff=="Low Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+neut_high3 <- vamos_aff3[vamos_aff3$val=="Neutral" & vamos_aff3$Arousal_cutoff=="High Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+neg_low3<- vamos_aff3[vamos_aff3$val=="Negative" & vamos_aff3$Arousal_cutoff=="Low Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+neg_high3 <- vamos_aff3[vamos_aff3$val=="Negative" & vamos_aff3$Arousal_cutoff=="High Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+pos_low3 <- vamos_aff3[vamos_aff3$val=="Positive" & vamos_aff3$Arousal_cutoff=="Low Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+pos_high3 <- vamos_aff3[vamos_aff3$val=="Positive" & vamos_aff3$Arousal_cutoff=="High Arousal",]%>%
+  arrange(desc(Mean_Arousal))
+
+
+# High Arousal Group (144 images)
+high_arousal_pos3 <- sample(pos_high3$Img, 52, replace = FALSE)  # 8 Positive
+high_arousal_neg3 <- sample(neg_high3$Img, 48, replace = FALSE)  # 8 Negative
+high_arousal_neut3 <- sample(neut_high3$Img, 0, replace = FALSE) # 9 Neutral
+
+
+# Low Arousal Group (144 images)
+low_arousal_pos3 <- sample(pos_low3$Img, 44, replace = FALSE)   # 8 Positive
+low_arousal_neg3 <- sample(neg_low3$Img, 48, replace = FALSE)  # 8 Negative
+low_arousal_neut3 <- sample(neut_low3$Img, 96, replace = FALSE)  # 9 Neutral
+
+
+fills <- c(high_arousal_neut3,high_arousal_neg3,high_arousal_pos3,low_arousal_neut3,low_arousal_neg3,low_arousal_pos3)
+
+targ1 <- rbind(neg_low2group1,neut_low2group1,pos_low2group1,neg_high2group1,neut_high2group1,pos_high2group1)
+targ2 <- rbind(neg_low2group2,neut_low2group2,pos_low2group2,neg_high2group2,neut_high2group2,pos_high2group2)
+
+
+target_g1 <- targ1 %>%
+  mutate(type="target")
+target_g2 <- targ2 %>%
+  mutate(type="target")
+fillers <- vamos_aff[vamos_aff$Img %in% fills,]%>%
+  mutate(type="filler")
+windows <- windows%>%
+  mutate(type="window")
+full_set1 <- rbind(target_g1,fillers,windows)
+full_set2 <- rbind(target_g2,fillers,windows)
+
+
+full_set1_all_info <- rbind(target_g1,fillers,windows)
+full_set2_all_info <- rbind(target_g2,fillers,windows)
+```
+
+
+
+```{r,echo=F}
+
+
+
+ggplot(target_g1, aes(x=Mean_Valence, y= Mean_Arousal))+
+geom_point()+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")
+
+
+ggplot(target_g2, aes(x=Mean_Valence, y= Mean_Arousal))+
+geom_point()+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")
+
+ggplot(windows, aes(x=Mean_Valence, y= Mean_Arousal))+
+geom_point()+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")
+
+ggplot(fillers, aes(x=Mean_Valence, y= Mean_Arousal))+
+geom_point()+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")
+
+
+ggplot(full_set1_all_info, aes(x=Mean_Valence, y= Mean_Arousal,color=type))+
+geom_point(alpha=.6)+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")+ 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+
+  xlab("Mean Valence")+
+  ylab("Mean Arousal")+
+  ggtitle("Group 1 Full Set")
+
+
+ggplot(full_set2_all_info, aes(x=Mean_Valence, y= Mean_Arousal,color=type))+
+geom_point(alpha=.6)+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")+ 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+
+  xlab("Mean Valence")+
+  ylab("Mean Arousal")+
+  ggtitle("Group 2 Full Set")
+
+
+
+
+
+
+
+
+
+
+plot_group1 <- ggplot(target_g1, aes(x=val, fill=Arousal_cutoff)) +
+  geom_bar(position="dodge") +  # Dodged bars for separation within 'val'
+  scale_fill_manual(values=c("#D5131799", "#EFD50099")) +  # Customize colors for arousal
+  xlab("Valence") +
+  ylab("Image count") +
+  ggtitle("Target Image Count (Group 1)") +
+  guides(fill=guide_legend(title="Arousal"))
+
+# Plot for Group 2
+plot_group2 <- ggplot(target_g2, aes(x=val, fill=Arousal_cutoff)) +
+  geom_bar(position="dodge") +  # Dodged bars for separation within 'val'
+  scale_fill_manual(values=c("#D5131799", "#EFD50099")) +  # Customize colors for arousal
+  xlab("Valence") +
+  ylab("Image count") +
+  ggtitle("Target Image Count  (Group 2)") +
+  guides(fill=guide_legend(title="Arousal"))
+
+
+
+
+
+# Plot for Group 1
+plot_group3 <- ggplot(full_set1_all_info, aes(x=val, fill=Arousal_cutoff)) +
+  geom_bar(position="dodge") +  # Dodged bars for separation within 'val'
+  scale_fill_manual(values=c("#D5131799", "#EFD50099")) +  # Customize colors for arousal
+  xlab("Valence") +
+  ylab("Image count") +
+  ggtitle("Full Image Count by Valence and Arousal (Group 1)") +
+  guides(fill=guide_legend(title="Arousal"))
+
+# Plot for Group 2
+plot_group4 <- ggplot(full_set2_all_info, aes(x=val, fill=Arousal_cutoff)) +
+  geom_bar(position="dodge") +  # Dodged bars for separation within 'val'
+  scale_fill_manual(values=c("#D5131799", "#EFD50099")) +  # Customize colors for arousal
+  xlab("Valence") +
+  ylab("Image count") +
+  ggtitle("Full Image Count by Valence and Arousal (Group 2)") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+
+# Display the plots (you can use gridExtra or patchwork to display them together)
+library(gridExtra)
+grid.arrange(plot_group1, plot_group2, ncol = 2)  # Arrange plots side by side
+
+#grid.arrange(plot_group3, plot_group4, ncol = 2) 
+not_incl <- vamos_aff[c(!vamos_aff$Img %in% full_set2_all_info$Img &  !vamos_aff$Img %in% full_set1_all_info$Img),]%>%
+  mutate(type= "Not in Either Set")
+
+full_set1_comp <- full_set1_all_info
+full_set2_comp <- full_set2_all_info
+full_set1_all_info_2 <- rbind(full_set1_comp,not_incl)
+full_set2_all_info_2 <- rbind(full_set2_comp,not_incl)
+
+
+
+ggplot(full_set1_all_info_2, aes(x=Mean_Valence, y= Mean_Arousal,color=type))+
+geom_point(mapping=aes(alpha=.6))+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")+ 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+
+  xlab("Mean Valence")+
+  ylab("Mean Arousal")+
+  ggtitle("Group 1 Full Set")
+
+
+ggplot(full_set2_all_info_2, aes(x=Mean_Valence, y= Mean_Arousal,color=type))+
+geom_point(mapping=aes(alpha=.6))+
+geom_hline(yintercept=4.36, color="red")+
+  geom_vline(xintercept =3.961538, color="red")+
+  geom_vline(xintercept =5.41860, color="red")+ 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))+
+  xlab("Mean Valence")+
+  ylab("Mean Arousal")+
+  ggtitle("Group 2 Full Set")
+
+
+# Function to perform and summarize t-tests
+compare_groups <- function(group1, group2, var_name) {
+  t_result <- t.test(group1[[var_name]], group2[[var_name]])
+  return(data.frame(
+    Variable = var_name,
+    t_statistic = t_result$statistic,
+    p_value = t_result$p.value
+  ))
+}
+
+
+pos_imgs <- rbind(pos_high2group1,pos_high2group2,pos_low2group1,pos_low2group2)
+neut_imgs <- rbind(neut_high2group1,neut_high2group2,neut_low2group1,neut_low2group2)
+neg_imgs <- rbind(neg_high2group1,neg_high2group2,neg_low2group1,neg_low2group2)
+
+
+low_imgs <- rbind(pos_low2group1,pos_low2group2,neg_low2group1,neg_low2group2,neut_low2group1,neut_low2group2)
+high_imgs <- rbind(pos_high2group1,pos_high2group2,neg_high2group1,neg_high2group2,neut_high2group1,neut_high2group2)
+
+
+# Compare valence and arousal overall
+valence_overall <- compare_groups(full_set1_comp, full_set2_comp, "Mean_Valence")
+arousal_overall <- compare_groups(full_set1_comp, full_set2_comp, "Mean_Arousal")
+
+
+
+
+# Combine results into a summary
+results_overall <- rbind(valence_overall, arousal_overall)
+
+# Compare arousal for positive, negative, neutral
+val_1 <- compare_groups(high_imgs, low_imgs,"Mean_Valence")
+
+
+results_valence <- rbind(val_1)
+
+# Compare valence for high and low arousal
+ar1 <- compare_groups(pos_imgs, neg_imgs, "Mean_Arousal")
+ar2 <- compare_groups(pos_imgs, neut_imgs, "Mean_Arousal")
+ar3 <- compare_groups(neut_imgs, neg_imgs, "Mean_Arousal")
+
+results_arousal <- rbind(ar,ar2,ar3)
+
+results_overall
+results_arousal
+results_valence
+
+```
+
+
+
+```{r,echo=F }
+
+targets1 <- subset(full_set1_all_info, type == "target")
+windows1 <- subset(full_set1_all_info, type == "window")
+fillers1 <- subset(full_set1_all_info, type == "filler")
+
+window_groups1 <- split(sample(windows1$Img), rep(1:48, each = 3))
+
+# Ensure the fillers dataframe has the same structure as the grouped dataframes
+common_columns <- c("Img", "type")  # Adjust to match your dataframe structure
+fillers1 <- fillers1[, common_columns, drop = FALSE]  # Keep only matching columns
+
+# Combine target/window groups into one dataframe as a list of units
+group_units1 <- lapply(1:48, function(i) {
+  data.frame(
+    Img = c(window_groups1[[i]], targets1$Img[i], targets1$Img[i]),
+    type = c(rep("window", 3), "target","target")
+  )
+})
+
+# Add filler images randomly while preserving the target/window groups
+set.seed(42)  # For reproducibility
+num_fillers1 <- nrow(fillers1)
+num_groups1 <- length(group_units1)
+
+# Determine positions for fillers
+insert_positions1 <- sample(1:(num_groups1 + num_fillers1), num_fillers1)
+
+# Create the final order of target/window groups and fillers
+final_order1 <- list()
+group_counter1 <- 1
+filler_counter1 <- 1
+
+for (i in 1:(num_groups1 + num_fillers1)) {
+  if (i %in% insert_positions1) {
+    final_order1[[i]] <- fillers1[filler_counter1, ]
+    filler_counter1 <- filler_counter1 + 1
+  } else {
+    final_order1[[i]] <- group_units1[[group_counter1]]
+    group_counter1 <- group_counter1 + 1
+  }
+}
+
+# Combine everything into a single dataframe
+final_df_g1 <- do.call(rbind, lapply(final_order1, function(x) as.data.frame(x)))
+
+# View the result
+head(final_df_g1)
+
+write.csv(final_df_g1,"sustamos_v2_set1.csv")
+
+```
+
+
+```{r,echo=F }
+
+targets2 <- subset(full_set2_all_info, type == "target")
+windows2 <- subset(full_set2_all_info, type == "window")
+fillers2 <- subset(full_set2_all_info, type == "filler")
+
+window_groups2 <- split(sample(windows2$Img), rep(1:48, each = 3))
+
+# Ensure the fillers dataframe has the same structure as the grouped dataframes
+common_columns <- c("Img", "type")  # Adjust to match your dataframe structure
+fillers2 <- fillers2[, common_columns, drop = FALSE]  # Keep only matching columns
+
+# Combine target/window groups into one dataframe as a list of units
+group_units2 <- lapply(1:48, function(i) {
+  data.frame(
+    Img = c(window_groups2[[i]], targets2$Img[i], targets2$Img[i]),
+    type = c(rep("window", 3), "target", "target")
+  )
+})
+
+# Add filler images randomly while preserving the target/window groups
+set.seed(44)  # For reproducibility
+num_fillers2 <- nrow(fillers2)
+num_groups2 <- length(group_units2)
+
+# Determine positions for fillers
+insert_positions2 <- sample(1:(num_groups2 + num_fillers2), num_fillers2)
+
+# Create the final order of target/window groups and fillers
+final_order2 <- list()
+group_counter2 <- 1
+filler_counter2 <- 1
+
+for (i in 1:(num_groups2 + num_fillers2)) {
+  if (i %in% insert_positions2) {
+    final_order2[[i]] <- fillers2[filler_counter2, ]
+    filler_counter2 <- filler_counter2 + 1
+  } else {
+    final_order2[[i]] <- group_units2[[group_counter2]]
+    group_counter2 <- group_counter2 + 1
+  }
+}
+
+# Combine everything into a single dataframe
+final_df_g2 <- do.call(rbind, lapply(final_order2, function(x) as.data.frame(x)))
+
+write.csv(final_df_g2,"sustamos_v2_set2.csv")
+
+```
+
+
+```{r}
+library(dplyr)
+library(fs)
+
+# Paths
+csv_path <- "/Users/cheywakeland-hart/Desktop/sustamos_book/sustamos_v2_set1.csv"
+csv_path2 <- "/Users/cheywakeland-hart/Desktop/sustamos_book/sustamos_v2_set2.csv"
+source_folder <- "/Users/cheywakeland-hart/Desktop/VAMOS_Stimuli/images"
+destination_folder <- "/Users/cheywakeland-hart/Desktop/set 1"
+destination_folder2 <- "/Users/cheywakeland-hart/Desktop/set 2"
+
+# Create the destination folder if it doesn't exist
+if (!dir_exists(destination_folder)) {
+  dir_create(destination_folder)
+}
+if (!dir_exists(destination_folder2)) {
+  dir_create(destination_folder2)
+}
+
+# Load the CSV
+data <- read.csv(csv_path)
+data2 <- read.csv(csv_path2)
+
+# Get unique image file names from the Img column
+unique_images <- unique(data$Img)
+unique_images2 <- unique(data2$Img)
+
+# Copy images to the destination folder
+for (img_name in unique_images) {
+  # Construct the full path for the source image
+  source_path <- file.path(source_folder, img_name)
+  
+  # Construct the destination path
+  destination_path <- file.path(destination_folder, img_name)
+  
+  # Check if the file exists and copy it
+  if (file_exists(source_path)) {
+    file_copy(source_path, destination_path, overwrite = TRUE)
+  } else {
+    message(paste("File not found:", source_path))
+  }
+}
+
+
+message("Images have been copied to the 'set 1' folder.")
+
+
+# Copy images to the destination folder
+for (img_name in unique_images2) {
+  # Construct the full path for the source image
+  source_path <- file.path(source_folder, img_name)
+  
+  # Construct the destination path
+  destination_path2 <- file.path(destination_folder2, img_name)
+  
+  # Check if the file exists and copy it
+  if (file_exists(source_path)) {
+    file_copy(source_path, destination_path2, overwrite = TRUE)
+  } else {
+    message(paste("File not found:", source_pat2h))
+  }
+}
+message("Images have been copied to the 'set 2' folder.")
+
+```

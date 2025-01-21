@@ -6,6 +6,5 @@ language:
 book_filename: "Sustamos"
 rmd_files: ["index.Rmd",
 "exp_info.Rmd",
-"delay_buildup.Rmd",
-"classic.Rmd"]
+"classic_redo.Rmd"]
 output_dir: "_book"
