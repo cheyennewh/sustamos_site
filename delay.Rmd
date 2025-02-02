@@ -1292,3 +1292,5 @@ ggplot(delay_mem_rt, aes(x=`Participant Private ID`, y=mean_rt))+
   geom_point()+
   geom_hline(yintercept = 2380.765)
 ```
+
+

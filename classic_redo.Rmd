@@ -34,16 +34,16 @@ library(sjPlot)
 ```{r , echo=F,include=FALSE}
 sust1 <- read_csv("./data_0110/sust1.csv")
 sust2 <- read_csv("./data_0110/sust2.csv")
-
 sust3 <- read_csv("./data_0115/sust1.csv")
 sust4 <- read_csv("./data_0115/sust2.csv")
-
 sust5 <- read_csv("./data_0116/sust1.csv")
 sust6 <- read_csv("./data_0116/sust2.csv")
 sust7 <- read_csv("./data_0120/sust1.csv")
 sust8 <- read_csv("./data_0120/sust2.csv")
 sust9 <- read_csv("./data_0121/sust1.csv")
 sust10 <- read_csv("./data_0121/sust2.csv")
+sust11 <- read_csv("./data_0130/sust1.csv")
+sust12 <- read_csv("./data_0130/sust2.csv")
 
 mem1 <- read_csv("./data_0110/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
@@ -64,6 +64,10 @@ mem8 <- read_csv("./data_0120/mem2.csv")%>%
 mem9 <- read_csv("./data_0121/mem1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 mem10 <- read_csv("./data_0121/mem2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+mem11 <- read_csv("./data_0130/mem1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+mem12 <- read_csv("./data_0130/mem2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
 emo1 <- read_csv("./data_0110/emo1.csv")%>%
@@ -86,10 +90,14 @@ emo9 <-read_csv("./data_0121/emo1.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 emo10 <-read_csv("./data_0121/emo2.csv")%>%
   select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+emo11 <-read_csv("./data_0130/emo1.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
+emo12 <-read_csv("./data_0130/emo2.csv")%>%
+  select(-c("branch-ck1c","randomiser-8rl3","branch-tpdd"))
 
-sust <- rbind( sust1, sust2, sust3, sust4, sust5,sust6,sust7,sust8,sust9,sust10)
-memory <- rbind(mem1,mem2,mem3,mem4,mem5,mem6,mem7,mem8,mem9,mem10)
-emo <- rbind(emo1,emo2,emo3,emo4,emo5,emo6,emo7,emo8,emo9,emo10)
+sust <- rbind( sust1, sust2, sust3, sust4, sust5,sust6,sust7,sust8,sust9,sust10,sust11,sust12)
+memory <- rbind(mem1,mem2,mem3,mem4,mem5,mem6,mem7,mem8,mem9,mem10,mem11,mem12)
+emo <- rbind(emo1,emo2,emo3,emo4,emo5,emo6,emo7,emo8,emo9,emo10,emo11,emo12)
 
 
 vamos_aff_s1 <- read_csv("./VAMOS_Set_1_img_info.csv")
@@ -225,7 +233,7 @@ vamos_aff_s2 <- read_csv("./NAPS_img_info.csv")
          
   )%>%
   mutate(group=ifelse(`Spreadsheet: memory`=="target","group1","group2"))%>%
-  filter()
+  unique()
 
 memory <- memory[memory$APrime>.50,]
 sust <- sust[sust$`Participant Private ID` %in% memory[memory$APrime>.50,],]
@@ -242,7 +250,7 @@ emo <- emo[emo$`Participant Private ID` %in% memory[memory$APrime>.50,],]
  
 
  mem_only <-  memory%>%
-  select(c(`Participant Private ID`,hits,fas,`Spreadsheet: img`,`Trial Number`,Response,`Spreadsheet: memory`,group))%>%
+  select(c(`Participant Private ID`,hits,fas,`Spreadsheet: img`,`Trial Number`,Response,`Spreadsheet: memory`,group,APrime))%>%
   filter(`Spreadsheet: memory`=="target")
  mem_only2 <-  memory%>%
   select(c(`Participant Private ID`,hits,fas,`Spreadsheet: img`,`Trial Number`,Response,`Spreadsheet: memory`,group))%>%
@@ -352,10 +360,11 @@ through the table to see how often each participant made this mistake.
  lapse_total_fills <- summarise( rt_analysis_fills, total_fills_lapses = sum(fills_perf == "Lapse"))
     
  lapse_total_fills1 <-  lapse_total_fills %>%
+   filter(total_fills_lapses<48)%>%
   kable("html") %>%
   kable_styling(full_width = FALSE)%>%
   scroll_box(width="400px",height = "300px") 
- #lapse_total_fills1
+ lapse_total_fills1
   
  d2 <- as.data.frame(lapse_total_fills)
 
@@ -371,8 +380,8 @@ too_many_filler_lapse <- d1$`Participant Private ID`[d2$total_fills_lapses>48]
 
  unique_ids <- unique( rt_analysis$`Participant Private ID`)
 # Get unique Participant IDs for Correct and Lapse performances
- unique_ids_correct <- unique( rt_analysis$`Participant Private ID`[ rt_analysis$targ_perf == "Correct"])
- unique_ids_lapse <- unique( rt_analysis$`Participant Private ID`[ rt_analysis$targ_perf == "Lapse"])
+ unique_ids_correct <- unique( rt_analysis$`Participant Private ID`[ rt_analysis$targ_perf == "Correct" & !rt_analysis$`Participant Private ID` %in% too_many_target_lapse & !rt_analysis$`Participant Private ID` %in% too_many_filler_lapse])
+ unique_ids_lapse <- unique( rt_analysis$`Participant Private ID`[ rt_analysis$targ_perf == "Lapse"& !rt_analysis$`Participant Private ID` %in% too_many_target_lapse & !rt_analysis$`Participant Private ID` %in% too_many_filler_lapse])
 
 # Get a union of all unique Participant IDs
  all_unique_ids <- union( unique_ids_correct,  unique_ids_lapse)
@@ -396,12 +405,19 @@ too_many_filler_lapse <- d1$`Participant Private ID`[d2$total_fills_lapses>48]
 # Initialize vectors to store means for all unique Participant IDs
  means_all_correct <- rep(0, length( all_unique_ids))
  means_all_lapse <- rep(0, length( all_unique_ids))
+ 
+matched_indices <- match(names(means_by_participant), all_unique_ids)
+valid_indices <- !is.na(matched_indices)
+
+means_all_correct[matched_indices[valid_indices]] <- unname(means_by_participant[valid_indices])
 
 # Replace means for Correct performance with calculated means
- means_all_correct[match(names( means_by_participant),  all_unique_ids)] <- unname( means_by_participant)
 
+
+ matched_indices2 <- match(names(means_by_participant2), all_unique_ids)
+valid_indices2 <- !is.na(matched_indices2)
 # Replace means for Lapse performance with calculated means
- means_all_lapse[match(names( means_by_participant2),  all_unique_ids)] <- unname( means_by_participant2)
+means_all_lapse[matched_indices2[valid_indices2]] <- unname(means_by_participant2[valid_indices2])
 
 # Convert the result to a data frame
  laps_tot <- data.frame(
@@ -424,7 +440,7 @@ ggplot( lapse_df, aes(x = Condition, y = Mean_Window_Scale, group = `Participant
 
 library(ggpubr)
 
-t.test(laps_tot$Correct,laps_tot$Lapse)
+t.test(laps_tot$Correct,laps_tot$Lapse,paired = TRUE)
 
 ```
 <span style="background-color:#A8B89D;">
@@ -449,7 +465,8 @@ memory_summary <- memory %>%
     total_crs = sum(crs),
     total_success = total_hits + total_crs,  # Sum hits + crs for total success
     n_trials = n()  # Count of rows (number of trials)
-  )
+  )%>%
+  filter(n_trials==96)
 p=.5
 # Function to apply the binomial test for each participant
 apply_binomial_test <- function(total_success, n_trials, p) {
@@ -642,16 +659,90 @@ summary(model6)
 summary(model7)
 ```
 
-```{r}
+```{r,message=FALSE}
+
 memory_rt <- memory %>%
-  select(`Reaction Time`,`Participant Private ID`, `Spreadsheet: img`, `Absolute Reaction Time`)
+  select(`Reaction Time`,`Participant Private ID`, `Spreadsheet: img`, `Absolute Reaction Time`)%>%
+  group_by(`Participant Private ID`)%>%
+  mutate(
+    max_rt = max(`Reaction Time`)
+  )
+
 
 ggplot(memory_rt, aes(x=as.character(`Participant Private ID`),y=`Reaction Time`,group=as.character(`Participant Private ID`)))+
-  geom_violin()
+  geom_violin()+
+  geom_hline(yintercept = mean(memory$`Reaction Time`), color="green")+
+  ylim(0,30000)
 
-ggplot(memory_rt, aes(x=as.character(`Participant Private ID`),y=`Reaction Time`,fill=as.character(`Spreadsheet: img`)))+
-  geom_bar(position="fill",stat="identity")+
-  theme(legend.position = "none")
-  
+
+
+ggplot(memory_rt, aes(x=as.character(`Participant Private ID`),y=`max_rt`,group=as.character(`Participant Private ID`)))+
+  geom_point()+
+  geom_hline(yintercept = mean(memory$`Reaction Time`), color="green")
+
+
+
+# Extract random slopes safely
+betas_model1 <- ranef(model1)$`Participant Private ID`[, "zrt", drop = FALSE] %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column("Participant Private ID")
+
+betas_model2 <- ranef(model2)$`Participant Private ID`[, "z_mem"]
+betas_model3 <- ranef(model3)$`Participant Private ID`[, "zv"]
+betas_model4 <- ranef(model4)$`Participant Private ID`[, "za"]
+betas_model5 <- ranef(model5)$`Participant Private ID`[, "zv"]
+
+# Convert to data frame
+betas_df <- data.frame(
+  `Participant Private ID` = betas_model1$`Participant Private ID`,
+  Beta_Model1 = betas_model1$zrt,
+  Beta_Model2 = betas_model2,
+  Beta_Model3 = betas_model3,
+  Beta_Model4 = betas_model4,
+  Beta_Model5 = betas_model5
+)
+
+betas_df <-betas_df %>%
+  rename("Participant Private ID" = "Participant.Private.ID")
+# Assume aprime_df contains A-prime scores
+# Example: aprime_df <- data.frame(`Participant Private ID` = unique(mem_att$`Participant Private ID`), aprime = <your_aprime_values>)
+
+betas_df$`Participant Private ID` <-as.numeric(betas_df$`Participant Private ID`)
+
+
+mem_att_small <- mem_att%>%
+  select(`Participant Private ID`,APrime)
+# Merge with A-prime scores
+merged_df <- betas_df %>%
+  merge(mem_att_small, by = "Participant Private ID")
+
+# Plot Beta_Model1 vs A-prime
+ggplot(merged_df, aes(x = Beta_Model1, y = APrime)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(x = "Beta (Random Slope)", y = "A-prime", title = "Reaction Time") +
+  theme_minimal()
+
+
+# Plot Beta_Model1 vs A-prime
+ggplot(merged_df, aes(x = Beta_Model2, y = APrime)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(x = "Beta (Random Slope)", y = "A-prime", title = "Memorability") +
+  theme_minimal()
+
+# Plot Beta_Model1 vs A-prime
+ggplot(merged_df, aes(x = Beta_Model3, y = APrime)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(x = "Beta (Random Slope)", y = "A-prime", title = "Valence") +
+  theme_minimal()
+
+# Plot Beta_Model1 vs A-prime
+ggplot(merged_df, aes(x = Beta_Model4, y = APrime)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(x = "Beta (Random Slope)", y = "A-prime", title = "Arousal") +
+  theme_minimal()
 
 ```
